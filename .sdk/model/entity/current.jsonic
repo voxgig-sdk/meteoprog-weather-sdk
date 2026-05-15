@@ -1,0 +1,93 @@
+# Entity: current
+
+main: kit: entity: current: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "current"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "location"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "current"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "city"
+                orig: "city"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: "en"
+                kind: "query"
+                name: "lang"
+                orig: "lang"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "lat"
+                orig: "lat"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "lon"
+                orig: "lon"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                example: "metric"
+                kind: "query"
+                name: "unit"
+                orig: "unit"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/weather/current"
+          parts: [
+            "weather"
+            "current"
+          ]
+          select: {
+            exist: [
+              "city"
+              "lang"
+              "lat"
+              "lon"
+              "unit"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

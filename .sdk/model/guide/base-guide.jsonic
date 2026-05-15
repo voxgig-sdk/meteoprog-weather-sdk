@@ -1,0 +1,28 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 3
+  metrics: count: path: 3
+  metrics: count: method: 3
+
+  entity: current: {
+    path: "/weather/current": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.current`")|top
+    }
+  }
+
+  entity: historical: {
+    path: "/weather/historical": {
+      op: list: method: *GET
+      op: list: transform: res: *("`body.historical`")|top
+    }
+  }
+
+  entity: weather_forecast: {
+    path: "/weather/forecast": {
+      op: list: method: *GET
+    }
+  }
+
+}

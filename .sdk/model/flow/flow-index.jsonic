@@ -1,0 +1,5 @@
+# Flows
+
+@"BasicCurrentFlow.jsonic"
+@"BasicHistoricalFlow.jsonic"
+@"BasicWeatherForecastFlow.jsonic"

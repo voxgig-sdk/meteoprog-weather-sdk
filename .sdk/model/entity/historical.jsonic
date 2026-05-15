@@ -1,0 +1,149 @@
+# Entity: historical
+
+main: kit: entity: historical: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "cloud"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "date"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "humidity"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "precipitation"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "pressure"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "temperature"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "timestamp"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "weather"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "wind_direction"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "wind_speed"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "historical"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "city"
+                orig: "city"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "end_date"
+                orig: "end_date"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "en"
+                kind: "query"
+                name: "lang"
+                orig: "lang"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "lat"
+                orig: "lat"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "lon"
+                orig: "lon"
+                reqd: false
+                type: "`$NUMBER`"
+              }
+              {
+                kind: "query"
+                name: "start_date"
+                orig: "start_date"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                example: "metric"
+                kind: "query"
+                name: "unit"
+                orig: "unit"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/weather/historical"
+          parts: [
+            "weather"
+            "historical"
+          ]
+          select: {
+            exist: [
+              "city"
+              "end_date"
+              "lang"
+              "lat"
+              "lon"
+              "start_date"
+              "unit"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,58 @@
+{
+  "existing": {
+    "weather_forecast": {
+      "WEATHER_FORECAST00": {
+        "cloud": "s64",
+        "date": "s65",
+        "humidity": "s66",
+        "precipitation": 103,
+        "pressure": 104,
+        "temperature": {},
+        "timestamp": "s6a",
+        "weather": {},
+        "wind_direction": 108,
+        "wind_speed": 109
+      },
+      "WEATHER_FORECAST01": {
+        "cloud": "sc8",
+        "date": "sc9",
+        "humidity": "sca",
+        "precipitation": 203,
+        "pressure": 204,
+        "temperature": {},
+        "timestamp": "sce",
+        "weather": {},
+        "wind_direction": 208,
+        "wind_speed": 209
+      },
+      "WEATHER_FORECAST02": {
+        "cloud": "s12c",
+        "date": "s12d",
+        "humidity": "s12e",
+        "precipitation": 303,
+        "pressure": 304,
+        "temperature": {},
+        "timestamp": "s132",
+        "weather": {},
+        "wind_direction": 308,
+        "wind_speed": 309
+      }
+    }
+  },
+  "new": {
+    "weather_forecast": {
+      "weather_forecast_ref01": {
+        "cloud": "s190",
+        "date": "s191",
+        "humidity": "s192",
+        "precipitation": 403,
+        "pressure": 404,
+        "temperature": {},
+        "timestamp": "s196",
+        "weather": {},
+        "wind_direction": 408,
+        "wind_speed": 409
+      }
+    }
+  }
+}

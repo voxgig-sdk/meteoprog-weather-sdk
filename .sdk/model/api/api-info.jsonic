@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://billing.meteoprog.com/documentation"
+      }
+      description: "The Meteoprog Weather API provides comprehensive weather data, allowing integration of fast and accurate weather forecasts into various applications and websites. It offers endpoints for current weather, forecasts, historical data, and more, ensuring easy access to vital meteorological information."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://api.meteoprog.com/v1"
+        }
+      ]
+      title: "Meteoprog Weather API"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

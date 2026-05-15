@@ -1,0 +1,760 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Meteoprog Weather API",
+    "description": "The Meteoprog Weather API provides comprehensive weather data, allowing integration of fast and accurate weather forecasts into various applications and websites. It offers endpoints for current weather, forecasts, historical data, and more, ensuring easy access to vital meteorological information.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://billing.meteoprog.com/documentation"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.meteoprog.com/v1",
+      "description": "Production server"
+    }
+  ],
+  "security": [
+    {
+      "ApiKeyAuth": []
+    }
+  ],
+  "paths": {
+    "/weather/current": {
+      "get": {
+        "summary": "Get current weather",
+        "description": "Retrieves current weather conditions for a specified location",
+        "operationId": "getCurrentWeather",
+        "tags": [
+          "Weather"
+        ],
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Latitude of the location",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "minimum": -90,
+              "maximum": 90
+            }
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "description": "Longitude of the location",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "minimum": -180,
+              "maximum": 180
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "City name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "Language code for the response",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "enum": [
+                "en",
+                "ru",
+                "uk",
+                "de",
+                "es",
+                "fr"
+              ]
+            }
+          },
+          {
+            "name": "units",
+            "in": "query",
+            "description": "Units of measurement",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "metric",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with current weather data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CurrentWeather"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Location not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather/forecast": {
+      "get": {
+        "summary": "Get weather forecast",
+        "description": "Retrieves weather forecast for a specified location",
+        "operationId": "getWeatherForecast",
+        "tags": [
+          "Weather"
+        ],
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Latitude of the location",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "minimum": -90,
+              "maximum": 90
+            }
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "description": "Longitude of the location",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "minimum": -180,
+              "maximum": 180
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "City name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "days",
+            "in": "query",
+            "description": "Number of days for the forecast",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 7,
+              "minimum": 1,
+              "maximum": 14
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "Language code for the response",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "enum": [
+                "en",
+                "ru",
+                "uk",
+                "de",
+                "es",
+                "fr"
+              ]
+            }
+          },
+          {
+            "name": "units",
+            "in": "query",
+            "description": "Units of measurement",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "metric",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with weather forecast data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherForecast"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Location not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/weather/historical": {
+      "get": {
+        "summary": "Get historical weather data",
+        "description": "Retrieves historical weather data for a specified location and time period",
+        "operationId": "getHistoricalWeather",
+        "tags": [
+          "Weather"
+        ],
+        "parameters": [
+          {
+            "name": "lat",
+            "in": "query",
+            "description": "Latitude of the location",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "minimum": -90,
+              "maximum": 90
+            }
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "description": "Longitude of the location",
+            "required": false,
+            "schema": {
+              "type": "number",
+              "format": "float",
+              "minimum": -180,
+              "maximum": 180
+            }
+          },
+          {
+            "name": "city",
+            "in": "query",
+            "description": "City name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "start_date",
+            "in": "query",
+            "description": "Start date for historical data (YYYY-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "end_date",
+            "in": "query",
+            "description": "End date for historical data (YYYY-MM-DD)",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date"
+            }
+          },
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "Language code for the response",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "en",
+              "enum": [
+                "en",
+                "ru",
+                "uk",
+                "de",
+                "es",
+                "fr"
+              ]
+            }
+          },
+          {
+            "name": "units",
+            "in": "query",
+            "description": "Units of measurement",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "metric",
+              "enum": [
+                "metric",
+                "imperial"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with historical weather data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HistoricalWeather"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized - invalid or missing API key",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Location not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "429": {
+            "description": "Rate limit exceeded",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "api_key",
+        "description": "API key for authentication. Obtain from https://billing.meteoprog.com"
+      }
+    },
+    "schemas": {
+      "CurrentWeather": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "current": {
+            "type": "object",
+            "properties": {
+              "timestamp": {
+                "type": "integer",
+                "description": "Unix timestamp of the observation"
+              },
+              "temperature": {
+                "type": "number",
+                "description": "Current temperature"
+              },
+              "feels_like": {
+                "type": "number",
+                "description": "Perceived temperature"
+              },
+              "pressure": {
+                "type": "number",
+                "description": "Atmospheric pressure"
+              },
+              "humidity": {
+                "type": "integer",
+                "description": "Humidity percentage"
+              },
+              "wind_speed": {
+                "type": "number",
+                "description": "Wind speed"
+              },
+              "wind_direction": {
+                "type": "number",
+                "description": "Wind direction in degrees"
+              },
+              "clouds": {
+                "type": "integer",
+                "description": "Cloud coverage percentage"
+              },
+              "visibility": {
+                "type": "number",
+                "description": "Visibility distance"
+              },
+              "weather": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "description": "Weather condition ID"
+                  },
+                  "main": {
+                    "type": "string",
+                    "description": "Main weather condition"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Detailed weather description"
+                  },
+                  "icon": {
+                    "type": "string",
+                    "description": "Weather icon code"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "WeatherForecast": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "forecast": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date",
+                  "description": "Date of the forecast"
+                },
+                "timestamp": {
+                  "type": "integer",
+                  "description": "Unix timestamp"
+                },
+                "temperature": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "description": "Minimum temperature"
+                    },
+                    "max": {
+                      "type": "number",
+                      "description": "Maximum temperature"
+                    },
+                    "morning": {
+                      "type": "number",
+                      "description": "Morning temperature"
+                    },
+                    "day": {
+                      "type": "number",
+                      "description": "Day temperature"
+                    },
+                    "evening": {
+                      "type": "number",
+                      "description": "Evening temperature"
+                    },
+                    "night": {
+                      "type": "number",
+                      "description": "Night temperature"
+                    }
+                  }
+                },
+                "pressure": {
+                  "type": "number",
+                  "description": "Atmospheric pressure"
+                },
+                "humidity": {
+                  "type": "integer",
+                  "description": "Humidity percentage"
+                },
+                "wind_speed": {
+                  "type": "number",
+                  "description": "Wind speed"
+                },
+                "wind_direction": {
+                  "type": "number",
+                  "description": "Wind direction in degrees"
+                },
+                "clouds": {
+                  "type": "integer",
+                  "description": "Cloud coverage percentage"
+                },
+                "precipitation": {
+                  "type": "number",
+                  "description": "Precipitation amount"
+                },
+                "weather": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "Weather condition ID"
+                    },
+                    "main": {
+                      "type": "string",
+                      "description": "Main weather condition"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Detailed weather description"
+                    },
+                    "icon": {
+                      "type": "string",
+                      "description": "Weather icon code"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "HistoricalWeather": {
+        "type": "object",
+        "properties": {
+          "location": {
+            "$ref": "#/components/schemas/Location"
+          },
+          "historical": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "date": {
+                  "type": "string",
+                  "format": "date",
+                  "description": "Date of the historical data"
+                },
+                "timestamp": {
+                  "type": "integer",
+                  "description": "Unix timestamp"
+                },
+                "temperature": {
+                  "type": "object",
+                  "properties": {
+                    "min": {
+                      "type": "number",
+                      "description": "Minimum temperature"
+                    },
+                    "max": {
+                      "type": "number",
+                      "description": "Maximum temperature"
+                    },
+                    "avg": {
+                      "type": "number",
+                      "description": "Average temperature"
+                    }
+                  }
+                },
+                "pressure": {
+                  "type": "number",
+                  "description": "Atmospheric pressure"
+                },
+                "humidity": {
+                  "type": "integer",
+                  "description": "Humidity percentage"
+                },
+                "wind_speed": {
+                  "type": "number",
+                  "description": "Wind speed"
+                },
+                "wind_direction": {
+                  "type": "number",
+                  "description": "Wind direction in degrees"
+                },
+                "clouds": {
+                  "type": "integer",
+                  "description": "Cloud coverage percentage"
+                },
+                "precipitation": {
+                  "type": "number",
+                  "description": "Precipitation amount"
+                },
+                "weather": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "description": "Weather condition ID"
+                    },
+                    "main": {
+                      "type": "string",
+                      "description": "Main weather condition"
+                    },
+                    "description": {
+                      "type": "string",
+                      "description": "Detailed weather description"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "Location": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Location name"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country code"
+          },
+          "region": {
+            "type": "string",
+            "description": "Region or state"
+          },
+          "lat": {
+            "type": "number",
+            "description": "Latitude"
+          },
+          "lon": {
+            "type": "number",
+            "description": "Longitude"
+          },
+          "timezone": {
+            "type": "string",
+            "description": "Timezone identifier"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "object",
+            "properties": {
+              "code": {
+                "type": "integer",
+                "description": "Error code"
+              },
+              "message": {
+                "type": "string",
+                "description": "Error message"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Weather",
+      "description": "Weather data endpoints"
+    }
+  ]
+}
