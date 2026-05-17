@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/meteoprog-weather-sdk"
-	"github.com/voxgig-sdk/meteoprog-weather-sdk/core"
+	sdk "github.com/voxgig-sdk/meteoprog-weather-sdk/go"
+	"github.com/voxgig-sdk/meteoprog-weather-sdk/go/core"
 )
 
 func TestWeatherForecastDirect(t *testing.T) {

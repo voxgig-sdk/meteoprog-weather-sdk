@@ -3,15 +3,18 @@
     "current": {
       "CURRENT00": {
         "current": {},
-        "location": {}
+        "location": {},
+        "id": "CURRENT00"
       },
       "CURRENT01": {
         "current": {},
-        "location": {}
+        "location": {},
+        "id": "CURRENT01"
       },
       "CURRENT02": {
         "current": {},
-        "location": {}
+        "location": {},
+        "id": "CURRENT02"
       }
     }
   },

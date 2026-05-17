@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/meteoprog-weather-sdk"
-	"github.com/voxgig-sdk/meteoprog-weather-sdk/core"
+	sdk "github.com/voxgig-sdk/meteoprog-weather-sdk/go"
+	"github.com/voxgig-sdk/meteoprog-weather-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/meteoprog-weather-sdk/go/utility/struct"
 )
 
 func TestWeatherForecastEntity(t *testing.T) {
