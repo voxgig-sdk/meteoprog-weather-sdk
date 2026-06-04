@@ -119,7 +119,6 @@ func historicalBasicSetup(extra map[string]any) *entityTestSetup {
 		"METEOPROGWEATHER_TEST_HISTORICAL_ENTID": idmap,
 		"METEOPROGWEATHER_TEST_LIVE":      "FALSE",
 		"METEOPROGWEATHER_TEST_EXPLAIN":   "FALSE",
-		"METEOPROGWEATHER_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["METEOPROGWEATHER_TEST_HISTORICAL_ENTID"])
@@ -130,7 +129,6 @@ func historicalBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["METEOPROGWEATHER_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["METEOPROGWEATHER_APIKEY"],
 			},
 			extra,
 		})

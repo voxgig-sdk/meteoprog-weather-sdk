@@ -16,8 +16,29 @@ main: {
       ]
       title: "Meteoprog Weather API"
       version: "1.0.0"
+      tagline: "Global weather data covering current conditions, forecasts, and historical records from Meteoprog"
+      homepage: "https://billing.meteoprog.com/"
+      docs_url: "https://billing.meteoprog.com/documentation"
+      about_md: `The Meteoprog Weather API provides meteorological data including current conditions, forecasts, and historical records. It is operated by [Meteoprog](https://billing.meteoprog.com/), a weather data provider whose service is positioned for integrating weather information into applications and websites.
+
+What the API exposes:
+
+- Current weather conditions
+- Weather forecasts
+- Historical weather data
+
+Operational notes:
+
+- Base URL: \`https://api.meteoprog.com/v1\`
+- Billing and documentation are hosted at [billing.meteoprog.com](https://billing.meteoprog.com/documentation)
+- CORS is reportedly disabled, so browser-only clients may need a proxy
+- Authentication, rate limits, and licensing terms are not documented in the sources surveyed here; consult the Meteoprog documentation or billing portal for current details`
+      entity_desc: {
+        current: "Current weather conditions for a requested location."
+        historical: "Historical weather records for past dates and locations."
+        weather_forecast: "Weather forecast data for upcoming periods at a given location."
+      }
+      auth: false
     }
   }
-}
-
 }

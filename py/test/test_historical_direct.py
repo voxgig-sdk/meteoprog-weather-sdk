@@ -61,14 +61,12 @@ def _historical_direct_setup(mockres):
     env = runner.env_override({
         "METEOPROGWEATHER_TEST_HISTORICAL_ENTID": {},
         "METEOPROGWEATHER_TEST_LIVE": "FALSE",
-        "METEOPROGWEATHER_APIKEY": "NONE",
     })
 
     live = env.get("METEOPROGWEATHER_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("METEOPROGWEATHER_APIKEY"),
         }
         client = MeteoprogWeatherSDK(merged_opts)
         return {

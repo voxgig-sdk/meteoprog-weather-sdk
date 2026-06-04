@@ -92,7 +92,6 @@ function weather_forecast_basic_setup(extra)
     ["METEOPROGWEATHER_TEST_WEATHER_FORECAST_ENTID"] = idmap,
     ["METEOPROGWEATHER_TEST_LIVE"] = "FALSE",
     ["METEOPROGWEATHER_TEST_EXPLAIN"] = "FALSE",
-    ["METEOPROGWEATHER_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function weather_forecast_basic_setup(extra)
   if env["METEOPROGWEATHER_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["METEOPROGWEATHER_APIKEY"],
       },
       extra or {},
     })

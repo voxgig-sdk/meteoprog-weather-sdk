@@ -63,14 +63,12 @@ function weather_forecast_direct_setup(mockres)
   local env = runner.env_override({
     ["METEOPROGWEATHER_TEST_WEATHER_FORECAST_ENTID"] = {},
     ["METEOPROGWEATHER_TEST_LIVE"] = "FALSE",
-    ["METEOPROGWEATHER_APIKEY"] = "NONE",
   })
 
   local live = env["METEOPROGWEATHER_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["METEOPROGWEATHER_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
