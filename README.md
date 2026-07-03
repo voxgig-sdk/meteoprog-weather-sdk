@@ -1,25 +1,8 @@
 # MeteoprogWeather SDK
 
-Global weather data covering current conditions, forecasts, and historical records from Meteoprog
+Meteoprog Weather API client, generated from the OpenAPI spec.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI, an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
-
-## About Meteoprog Weather API
-
-The Meteoprog Weather API provides meteorological data including current conditions, forecasts, and historical records. It is operated by [Meteoprog](https://billing.meteoprog.com/), a weather data provider whose service is positioned for integrating weather information into applications and websites.
-
-What the API exposes:
-
-- Current weather conditions
-- Weather forecasts
-- Historical weather data
-
-Operational notes:
-
-- Base URL: `https://api.meteoprog.com/v1`
-- Billing and documentation are hosted at [billing.meteoprog.com](https://billing.meteoprog.com/documentation)
-- CORS is reportedly disabled, so browser-only clients may need a proxy
-- Authentication, rate limits, and licensing terms are not documented in the sources surveyed here; consult the Meteoprog documentation or billing portal for current details
 
 ## Try it
 
@@ -53,27 +36,31 @@ gem install meteoprog-weather-sdk
 luarocks install meteoprog-weather-sdk
 ```
 
-## 30-second quickstart
+## Quickstart
 
 ### TypeScript
 
 ```ts
 import { MeteoprogWeatherSDK } from 'meteoprog-weather'
 
-const client = new MeteoprogWeatherSDK({})
+const client = new MeteoprogWeatherSDK({
+  apikey: process.env.METEOPROG-WEATHER_APIKEY,
+})
 
+// Load current data
+const current = await client.Current().load({})
+console.log(current.data)
 ```
 
-See the [TypeScript README](ts/README.md) for the
-full guide, or scroll down for the same example in other languages.
+See the [TypeScript README](ts/README.md) for the full guide.
 
-## What's in the box
+## Surfaces
 
-| Surface | Use it for | Path |
-| --- | --- | --- |
-| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | App integration | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
-| **CLI** | Scripts, CI, ops, one-off API calls | `go-cli/` |
-| **MCP server** | AI agents (Claude, Cursor, Cline) | `go-mcp/` |
+| Surface | Path |
+| --- | --- |
+| **SDK** (TypeScript, Python, PHP, Golang, Ruby, Lua) | `ts/` `py/` `php/` `go/` `rb/` `lua/` |
+| **CLI** | `go-cli/` |
+| **MCP server** | `go-mcp/` |
 
 ## Use it from an AI agent (MCP)
 
@@ -103,9 +90,9 @@ The API exposes 3 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **Current** | Current weather conditions for a requested location. | `/weather/current` |
-| **Historical** | Historical weather records for past dates and locations. | `/weather/historical` |
-| **WeatherForecast** | Weather forecast data for upcoming periods at a given location. | `/weather/forecast` |
+| **Current** |  | `/weather/current` |
+| **Historical** |  | `/weather/historical` |
+| **WeatherForecast** |  | `/weather/forecast` |
 
 Each entity supports the following operations where available: **load**,
 **list**, **create**, **update**, and **remove**.
@@ -115,15 +102,17 @@ Each entity supports the following operations where available: **load**,
 ### Python
 
 ```python
+import os
 from meteoprogweather_sdk import MeteoprogWeatherSDK
 
-client = MeteoprogWeatherSDK({})
+client = MeteoprogWeatherSDK({
+    "apikey": os.environ.get("METEOPROG-WEATHER_APIKEY"),
+})
 
 
 # Load a specific current
-current, err = client.Current(None).load(
-    {"id": "example_id"}, None
-)
+current, err = client.Current().load({"id": "example_id"})
+print(current)
 ```
 
 ### PHP
@@ -132,13 +121,14 @@ current, err = client.Current(None).load(
 <?php
 require_once 'meteoprogweather_sdk.php';
 
-$client = new MeteoprogWeatherSDK([]);
+$client = new MeteoprogWeatherSDK([
+    "apikey" => getenv("METEOPROG-WEATHER_APIKEY"),
+]);
 
 
 // Load a specific current
-[$current, $err] = $client->Current(null)->load(
-    ["id" => "example_id"], null
-);
+[$current, $err] = $client->Current()->load(["id" => "example_id"]);
+print_r($current);
 ```
 
 ### Golang
@@ -146,8 +136,13 @@ $client = new MeteoprogWeatherSDK([]);
 ```go
 import sdk "github.com/voxgig-sdk/meteoprog-weather-sdk/go"
 
-client := sdk.NewMeteoprogWeatherSDK(map[string]any{})
+client := sdk.NewMeteoprogWeatherSDK(map[string]any{
+    "apikey": os.Getenv("METEOPROG-WEATHER_APIKEY"),
+})
 
+// Load current data
+current, err := client.Current(nil).Load(map[string]any{}, nil)
+fmt.Println(current)
 ```
 
 ### Ruby
@@ -155,13 +150,14 @@ client := sdk.NewMeteoprogWeatherSDK(map[string]any{})
 ```ruby
 require_relative "MeteoprogWeather_sdk"
 
-client = MeteoprogWeatherSDK.new({})
+client = MeteoprogWeatherSDK.new({
+  "apikey" => ENV["METEOPROG-WEATHER_APIKEY"],
+})
 
 
 # Load a specific current
-current, err = client.Current(nil).load(
-  { "id" => "example_id" }, nil
-)
+current, err = client.Current().load({ "id" => "example_id" })
+puts current
 ```
 
 ### Lua
@@ -169,13 +165,14 @@ current, err = client.Current(nil).load(
 ```lua
 local sdk = require("meteoprog-weather_sdk")
 
-local client = sdk.new({})
+local client = sdk.new({
+  apikey = os.getenv("METEOPROG-WEATHER_APIKEY"),
+})
 
 
 -- Load a specific current
-local current, err = client:Current(nil):load(
-  { id = "example_id" }, nil
-)
+local current, err = client:Current():load({ id = "example_id" })
+print(current)
 ```
 
 ## Unit testing in offline mode
@@ -194,25 +191,21 @@ const result = await client.Current().load({ id: 'test01' })
 ### Python
 
 ```python
-client = MeteoprogWeatherSDK.test(None, None)
-result, err = client.Current(None).load(
-    {"id": "test01"}, None
-)
+client = MeteoprogWeatherSDK.test()
+result, err = client.Current().load({"id": "test01"})
 ```
 
 ### PHP
 
 ```php
-$client = MeteoprogWeatherSDK::test(null, null);
-[$result, $err] = $client->Current(null)->load(
-    ["id" => "test01"], null
-);
+$client = MeteoprogWeatherSDK::test();
+[$result, $err] = $client->Current()->load(["id" => "test01"]);
 ```
 
 ### Golang
 
 ```go
-client := sdk.TestSDK(nil, nil)
+client := sdk.Test()
 result, err := client.Current(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
@@ -221,19 +214,15 @@ result, err := client.Current(nil).Load(
 ### Ruby
 
 ```ruby
-client = MeteoprogWeatherSDK.test(nil, nil)
-result, err = client.Current(nil).load(
-  { "id" => "test01" }, nil
-)
+client = MeteoprogWeatherSDK.test
+result, err = client.Current().load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
-local client = sdk.test(nil, nil)
-local result, err = client:Current(nil):load(
-  { id = "test01" }, nil
-)
+local client = sdk.test()
+local result, err = client:Current():load({ id = "test01" })
 ```
 
 ## How it works
@@ -337,11 +326,6 @@ local result, err = client:direct({
 - [Golang](go/README.md)
 - [Ruby](rb/README.md)
 - [Lua](lua/README.md)
-
-## Using the Meteoprog Weather API
-
-- Upstream: [https://billing.meteoprog.com/](https://billing.meteoprog.com/)
-- API docs: [https://billing.meteoprog.com/documentation](https://billing.meteoprog.com/documentation)
 
 ---
 

@@ -93,12 +93,14 @@ func historicalDirectSetup(mockres any) *historicalDirectSetupResult {
 	env := envOverride(map[string]any{
 		"METEOPROGWEATHER_TEST_HISTORICAL_ENTID": map[string]any{},
 		"METEOPROGWEATHER_TEST_LIVE":    "FALSE",
+		"METEOPROGWEATHER_APIKEY":       "NONE",
 	})
 
 	live := env["METEOPROGWEATHER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["METEOPROGWEATHER_APIKEY"],
 		}
 		client := sdk.NewMeteoprogWeatherSDK(mergedOpts)
 

@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'METEOPROG_WEATHER_TEST_HISTORICAL_ENTID': idmap,
     'METEOPROG_WEATHER_TEST_LIVE': 'FALSE',
     'METEOPROG_WEATHER_TEST_EXPLAIN': 'FALSE',
+    'METEOPROG_WEATHER_APIKEY': 'NONE',
   })
 
   idmap = env['METEOPROG_WEATHER_TEST_HISTORICAL_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new MeteoprogWeatherSDK(merge([
       {
+        apikey: env.METEOPROG_WEATHER_APIKEY,
       },
       extra
     ]))

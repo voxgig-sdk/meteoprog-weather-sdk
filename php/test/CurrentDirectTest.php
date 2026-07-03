@@ -67,12 +67,14 @@ function current_direct_setup($mockres)
     $env = Runner::env_override([
         "METEOPROGWEATHER_TEST_CURRENT_ENTID" => [],
         "METEOPROGWEATHER_TEST_LIVE" => "FALSE",
+        "METEOPROGWEATHER_APIKEY" => "NONE",
     ]);
 
     $live = $env["METEOPROGWEATHER_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
+            "apikey" => $env["METEOPROGWEATHER_APIKEY"],
         ];
         $client = new MeteoprogWeatherSDK($merged_opts);
         return [

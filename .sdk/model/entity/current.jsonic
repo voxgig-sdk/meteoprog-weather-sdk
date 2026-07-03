@@ -81,7 +81,7 @@ main: kit: entity: current: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.current`"
           }
         }
       ]
