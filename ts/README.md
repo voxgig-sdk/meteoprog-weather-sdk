@@ -10,7 +10,7 @@ The TypeScript SDK for the MeteoprogWeather API — a type-safe, entity-oriented
 
 ## Install
 ```bash
-npm install meteoprog-weather
+npm install @voxgig-sdk/meteoprog-weather
 ```
 ## Tutorial: your first API call
 

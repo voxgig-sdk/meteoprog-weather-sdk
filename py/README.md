@@ -10,7 +10,7 @@ The Python SDK for the MeteoprogWeather API — an entity-oriented client follow
 
 ## Install
 ```bash
-pip install meteoprog-weather-sdk
+pip install voxgig-sdk-meteoprog-weather
 ```
 
 Or install from source:

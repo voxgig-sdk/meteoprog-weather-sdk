@@ -10,7 +10,7 @@ The PHP SDK for the MeteoprogWeather API — an entity-oriented client using PHP
 
 ## Install
 ```bash
-composer require voxgig/meteoprog-weather-sdk
+composer require voxgig-sdk/meteoprog-weather
 ```
 
 

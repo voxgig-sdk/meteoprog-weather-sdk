@@ -10,13 +10,13 @@ The Ruby SDK for the MeteoprogWeather API — an entity-oriented client using id
 
 ## Install
 ```bash
-gem install meteoprog-weather-sdk
+gem install voxgig-sdk-meteoprog-weather
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "meteoprog-weather-sdk"
+gem "voxgig-sdk-meteoprog-weather"
 ```
 
 Then run:
