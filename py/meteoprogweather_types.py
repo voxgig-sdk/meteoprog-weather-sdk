@@ -4,77 +4,75 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Current:
-    current: Optional[dict] = None
-    location: Optional[dict] = None
+class Current(TypedDict, total=False):
+    current: dict
+    location: dict
 
 
-@dataclass
-class CurrentLoadMatch:
-    current: Optional[dict] = None
-    location: Optional[dict] = None
+class CurrentLoadMatch(TypedDict, total=False):
+    current: dict
+    location: dict
 
 
-@dataclass
-class Historical:
-    cloud: Optional[int] = None
-    date: Optional[str] = None
-    humidity: Optional[int] = None
-    precipitation: Optional[float] = None
-    pressure: Optional[float] = None
-    temperature: Optional[dict] = None
-    timestamp: Optional[int] = None
-    weather: Optional[dict] = None
-    wind_direction: Optional[float] = None
-    wind_speed: Optional[float] = None
+class Historical(TypedDict, total=False):
+    cloud: int
+    date: str
+    humidity: int
+    precipitation: float
+    pressure: float
+    temperature: dict
+    timestamp: int
+    weather: dict
+    wind_direction: float
+    wind_speed: float
 
 
-@dataclass
-class HistoricalListMatch:
-    cloud: Optional[int] = None
-    date: Optional[str] = None
-    humidity: Optional[int] = None
-    precipitation: Optional[float] = None
-    pressure: Optional[float] = None
-    temperature: Optional[dict] = None
-    timestamp: Optional[int] = None
-    weather: Optional[dict] = None
-    wind_direction: Optional[float] = None
-    wind_speed: Optional[float] = None
+class HistoricalListMatch(TypedDict, total=False):
+    cloud: int
+    date: str
+    humidity: int
+    precipitation: float
+    pressure: float
+    temperature: dict
+    timestamp: int
+    weather: dict
+    wind_direction: float
+    wind_speed: float
 
 
-@dataclass
-class WeatherForecast:
-    cloud: Optional[int] = None
-    date: Optional[str] = None
-    humidity: Optional[int] = None
-    precipitation: Optional[float] = None
-    pressure: Optional[float] = None
-    temperature: Optional[dict] = None
-    timestamp: Optional[int] = None
-    weather: Optional[dict] = None
-    wind_direction: Optional[float] = None
-    wind_speed: Optional[float] = None
+class WeatherForecast(TypedDict, total=False):
+    cloud: int
+    date: str
+    humidity: int
+    precipitation: float
+    pressure: float
+    temperature: dict
+    timestamp: int
+    weather: dict
+    wind_direction: float
+    wind_speed: float
 
 
-@dataclass
-class WeatherForecastListMatch:
-    cloud: Optional[int] = None
-    date: Optional[str] = None
-    humidity: Optional[int] = None
-    precipitation: Optional[float] = None
-    pressure: Optional[float] = None
-    temperature: Optional[dict] = None
-    timestamp: Optional[int] = None
-    weather: Optional[dict] = None
-    wind_direction: Optional[float] = None
-    wind_speed: Optional[float] = None
-
+class WeatherForecastListMatch(TypedDict, total=False):
+    cloud: int
+    date: str
+    humidity: int
+    precipitation: float
+    pressure: float
+    temperature: dict
+    timestamp: int
+    weather: dict
+    wind_direction: float
+    wind_speed: float

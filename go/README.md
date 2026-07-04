@@ -30,7 +30,12 @@ go mod edit -replace github.com/voxgig-sdk/meteoprog-weather-sdk/go=../meteoprog
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
@@ -38,31 +43,20 @@ package main
 import (
     "fmt"
     "os"
-
     sdk "github.com/voxgig-sdk/meteoprog-weather-sdk/go"
-    "github.com/voxgig-sdk/meteoprog-weather-sdk/go/core"
 )
 
 func main() {
     client := sdk.NewMeteoprogWeatherSDK(map[string]any{
         "apikey": os.Getenv("METEOPROG_WEATHER_APIKEY"),
     })
-```
 
-### 3. Load a current
-
-```go
-    result, err = client.Current(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single current — the value is the loaded record.
+    current, err := client.Current(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(current)
 }
 ```
 
@@ -113,10 +107,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Current(nil).Load(
+current, err := client.Current(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(current) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -217,17 +214,24 @@ All entities implement the `MeteoprogWeatherEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    current, err := client.Current(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // current is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -305,7 +309,11 @@ Create an instance: `current := client.Current(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Current(nil).Load(map[string]any{"id": "current_id"}, nil)
+current, err := client.Current(nil).Load(map[string]any{"id": "current_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(current) // the loaded record
 ```
 
 
@@ -337,7 +345,11 @@ Create an instance: `historical := client.Historical(nil)`
 #### Example: List
 
 ```go
-results, err := client.Historical(nil).List(nil, nil)
+historicals, err := client.Historical(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(historicals) // the array of records
 ```
 
 
@@ -369,7 +381,11 @@ Create an instance: `weather_forecast := client.WeatherForecast(nil)`
 #### Example: List
 
 ```go
-results, err := client.WeatherForecast(nil).List(nil, nil)
+weather_forecasts, err := client.WeatherForecast(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(weather_forecasts) // the array of records
 ```
 
 

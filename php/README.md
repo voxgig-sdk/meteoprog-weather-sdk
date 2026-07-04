@@ -35,9 +35,10 @@ $client = new MeteoprogWeatherSDK([
 
 ```php
 try {
-    $result = $client->current()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare Current record (throws on error).
+    $current = $client->Current()->load(["id" => "example_id"]);
+    print_r($current);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -83,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = MeteoprogWeatherSDK::test();
+$client = MeteoprogWeatherSDK::test([
+    "entity" => ["current" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->current()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$current = $client->Current()->load(["id" => "test01"]);
+print_r($current);
 ```
 
 ### Use a custom fetch function
@@ -268,7 +273,7 @@ API path: `/weather/forecast`
 
 ### Current
 
-Create an instance: `const current = client.current`
+Create an instance: `$current = $client->Current();`
 
 #### Operations
 
@@ -285,14 +290,15 @@ Create an instance: `const current = client.current`
 
 #### Example: Load
 
-```ts
-const current = await client.current.load({ id: 'current_id' })
+```php
+// load() returns the bare Current record (throws on error).
+$current = $client->Current()->load(["id" => "current_id"]);
 ```
 
 
 ### Historical
 
-Create an instance: `const historical = client.historical`
+Create an instance: `$historical = $client->Historical();`
 
 #### Operations
 
@@ -317,14 +323,15 @@ Create an instance: `const historical = client.historical`
 
 #### Example: List
 
-```ts
-const historicals = await client.historical.list()
+```php
+// list() returns an array of Historical records (throws on error).
+$historicals = $client->Historical()->list();
 ```
 
 
 ### WeatherForecast
 
-Create an instance: `const weather_forecast = client.weather_forecast`
+Create an instance: `$weather_forecast = $client->WeatherForecast();`
 
 #### Operations
 
@@ -349,8 +356,9 @@ Create an instance: `const weather_forecast = client.weather_forecast`
 
 #### Example: List
 
-```ts
-const weather_forecasts = await client.weather_forecast.list()
+```php
+// list() returns an array of WeatherForecast records (throws on error).
+$weather_forecasts = $client->WeatherForecast()->list();
 ```
 
 
@@ -425,7 +433,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$current = $client->current();
+$current = $client->Current();
 $current->load(["id" => "example_id"]);
 
 // $current->dataGet() now returns the loaded current data

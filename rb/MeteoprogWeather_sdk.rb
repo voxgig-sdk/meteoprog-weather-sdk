@@ -208,39 +208,21 @@ class MeteoprogWeatherSDK
   end
 
 
-  # Idiomatic facade: client.current.list / client.current.load({ "id" => ... })
-  def current
-    require_relative 'entity/current_entity'
-    @current ||= CurrentEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.current instead.
+  # Canonical facade: client.Current.list / client.Current.load({ "id" => ... })
   def Current(data = nil)
     require_relative 'entity/current_entity'
     CurrentEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.historical.list / client.historical.load({ "id" => ... })
-  def historical
-    require_relative 'entity/historical_entity'
-    @historical ||= HistoricalEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.historical instead.
+  # Canonical facade: client.Historical.list / client.Historical.load({ "id" => ... })
   def Historical(data = nil)
     require_relative 'entity/historical_entity'
     HistoricalEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.weather_forecast.list / client.weather_forecast.load({ "id" => ... })
-  def weather_forecast
-    require_relative 'entity/weather_forecast_entity'
-    @weather_forecast ||= WeatherForecastEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.weather_forecast instead.
+  # Canonical facade: client.WeatherForecast.list / client.WeatherForecast.load({ "id" => ... })
   def WeatherForecast(data = nil)
     require_relative 'entity/weather_forecast_entity'
     WeatherForecastEntity.new(self, data)

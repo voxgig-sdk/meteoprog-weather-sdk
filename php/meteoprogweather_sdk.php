@@ -233,10 +233,10 @@ class MeteoprogWeatherSDK
 
     private $_current = null;
 
-    // Idiomatic facade: $client->current()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Current() (PHP method
-    // names are case-insensitive).
-    public function current($data = null)
+    // Canonical facade: $client->Current()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->current()
+    // resolves here too.
+    public function Current($data = null)
     {
         require_once __DIR__ . '/entity/current_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class MeteoprogWeatherSDK
 
     private $_historical = null;
 
-    // Idiomatic facade: $client->historical()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Historical() (PHP method
-    // names are case-insensitive).
-    public function historical($data = null)
+    // Canonical facade: $client->Historical()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->historical()
+    // resolves here too.
+    public function Historical($data = null)
     {
         require_once __DIR__ . '/entity/historical_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class MeteoprogWeatherSDK
 
     private $_weather_forecast = null;
 
-    // Idiomatic facade: $client->weather_forecast()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias WeatherForecast() (PHP method
-    // names are case-insensitive).
-    public function weather_forecast($data = null)
+    // Canonical facade: $client->WeatherForecast()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->weather_forecast()
+    // resolves here too.
+    public function WeatherForecast($data = null)
     {
         require_once __DIR__ . '/entity/weather_forecast_entity.php';
         if ($data === null) {

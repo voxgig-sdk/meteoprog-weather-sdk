@@ -36,10 +36,12 @@ client = MeteoprogWeatherSDK({
 
 ### 3. Load a current
 
+`load()` returns the bare record (a `dict`) and raises on error.
+
 ```python
 try:
-    result = client.current.load({"id": "example_id"})
-    print(result)
+    current = client.Current().load({"id": "example_id"})
+    print(current)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -87,8 +89,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = MeteoprogWeatherSDK.test()
 
-result = client.current.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+current = client.Current().load({"id": "test01"})
+# current contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -264,7 +267,7 @@ API path: `/weather/forecast`
 
 ### Current
 
-Create an instance: `const current = client.current`
+Create an instance: `current = client.Current()`
 
 #### Operations
 
@@ -281,14 +284,14 @@ Create an instance: `const current = client.current`
 
 #### Example: Load
 
-```ts
-const current = await client.current.load({ id: 'current_id' })
+```python
+current = client.Current().load({"id": "current_id"})
 ```
 
 
 ### Historical
 
-Create an instance: `const historical = client.historical`
+Create an instance: `historical = client.Historical()`
 
 #### Operations
 
@@ -313,14 +316,14 @@ Create an instance: `const historical = client.historical`
 
 #### Example: List
 
-```ts
-const historicals = await client.historical.list()
+```python
+historicals = client.Historical().list({})
 ```
 
 
 ### WeatherForecast
 
-Create an instance: `const weather_forecast = client.weather_forecast`
+Create an instance: `weather_forecast = client.WeatherForecast()`
 
 #### Operations
 
@@ -345,8 +348,8 @@ Create an instance: `const weather_forecast = client.weather_forecast`
 
 #### Example: List
 
-```ts
-const weather_forecasts = await client.weather_forecast.list()
+```python
+weather_forecasts = client.WeatherForecast().list({})
 ```
 
 
@@ -420,7 +423,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-current = client.current
+current = client.Current()
 current.load({"id": "example_id"})
 
 # current.data_get() now returns the loaded current data

@@ -28,9 +28,9 @@ const client = new MeteoprogWeatherSDK({
   apikey: process.env.METEOPROG_WEATHER_APIKEY,
 })
 
-// Load current data
-const current = await client.current.load({})
-console.log(current.data)
+// Load current data (returns a Current)
+const current = await client.Current().load()
+console.log(current)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -91,8 +91,8 @@ client = MeteoprogWeatherSDK({
 })
 
 
-# Load a specific current
-current = client.current.load({"id": "example_id"})
+# Load a specific current (returns the record, raises on error)
+current = client.Current().load({"id": "example_id"})
 print(current)
 ```
 
@@ -107,8 +107,8 @@ $client = new MeteoprogWeatherSDK([
 ]);
 
 
-// Load a specific current
-$current = $client->current()->load(["id" => "example_id"]);
+// Load a specific current (returns the bare record; throws on error)
+$current = $client->Current()->load(["id" => "example_id"]);
 print_r($current);
 ```
 
@@ -136,8 +136,8 @@ client = MeteoprogWeatherSDK.new({
 })
 
 
-# Load a specific current
-current = client.current.load({ "id" => "example_id" })
+# Load a specific current (returns the bare record; raises on error)
+current = client.Current.load({ "id" => "example_id" })
 puts current
 ```
 
@@ -152,7 +152,7 @@ local client = sdk.new({
 
 
 -- Load a specific current
-local current, err = client:current():load({ id = "example_id" })
+local current, err = client:Current():load({ id = "example_id" })
 print(current)
 ```
 
@@ -165,22 +165,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = MeteoprogWeatherSDK.test()
-const result = await client.current.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const current = await client.Current().load({ id: 'test01' })
+// current is a bare Current populated with mock data
+console.log(current)
 ```
 
 ### Python
 
 ```python
 client = MeteoprogWeatherSDK.test()
-result = client.current.load({"id": "test01"})
+current = client.Current().load({"id": "test01"})
+print(current)
 ```
 
 ### PHP
 
 ```php
-$client = MeteoprogWeatherSDK::test();
-$result = $client->current()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = MeteoprogWeatherSDK::test([
+    "entity" => ["current" => ["test01" => ["id" => "test01"]]],
+]);
+$current = $client->Current()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -195,15 +200,18 @@ result, err := client.Current(nil).Load(
 ### Ruby
 
 ```ruby
-client = MeteoprogWeatherSDK.test
-result = client.current.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = MeteoprogWeatherSDK.test({
+  "entity" => { "current" => { "test01" => { "id" => "test01" } } },
+})
+current = client.Current.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:current():load({ id = "test01" })
+local result, err = client:Current():load({ id = "test01" })
 ```
 
 ## How it works
@@ -251,6 +259,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

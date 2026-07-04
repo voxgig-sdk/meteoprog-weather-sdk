@@ -95,7 +95,7 @@ same parameters as `direct()`. Raises on error.
 ## CurrentEntity
 
 ```ruby
-current = client.current
+current = client.Current
 ```
 
 ### Fields
@@ -112,7 +112,7 @@ current = client.current
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.current.load({ "id" => "current_id" })
+result = client.Current.load({ "id" => "current_id" })
 ```
 
 ### Common Methods
@@ -148,7 +148,7 @@ Return the entity name.
 ## HistoricalEntity
 
 ```ruby
-historical = client.historical
+historical = client.Historical
 ```
 
 ### Fields
@@ -173,7 +173,7 @@ historical = client.historical
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.historical.list(nil)
+results = client.Historical.list(nil)
 ```
 
 ### Common Methods
@@ -209,7 +209,7 @@ Return the entity name.
 ## WeatherForecastEntity
 
 ```ruby
-weather_forecast = client.weather_forecast
+weather_forecast = client.WeatherForecast
 ```
 
 ### Fields
@@ -234,7 +234,7 @@ weather_forecast = client.weather_forecast
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.weather_forecast.list(nil)
+results = client.WeatherForecast.list(nil)
 ```
 
 ### Common Methods

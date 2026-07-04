@@ -89,7 +89,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## CurrentEntity
 
 ```python
-current = client.current
+current = client.Current()
 ```
 
 ### Fields
@@ -106,7 +106,7 @@ current = client.current
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.current.load({"id": "current_id"})
+result = client.Current().load({"id": "current_id"})
 ```
 
 ### Common Methods
@@ -141,7 +141,7 @@ Return the entity name.
 ## HistoricalEntity
 
 ```python
-historical = client.historical
+historical = client.Historical()
 ```
 
 ### Fields
@@ -166,7 +166,9 @@ historical = client.historical
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.historical.list({})
+results = client.Historical().list({})
+for historical in results:
+    print(historical)
 ```
 
 ### Common Methods
@@ -201,7 +203,7 @@ Return the entity name.
 ## WeatherForecastEntity
 
 ```python
-weather_forecast = client.weather_forecast
+weather_forecast = client.WeatherForecast()
 ```
 
 ### Fields
@@ -226,7 +228,9 @@ weather_forecast = client.weather_forecast
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.weather_forecast.list({})
+results = client.WeatherForecast().list({})
+for weather_forecast in results:
+    print(weather_forecast)
 ```
 
 ### Common Methods

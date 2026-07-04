@@ -34,8 +34,9 @@ client = MeteoprogWeatherSDK.new({
 
 ```ruby
 begin
-  result = client.current.load({ "id" => "example_id" })
-  puts result
+  # load returns the bare Current record (raises on error).
+  current = client.Current.load({ "id" => "example_id" })
+  puts current
 rescue => err
   warn "load failed: #{err}"
 end
@@ -82,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = MeteoprogWeatherSDK.test
+client = MeteoprogWeatherSDK.test({
+  "entity" => { "current" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.current.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+current = client.Current.load({ "id" => "test01" })
+puts current
 ```
 
 ### Use a custom fetch function
@@ -263,7 +268,7 @@ API path: `/weather/forecast`
 
 ### Current
 
-Create an instance: `const current = client.current`
+Create an instance: `current = client.Current`
 
 #### Operations
 
@@ -280,14 +285,15 @@ Create an instance: `const current = client.current`
 
 #### Example: Load
 
-```ts
-const current = await client.current.load({ id: 'current_id' })
+```ruby
+# load returns the bare Current record (raises on error).
+current = client.Current.load({ "id" => "current_id" })
 ```
 
 
 ### Historical
 
-Create an instance: `const historical = client.historical`
+Create an instance: `historical = client.Historical`
 
 #### Operations
 
@@ -312,14 +318,15 @@ Create an instance: `const historical = client.historical`
 
 #### Example: List
 
-```ts
-const historicals = await client.historical.list()
+```ruby
+# list returns an Array of Historical records (raises on error).
+historicals = client.Historical.list
 ```
 
 
 ### WeatherForecast
 
-Create an instance: `const weather_forecast = client.weather_forecast`
+Create an instance: `weather_forecast = client.WeatherForecast`
 
 #### Operations
 
@@ -344,8 +351,9 @@ Create an instance: `const weather_forecast = client.weather_forecast`
 
 #### Example: List
 
-```ts
-const weather_forecasts = await client.weather_forecast.list()
+```ruby
+# list returns an Array of WeatherForecast records (raises on error).
+weather_forecasts = client.WeatherForecast.list
 ```
 
 
@@ -420,7 +428,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-current = client.current
+current = client.Current
 current.load({ "id" => "example_id" })
 
 # current.data_get now returns the loaded current data

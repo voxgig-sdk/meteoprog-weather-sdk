@@ -94,7 +94,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## CurrentEntity
 
 ```php
-$current = $client->current();
+$current = $client->Current();
 ```
 
 ### Fields
@@ -111,7 +111,7 @@ $current = $client->current();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->current()->load(["id" => "current_id"]);
+$result = $client->Current()->load(["id" => "current_id"]);
 ```
 
 ### Common Methods
@@ -147,7 +147,7 @@ Return the entity name.
 ## HistoricalEntity
 
 ```php
-$historical = $client->historical();
+$historical = $client->Historical();
 ```
 
 ### Fields
@@ -172,7 +172,7 @@ $historical = $client->historical();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->historical()->list([]);
+$results = $client->Historical()->list([]);
 ```
 
 ### Common Methods
@@ -208,7 +208,7 @@ Return the entity name.
 ## WeatherForecastEntity
 
 ```php
-$weather_forecast = $client->weather_forecast();
+$weather_forecast = $client->WeatherForecast();
 ```
 
 ### Fields
@@ -233,7 +233,7 @@ $weather_forecast = $client->weather_forecast();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->weather_forecast()->list([]);
+$results = $client->WeatherForecast()->list([]);
 ```
 
 ### Common Methods
