@@ -49,8 +49,7 @@ class TestCurrentEntity:
         # LOAD
         current_ref01_ent = client.Current(None)
         current_ref01_match_dt0 = {}
-        current_ref01_data_dt0_loaded, err = current_ref01_ent.load(current_ref01_match_dt0, None)
-        assert err is None
+        current_ref01_data_dt0_loaded = current_ref01_ent.load(current_ref01_match_dt0, None)
         assert current_ref01_data_dt0_loaded is not None
 
 

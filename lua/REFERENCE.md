@@ -92,7 +92,7 @@ same parameters as `direct()`.
 ## CurrentEntity
 
 ```lua
-local current = client:Current(nil)
+local current = client:current(nil)
 ```
 
 ### Fields
@@ -109,7 +109,7 @@ local current = client:Current(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Current():load({ id = "current_id" })
+local result, err = client:current():load({ id = "current_id" })
 ```
 
 ### Common Methods
@@ -145,7 +145,7 @@ Return the entity name.
 ## HistoricalEntity
 
 ```lua
-local historical = client:Historical(nil)
+local historical = client:historical(nil)
 ```
 
 ### Fields
@@ -170,7 +170,7 @@ local historical = client:Historical(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:Historical():list()
+local results, err = client:historical():list()
 ```
 
 ### Common Methods
@@ -206,7 +206,7 @@ Return the entity name.
 ## WeatherForecastEntity
 
 ```lua
-local weather_forecast = client:WeatherForecast(nil)
+local weather_forecast = client:weather_forecast(nil)
 ```
 
 ### Fields
@@ -231,7 +231,7 @@ local weather_forecast = client:WeatherForecast(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:WeatherForecast():list()
+local results, err = client:weather_forecast():list()
 ```
 
 ### Common Methods

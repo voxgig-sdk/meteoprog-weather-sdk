@@ -244,18 +244,57 @@ end
 
 
 
+-- Idiomatic facade: client:current():list() / client:current():load({ id = ... })
+function MeteoprogWeatherSDK:current(data)
+  local EntityMod = require("entity.current_entity")
+  if data == nil then
+    if self._current == nil then
+      self._current = EntityMod.new(self, nil)
+    end
+    return self._current
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:current() instead.
 function MeteoprogWeatherSDK:Current(data)
   local EntityMod = require("entity.current_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:historical():list() / client:historical():load({ id = ... })
+function MeteoprogWeatherSDK:historical(data)
+  local EntityMod = require("entity.historical_entity")
+  if data == nil then
+    if self._historical == nil then
+      self._historical = EntityMod.new(self, nil)
+    end
+    return self._historical
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:historical() instead.
 function MeteoprogWeatherSDK:Historical(data)
   local EntityMod = require("entity.historical_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:weather_forecast():list() / client:weather_forecast():load({ id = ... })
+function MeteoprogWeatherSDK:weather_forecast(data)
+  local EntityMod = require("entity.weather_forecast_entity")
+  if data == nil then
+    if self._weather_forecast == nil then
+      self._weather_forecast = EntityMod.new(self, nil)
+    end
+    return self._weather_forecast
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:weather_forecast() instead.
 function MeteoprogWeatherSDK:WeatherForecast(data)
   local EntityMod = require("entity.weather_forecast_entity")
   return EntityMod.new(self, data)

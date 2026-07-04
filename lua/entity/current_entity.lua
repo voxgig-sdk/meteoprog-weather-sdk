@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch CurrentLoadMatch
+---@param ctrl? table
+---@return Current
+---@return string? err
 function CurrentEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

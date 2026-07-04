@@ -9,9 +9,12 @@ The TypeScript SDK for the MeteoprogWeather API — a type-safe, entity-oriented
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/meteoprog-weather
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/meteoprog-weather-sdk/releases](https://github.com/voxgig-sdk/meteoprog-weather-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,17 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { MeteoprogWeatherSDK } from 'meteoprog-weather'
+import { MeteoprogWeatherSDK } from '@voxgig-sdk/meteoprog-weather'
 
 const client = new MeteoprogWeatherSDK({
-  apikey: process.env.METEOPROG-WEATHER_APIKEY,
+  apikey: process.env.METEOPROG_WEATHER_APIKEY,
 })
 ```
 
 ### 3. Load a current
 
 ```ts
-const result = await client.Current().load({ id: 'example_id' })
+const result = await client.current.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MeteoprogWeatherSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.current.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -96,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.current
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -133,8 +136,8 @@ const client = new MeteoprogWeatherSDK({
 Create a `.env.local` file at the project root:
 
 ```
-METEOPROG-WEATHER_TEST_LIVE=TRUE
-METEOPROG-WEATHER_APIKEY=<your-key>
+METEOPROG_WEATHER_TEST_LIVE=TRUE
+METEOPROG_WEATHER_APIKEY=<your-key>
 ```
 
 Then run:
@@ -307,7 +310,7 @@ API path: `/weather/forecast`
 
 ### Current
 
-Create an instance: `const current = client.Current()`
+Create an instance: `const current = client.current`
 
 #### Operations
 
@@ -325,13 +328,13 @@ Create an instance: `const current = client.Current()`
 #### Example: Load
 
 ```ts
-const current = await client.Current().load({ id: 'current_id' })
+const current = await client.current.load({ id: 'current_id' })
 ```
 
 
 ### Historical
 
-Create an instance: `const historical = client.Historical()`
+Create an instance: `const historical = client.historical`
 
 #### Operations
 
@@ -357,13 +360,13 @@ Create an instance: `const historical = client.Historical()`
 #### Example: List
 
 ```ts
-const historicals = await client.Historical().list()
+const historicals = await client.historical.list()
 ```
 
 
 ### WeatherForecast
 
-Create an instance: `const weather_forecast = client.WeatherForecast()`
+Create an instance: `const weather_forecast = client.weather_forecast`
 
 #### Operations
 
@@ -389,7 +392,7 @@ Create an instance: `const weather_forecast = client.WeatherForecast()`
 #### Example: List
 
 ```ts
-const weather_forecasts = await client.WeatherForecast().list()
+const weather_forecasts = await client.weather_forecast.list()
 ```
 
 
@@ -450,7 +453,7 @@ meteoprog-weather/
 Import the SDK from the package root:
 
 ```ts
-import { MeteoprogWeatherSDK } from 'meteoprog-weather'
+import { MeteoprogWeatherSDK } from '@voxgig-sdk/meteoprog-weather'
 ```
 
 ### Entity state
@@ -460,11 +463,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const current = client.current
+await current.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// current.data() now returns the loaded current data
+// current.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

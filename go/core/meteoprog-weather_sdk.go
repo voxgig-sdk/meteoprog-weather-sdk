@@ -245,16 +245,25 @@ func (sdk *MeteoprogWeatherSDK) Direct(fetchargs map[string]any) (map[string]any
 }
 
 
+// Current returns a Current entity bound to this client.
+// Idiomatic usage: client.Current(nil).List(nil, nil) or
+// client.Current(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MeteoprogWeatherSDK) Current(data map[string]any) MeteoprogWeatherEntity {
 	return NewCurrentEntityFunc(sdk, data)
 }
 
 
+// Historical returns a Historical entity bound to this client.
+// Idiomatic usage: client.Historical(nil).List(nil, nil) or
+// client.Historical(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MeteoprogWeatherSDK) Historical(data map[string]any) MeteoprogWeatherEntity {
 	return NewHistoricalEntityFunc(sdk, data)
 }
 
 
+// WeatherForecast returns a WeatherForecast entity bound to this client.
+// Idiomatic usage: client.WeatherForecast(nil).List(nil, nil) or
+// client.WeatherForecast(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *MeteoprogWeatherSDK) WeatherForecast(data map[string]any) MeteoprogWeatherEntity {
 	return NewWeatherForecastEntityFunc(sdk, data)
 }

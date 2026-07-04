@@ -50,8 +50,7 @@ class TestHistoricalEntity:
         historical_ref01_ent = client.Historical(None)
         historical_ref01_match = {}
 
-        historical_ref01_list_result, err = historical_ref01_ent.list(historical_ref01_match, None)
-        assert err is None
+        historical_ref01_list_result = historical_ref01_ent.list(historical_ref01_match, None)
         assert isinstance(historical_ref01_list_result, list)
 
 

@@ -42,8 +42,7 @@ class CurrentEntityTest < Minitest::Test
     # LOAD
     current_ref01_ent = client.Current(nil)
     current_ref01_match_dt0 = {}
-    current_ref01_data_dt0_loaded, err = current_ref01_ent.load(current_ref01_match_dt0, nil)
-    assert_nil err
+    current_ref01_data_dt0_loaded = current_ref01_ent.load(current_ref01_match_dt0, nil)
     assert !current_ref01_data_dt0_loaded.nil?
 
   end

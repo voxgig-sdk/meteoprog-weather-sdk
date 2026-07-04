@@ -85,6 +85,27 @@ func (e *WeatherForecastEntity) Match(args ...any) any {
 	return out
 }
 
+// DataTyped is the statically-typed accessor for this entity's data. With no
+// argument it returns the current data as an WeatherForecast; with an argument it
+// sets the data and returns the stored value. It delegates to the untyped Data
+// (identical runtime) and converts at the typed boundary.
+func (e *WeatherForecastEntity) DataTyped(data ...WeatherForecast) WeatherForecast {
+	if len(data) > 0 {
+		return typedFrom[WeatherForecast](e.Data(asMap(data[0])))
+	}
+	return typedFrom[WeatherForecast](e.Data())
+}
+
+// MatchTyped mirrors DataTyped for the entity's match filter. The match is a
+// partial of the entity, so it round-trips through WeatherForecast (all fields
+// optional at the wire level).
+func (e *WeatherForecastEntity) MatchTyped(match ...WeatherForecast) WeatherForecast {
+	if len(match) > 0 {
+		return typedFrom[WeatherForecast](e.Match(asMap(match[0])))
+	}
+	return typedFrom[WeatherForecast](e.Match())
+}
+
 func (e *WeatherForecastEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("load", e.name)
 }
@@ -108,6 +129,17 @@ func (e *WeatherForecastEntity) List(reqmatch map[string]any, ctrl map[string]an
 			}
 		}
 	})
+}
+
+// ListTyped is the statically-typed variant of List: it takes an
+// WeatherForecastListMatch and returns []WeatherForecast. It delegates to the untyped
+// List (identical runtime) and converts at the typed boundary.
+func (e *WeatherForecastEntity) ListTyped(reqmatch WeatherForecastListMatch, ctrl map[string]any) ([]WeatherForecast, error) {
+	res, err := e.List(asMap(reqmatch), ctrl)
+	if err != nil {
+		return nil, err
+	}
+	return typedSliceFrom[WeatherForecast](res), nil
 }
 
 

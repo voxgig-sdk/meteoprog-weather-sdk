@@ -50,8 +50,7 @@ class HistoricalEntityTest extends TestCase
         $historical_ref01_ent = $client->Historical(null);
         $historical_ref01_match = [];
 
-        [$historical_ref01_list_result, $err] = $historical_ref01_ent->list($historical_ref01_match, null);
-        $this->assertNull($err);
+        $historical_ref01_list_result = $historical_ref01_ent->list($historical_ref01_match, null);
         $this->assertIsArray($historical_ref01_list_result);
 
     }

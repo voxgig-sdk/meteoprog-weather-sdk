@@ -50,8 +50,7 @@ class WeatherForecastEntityTest extends TestCase
         $weather_forecast_ref01_ent = $client->WeatherForecast(null);
         $weather_forecast_ref01_match = [];
 
-        [$weather_forecast_ref01_list_result, $err] = $weather_forecast_ref01_ent->list($weather_forecast_ref01_match, null);
-        $this->assertNull($err);
+        $weather_forecast_ref01_list_result = $weather_forecast_ref01_ent->list($weather_forecast_ref01_match, null);
         $this->assertIsArray($weather_forecast_ref01_list_result);
 
     }

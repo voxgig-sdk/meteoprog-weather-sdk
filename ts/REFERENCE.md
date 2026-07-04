@@ -134,7 +134,7 @@ Alias for `MeteoprogWeatherSDK.test()`.
 ## CurrentEntity
 
 ```ts
-const current = client.Current()
+const current = client.current
 ```
 
 ### Fields
@@ -151,7 +151,7 @@ const current = client.Current()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Current().load({ id: 'current_id' })
+const result = await client.current.load({ id: 'current_id' })
 ```
 
 ### Common Methods
@@ -185,7 +185,7 @@ Return a copy of the entity options.
 ## HistoricalEntity
 
 ```ts
-const historical = client.Historical()
+const historical = client.historical
 ```
 
 ### Fields
@@ -210,7 +210,7 @@ const historical = client.Historical()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.Historical().list()
+const results = await client.historical.list()
 ```
 
 ### Common Methods
@@ -244,7 +244,7 @@ Return a copy of the entity options.
 ## WeatherForecastEntity
 
 ```ts
-const weather_forecast = client.WeatherForecast()
+const weather_forecast = client.weather_forecast
 ```
 
 ### Fields
@@ -269,7 +269,7 @@ const weather_forecast = client.WeatherForecast()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.WeatherForecast().list()
+const results = await client.weather_forecast.list()
 ```
 
 ### Common Methods

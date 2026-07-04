@@ -43,8 +43,7 @@ class WeatherForecastEntityTest < Minitest::Test
     weather_forecast_ref01_ent = client.WeatherForecast(nil)
     weather_forecast_ref01_match = {}
 
-    weather_forecast_ref01_list_result, err = weather_forecast_ref01_ent.list(weather_forecast_ref01_match, nil)
-    assert_nil err
+    weather_forecast_ref01_list_result = weather_forecast_ref01_ent.list(weather_forecast_ref01_match, nil)
     assert weather_forecast_ref01_list_result.is_a?(Array)
 
   end

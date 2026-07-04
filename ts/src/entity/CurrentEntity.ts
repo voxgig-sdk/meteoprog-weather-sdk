@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Current,
+  CurrentLoadMatch,
+} from '../MeteoprogWeatherTypes'
 
 // TODO: needs Entity superclass
-class CurrentEntity extends MeteoprogWeatherEntityBase {
+class CurrentEntity extends MeteoprogWeatherEntityBase<Current> {
 
   constructor(client: MeteoprogWeatherSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class CurrentEntity extends MeteoprogWeatherEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: CurrentLoadMatch, ctrl?: Control): Promise<Current> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class CurrentEntity extends MeteoprogWeatherEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Current> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

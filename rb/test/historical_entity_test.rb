@@ -43,8 +43,7 @@ class HistoricalEntityTest < Minitest::Test
     historical_ref01_ent = client.Historical(nil)
     historical_ref01_match = {}
 
-    historical_ref01_list_result, err = historical_ref01_ent.list(historical_ref01_match, nil)
-    assert_nil err
+    historical_ref01_list_result = historical_ref01_ent.list(historical_ref01_match, nil)
     assert historical_ref01_list_result.is_a?(Array)
 
   end

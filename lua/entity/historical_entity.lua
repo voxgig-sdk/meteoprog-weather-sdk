@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch HistoricalListMatch
+---@param ctrl? table
+---@return Historical[]
+---@return string? err
 function HistoricalEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

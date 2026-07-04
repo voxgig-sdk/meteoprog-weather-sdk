@@ -4,6 +4,8 @@ import { CurrentEntity } from './entity/CurrentEntity'
 import { HistoricalEntity } from './entity/HistoricalEntity'
 import { WeatherForecastEntity } from './entity/WeatherForecastEntity'
 
+export type * from './MeteoprogWeatherTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -204,18 +206,42 @@ class MeteoprogWeatherSDK {
 
 
 
+  _current?: CurrentEntity
+
+  // Idiomatic facade: `client.current.list()` / `client.current.load({ id })`.
+  get current(): CurrentEntity {
+    return (this._current ??= new CurrentEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.current` instead. */
   Current(data?: any) {
     const self = this
     return new CurrentEntity(self,data)
   }
 
 
+  _historical?: HistoricalEntity
+
+  // Idiomatic facade: `client.historical.list()` / `client.historical.load({ id })`.
+  get historical(): HistoricalEntity {
+    return (this._historical ??= new HistoricalEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.historical` instead. */
   Historical(data?: any) {
     const self = this
     return new HistoricalEntity(self,data)
   }
 
 
+  _weather_forecast?: WeatherForecastEntity
+
+  // Idiomatic facade: `client.weather_forecast.list()` / `client.weather_forecast.load({ id })`.
+  get weather_forecast(): WeatherForecastEntity {
+    return (this._weather_forecast ??= new WeatherForecastEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.weather_forecast` instead. */
   WeatherForecast(data?: any) {
     const self = this
     return new WeatherForecastEntity(self,data)

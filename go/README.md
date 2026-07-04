@@ -10,14 +10,18 @@ The Golang SDK for the MeteoprogWeather API — an entity-oriented client using 
 
 ## Install
 ```bash
-go get github.com/voxgig-sdk/meteoprog-weather-sdk/go
+go get github.com/voxgig-sdk/meteoprog-weather-sdk/go@latest
 ```
 
-If the module is not yet published to a registry, use a `replace` directive
-in your `go.mod` to point to a local checkout:
+The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
+release tag — see [Releases](https://github.com/voxgig-sdk/meteoprog-weather-sdk/releases) for the available versions.
+
+To vendor from a local checkout instead, clone this repo alongside your
+project and add a `replace` directive pointing at the checked-out
+`go/` directory:
 
 ```bash
-go mod edit -replace github.com/voxgig-sdk/meteoprog-weather-sdk/go=../path/to/github.com/voxgig-sdk/meteoprog-weather-sdk/go
+go mod edit -replace github.com/voxgig-sdk/meteoprog-weather-sdk/go=../meteoprog-weather-sdk/go
 ```
 
 
@@ -41,7 +45,7 @@ import (
 
 func main() {
     client := sdk.NewMeteoprogWeatherSDK(map[string]any{
-        "apikey": os.Getenv("METEOPROG-WEATHER_APIKEY"),
+        "apikey": os.Getenv("METEOPROG_WEATHER_APIKEY"),
     })
 ```
 
@@ -109,7 +113,7 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.Planet(nil).Load(
+result, err := client.Current(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 // result contains mock response data
@@ -144,8 +148,8 @@ client := sdk.NewMeteoprogWeatherSDK(map[string]any{
 Create a `.env.local` file at the project root:
 
 ```
-METEOPROG-WEATHER_TEST_LIVE=TRUE
-METEOPROG-WEATHER_APIKEY=<your-key>
+METEOPROG_WEATHER_TEST_LIVE=TRUE
+METEOPROG_WEATHER_APIKEY=<your-key>
 ```
 
 Then run:
@@ -438,11 +442,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-moon := client.Moon(nil)
-moon.Load(map[string]any{"planet_id": "earth", "id": "luna"}, nil)
+current := client.Current(nil)
+current.Load(map[string]any{"id": "example_id"}, nil)
 
-// moon.Data() now returns the loaded moon data
-// moon.Match() returns the last match criteria
+// current.Data() now returns the loaded current data
+// current.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

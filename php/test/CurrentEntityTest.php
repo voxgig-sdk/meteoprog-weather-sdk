@@ -49,8 +49,7 @@ class CurrentEntityTest extends TestCase
         // LOAD
         $current_ref01_ent = $client->Current(null);
         $current_ref01_match_dt0 = [];
-        [$current_ref01_data_dt0_loaded, $err] = $current_ref01_ent->load($current_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $current_ref01_data_dt0_loaded = $current_ref01_ent->load($current_ref01_match_dt0, null);
         $this->assertNotNull($current_ref01_data_dt0_loaded);
 
     }

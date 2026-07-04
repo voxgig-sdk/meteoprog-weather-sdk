@@ -50,8 +50,7 @@ class TestWeatherForecastEntity:
         weather_forecast_ref01_ent = client.WeatherForecast(None)
         weather_forecast_ref01_match = {}
 
-        weather_forecast_ref01_list_result, err = weather_forecast_ref01_ent.list(weather_forecast_ref01_match, None)
-        assert err is None
+        weather_forecast_ref01_list_result = weather_forecast_ref01_ent.list(weather_forecast_ref01_match, None)
         assert isinstance(weather_forecast_ref01_list_result, list)
 
 
