@@ -8,7 +8,7 @@ Complete API reference for the MeteoprogWeather Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'meteoprog-weather_sdk'
+require_relative 'MeteoprogWeather_sdk'
 
 client = MeteoprogWeatherSDK.new(options)
 ```
@@ -102,8 +102,8 @@ current = client.Current
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `current` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
+| `current` | `Hash` | No |  |
+| `location` | `Hash` | No |  |
 
 ### Operations
 
@@ -112,7 +112,7 @@ current = client.Current
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Current.load({ "id" => "current_id" })
+result = client.Current.load()
 ```
 
 ### Common Methods
@@ -155,25 +155,25 @@ historical = client.Historical
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `Integer` | No |  |
+| `date` | `String` | No |  |
+| `humidity` | `Integer` | No |  |
+| `precipitation` | `Float` | No |  |
+| `pressure` | `Float` | No |  |
+| `temperature` | `Hash` | No |  |
+| `timestamp` | `Integer` | No |  |
+| `weather` | `Hash` | No |  |
+| `wind_direction` | `Float` | No |  |
+| `wind_speed` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Historical.list(nil)
+results = client.Historical.list
 ```
 
 ### Common Methods
@@ -216,25 +216,25 @@ weather_forecast = client.WeatherForecast
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `Integer` | No |  |
+| `date` | `String` | No |  |
+| `humidity` | `Integer` | No |  |
+| `precipitation` | `Float` | No |  |
+| `pressure` | `Float` | No |  |
+| `temperature` | `Hash` | No |  |
+| `timestamp` | `Integer` | No |  |
+| `weather` | `Hash` | No |  |
+| `wind_direction` | `Float` | No |  |
+| `wind_speed` | `Float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.WeatherForecast.list(nil)
+results = client.WeatherForecast.list
 ```
 
 ### Common Methods

@@ -8,7 +8,7 @@ Complete API reference for the MeteoprogWeather PHP SDK.
 ### Constructor
 
 ```php
-require_once __DIR__ . '/meteoprog-weather_sdk.php';
+require_once __DIR__ . '/meteoprogweather_sdk.php';
 
 $client = new MeteoprogWeatherSDK($options);
 ```
@@ -54,11 +54,11 @@ Create a new `HistoricalEntity` instance. Pass `null` for no initial data.
 
 Create a new `WeatherForecastEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): MeteoprogWeatherUtility`
 
 Return a copy of the SDK utility object.
 
@@ -101,8 +101,8 @@ $current = $client->Current();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `current` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
+| `current` | `array` | No |  |
+| `location` | `array` | No |  |
 
 ### Operations
 
@@ -111,24 +111,24 @@ $current = $client->Current();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Current()->load(["id" => "current_id"]);
+$result = $client->Current()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -137,7 +137,7 @@ Set the entity match criteria.
 Create a new `CurrentEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -154,42 +154,42 @@ $historical = $client->Historical();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `int` | No |  |
+| `date` | `string` | No |  |
+| `humidity` | `int` | No |  |
+| `precipitation` | `float` | No |  |
+| `pressure` | `float` | No |  |
+| `temperature` | `array` | No |  |
+| `timestamp` | `int` | No |  |
+| `weather` | `array` | No |  |
+| `wind_direction` | `float` | No |  |
+| `wind_speed` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->Historical()->list([]);
+$results = $client->Historical()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -198,7 +198,7 @@ Set the entity match criteria.
 Create a new `HistoricalEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -215,42 +215,42 @@ $weather_forecast = $client->WeatherForecast();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `int` | No |  |
+| `date` | `string` | No |  |
+| `humidity` | `int` | No |  |
+| `precipitation` | `float` | No |  |
+| `pressure` | `float` | No |  |
+| `temperature` | `array` | No |  |
+| `timestamp` | `int` | No |  |
+| `weather` | `array` | No |  |
+| `wind_direction` | `float` | No |  |
+| `wind_speed` | `float` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->WeatherForecast()->list([]);
+$results = $client->WeatherForecast()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -259,7 +259,7 @@ Set the entity match criteria.
 Create a new `WeatherForecastEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

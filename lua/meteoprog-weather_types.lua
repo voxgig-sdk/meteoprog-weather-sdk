@@ -11,6 +11,8 @@
 ---@field location? table
 
 ---@class CurrentLoadMatch
+---@field current? table
+---@field location? table
 
 ---@class Historical
 ---@field cloud? number
@@ -25,6 +27,16 @@
 ---@field wind_speed? number
 
 ---@class HistoricalListMatch
+---@field cloud? number
+---@field date? string
+---@field humidity? number
+---@field precipitation? number
+---@field pressure? number
+---@field temperature? table
+---@field timestamp? number
+---@field weather? table
+---@field wind_direction? number
+---@field wind_speed? number
 
 ---@class WeatherForecast
 ---@field cloud? number
@@ -39,6 +51,16 @@
 ---@field wind_speed? number
 
 ---@class WeatherForecastListMatch
+---@field cloud? number
+---@field date? string
+---@field humidity? number
+---@field precipitation? number
+---@field pressure? number
+---@field temperature? table
+---@field timestamp? number
+---@field weather? table
+---@field wind_direction? number
+---@field wind_speed? number
 
 local M = {}
 

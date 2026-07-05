@@ -8,7 +8,7 @@ Complete API reference for the MeteoprogWeather Python SDK.
 ### Constructor
 
 ```python
-from meteoprog-weather_sdk import MeteoprogWeatherSDK
+from meteoprogweather_sdk import MeteoprogWeatherSDK
 
 client = MeteoprogWeatherSDK(options)
 ```
@@ -96,8 +96,8 @@ current = client.Current()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `current` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
+| `current` | `dict` | No |  |
+| `location` | `dict` | No |  |
 
 ### Operations
 
@@ -106,7 +106,7 @@ current = client.Current()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Current().load({"id": "current_id"})
+result = client.Current().load()
 ```
 
 ### Common Methods
@@ -148,25 +148,25 @@ historical = client.Historical()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `int` | No |  |
+| `date` | `str` | No |  |
+| `humidity` | `int` | No |  |
+| `precipitation` | `float` | No |  |
+| `pressure` | `float` | No |  |
+| `temperature` | `dict` | No |  |
+| `timestamp` | `int` | No |  |
+| `weather` | `dict` | No |  |
+| `wind_direction` | `float` | No |  |
+| `wind_speed` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Historical().list({})
+results = client.Historical().list()
 for historical in results:
     print(historical)
 ```
@@ -210,25 +210,25 @@ weather_forecast = client.WeatherForecast()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `int` | No |  |
+| `date` | `str` | No |  |
+| `humidity` | `int` | No |  |
+| `precipitation` | `float` | No |  |
+| `pressure` | `float` | No |  |
+| `temperature` | `dict` | No |  |
+| `timestamp` | `int` | No |  |
+| `weather` | `dict` | No |  |
+| `wind_direction` | `float` | No |  |
+| `wind_speed` | `float` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.WeatherForecast().list({})
+results = client.WeatherForecast().list()
 for weather_forecast in results:
     print(weather_forecast)
 ```

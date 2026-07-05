@@ -106,8 +106,8 @@ current := client.Current(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `current` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
+| `current` | `map[string]any` | No |  |
+| `location` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -116,7 +116,7 @@ current := client.Current(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Current(nil).Load(map[string]any{"id": "current_id"}, nil)
+result, err := client.Current(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -153,16 +153,16 @@ historical := client.Historical(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `int` | No |  |
+| `date` | `string` | No |  |
+| `humidity` | `int` | No |  |
+| `precipitation` | `float64` | No |  |
+| `pressure` | `float64` | No |  |
+| `temperature` | `map[string]any` | No |  |
+| `timestamp` | `int` | No |  |
+| `weather` | `map[string]any` | No |  |
+| `wind_direction` | `float64` | No |  |
+| `wind_speed` | `float64` | No |  |
 
 ### Operations
 
@@ -208,16 +208,16 @@ weather_forecast := client.WeatherForecast(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `int` | No |  |
+| `date` | `string` | No |  |
+| `humidity` | `int` | No |  |
+| `precipitation` | `float64` | No |  |
+| `pressure` | `float64` | No |  |
+| `temperature` | `map[string]any` | No |  |
+| `timestamp` | `int` | No |  |
+| `weather` | `map[string]any` | No |  |
+| `wind_direction` | `float64` | No |  |
+| `wind_speed` | `float64` | No |  |
 
 ### Operations
 

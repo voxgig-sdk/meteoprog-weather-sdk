@@ -99,8 +99,8 @@ local current = client:Current(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `current` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
+| `current` | `table` | No |  |
+| `location` | `table` | No |  |
 
 ### Operations
 
@@ -109,7 +109,7 @@ local current = client:Current(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Current():load({ id = "current_id" })
+local result, err = client:Current():load()
 ```
 
 ### Common Methods
@@ -152,16 +152,16 @@ local historical = client:Historical(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `number` | No |  |
+| `date` | `string` | No |  |
+| `humidity` | `number` | No |  |
+| `precipitation` | `number` | No |  |
+| `pressure` | `number` | No |  |
+| `temperature` | `table` | No |  |
+| `timestamp` | `number` | No |  |
+| `weather` | `table` | No |  |
+| `wind_direction` | `number` | No |  |
+| `wind_speed` | `number` | No |  |
 
 ### Operations
 
@@ -213,16 +213,16 @@ local weather_forecast = client:WeatherForecast(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `number` | No |  |
+| `date` | `string` | No |  |
+| `humidity` | `number` | No |  |
+| `precipitation` | `number` | No |  |
+| `pressure` | `number` | No |  |
+| `temperature` | `table` | No |  |
+| `timestamp` | `number` | No |  |
+| `weather` | `table` | No |  |
+| `wind_direction` | `number` | No |  |
+| `wind_speed` | `number` | No |  |
 
 ### Operations
 

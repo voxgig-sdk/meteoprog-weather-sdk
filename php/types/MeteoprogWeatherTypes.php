@@ -19,7 +19,7 @@ class Current
     public ?array $location = null;
 }
 
-/** Match filter for Current#load (any subset of Current fields). */
+/** Request payload for Current#load. */
 class CurrentLoadMatch
 {
     public ?array $current = null;
@@ -41,7 +41,7 @@ class Historical
     public ?float $wind_speed = null;
 }
 
-/** Match filter for Historical#list (any subset of Historical fields). */
+/** Request payload for Historical#list. */
 class HistoricalListMatch
 {
     public ?int $cloud = null;
@@ -71,7 +71,7 @@ class WeatherForecast
     public ?float $wind_speed = null;
 }
 
-/** Match filter for WeatherForecast#list (any subset of WeatherForecast fields). */
+/** Request payload for WeatherForecast#list. */
 class WeatherForecastListMatch
 {
     public ?int $cloud = null;

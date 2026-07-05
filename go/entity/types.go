@@ -14,8 +14,7 @@ type Current struct {
 	Location *map[string]any `json:"location,omitempty"`
 }
 
-// CurrentLoadMatch mirrors the current fields as an all-optional match
-// filter (Go analog of Partial<Current>).
+// CurrentLoadMatch is the typed request payload for Current.LoadTyped.
 type CurrentLoadMatch struct {
 	Current *map[string]any `json:"current,omitempty"`
 	Location *map[string]any `json:"location,omitempty"`
@@ -35,8 +34,7 @@ type Historical struct {
 	WindSpeed *float64 `json:"wind_speed,omitempty"`
 }
 
-// HistoricalListMatch mirrors the historical fields as an all-optional match
-// filter (Go analog of Partial<Historical>).
+// HistoricalListMatch is the typed request payload for Historical.ListTyped.
 type HistoricalListMatch struct {
 	Cloud *int `json:"cloud,omitempty"`
 	Date *string `json:"date,omitempty"`
@@ -64,8 +62,7 @@ type WeatherForecast struct {
 	WindSpeed *float64 `json:"wind_speed,omitempty"`
 }
 
-// WeatherForecastListMatch mirrors the weather_forecast fields as an all-optional match
-// filter (Go analog of Partial<WeatherForecast>).
+// WeatherForecastListMatch is the typed request payload for WeatherForecast.ListTyped.
 type WeatherForecastListMatch struct {
 	Cloud *int `json:"cloud,omitempty"`
 	Date *string `json:"date,omitempty"`

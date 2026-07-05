@@ -141,8 +141,8 @@ const current = client.Current()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `current` | ``$OBJECT`` | No |  |
-| `location` | ``$OBJECT`` | No |  |
+| `current` | `Record<string, any>` | No |  |
+| `location` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -151,7 +151,7 @@ const current = client.Current()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Current().load({ id: 'current_id' })
+const result = await client.Current().load()
 ```
 
 ### Common Methods
@@ -192,16 +192,16 @@ const historical = client.Historical()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `number` | No |  |
+| `date` | `string` | No |  |
+| `humidity` | `number` | No |  |
+| `precipitation` | `number` | No |  |
+| `pressure` | `number` | No |  |
+| `temperature` | `Record<string, any>` | No |  |
+| `timestamp` | `number` | No |  |
+| `weather` | `Record<string, any>` | No |  |
+| `wind_direction` | `number` | No |  |
+| `wind_speed` | `number` | No |  |
 
 ### Operations
 
@@ -251,16 +251,16 @@ const weather_forecast = client.WeatherForecast()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | ``$INTEGER`` | No |  |
-| `date` | ``$STRING`` | No |  |
-| `humidity` | ``$INTEGER`` | No |  |
-| `precipitation` | ``$NUMBER`` | No |  |
-| `pressure` | ``$NUMBER`` | No |  |
-| `temperature` | ``$OBJECT`` | No |  |
-| `timestamp` | ``$INTEGER`` | No |  |
-| `weather` | ``$OBJECT`` | No |  |
-| `wind_direction` | ``$NUMBER`` | No |  |
-| `wind_speed` | ``$NUMBER`` | No |  |
+| `cloud` | `number` | No |  |
+| `date` | `string` | No |  |
+| `humidity` | `number` | No |  |
+| `precipitation` | `number` | No |  |
+| `pressure` | `number` | No |  |
+| `temperature` | `Record<string, any>` | No |  |
+| `timestamp` | `number` | No |  |
+| `weather` | `Record<string, any>` | No |  |
+| `wind_direction` | `number` | No |  |
+| `wind_speed` | `number` | No |  |
 
 ### Operations
 

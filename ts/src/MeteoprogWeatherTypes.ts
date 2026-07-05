@@ -10,7 +10,10 @@ export interface Current {
   location?: Record<string, any>
 }
 
-export type CurrentLoadMatch = Partial<Current>
+export interface CurrentLoadMatch {
+  current?: Record<string, any>
+  location?: Record<string, any>
+}
 
 export interface Historical {
   cloud?: number
@@ -25,7 +28,18 @@ export interface Historical {
   wind_speed?: number
 }
 
-export type HistoricalListMatch = Partial<Historical>
+export interface HistoricalListMatch {
+  cloud?: number
+  date?: string
+  humidity?: number
+  precipitation?: number
+  pressure?: number
+  temperature?: Record<string, any>
+  timestamp?: number
+  weather?: Record<string, any>
+  wind_direction?: number
+  wind_speed?: number
+}
 
 export interface WeatherForecast {
   cloud?: number
@@ -40,5 +54,16 @@ export interface WeatherForecast {
   wind_speed?: number
 }
 
-export type WeatherForecastListMatch = Partial<WeatherForecast>
+export interface WeatherForecastListMatch {
+  cloud?: number
+  date?: string
+  humidity?: number
+  precipitation?: number
+  pressure?: number
+  temperature?: Record<string, any>
+  timestamp?: number
+  weather?: Record<string, any>
+  wind_direction?: number
+  wind_speed?: number
+}
 

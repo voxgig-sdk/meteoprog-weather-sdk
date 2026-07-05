@@ -21,7 +21,7 @@ Current = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Current#load (any subset of Current fields).
+# Request payload for Current#load.
 #
 # @!attribute [rw] current
 #   @return [Hash, nil]
@@ -79,7 +79,7 @@ Historical = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Historical#list (any subset of Historical fields).
+# Request payload for Historical#list.
 #
 # @!attribute [rw] cloud
 #   @return [Integer, nil]
@@ -169,7 +169,7 @@ WeatherForecast = Struct.new(
   keyword_init: true
 )
 
-# Match filter for WeatherForecast#list (any subset of WeatherForecast fields).
+# Request payload for WeatherForecast#list.
 #
 # @!attribute [rw] cloud
 #   @return [Integer, nil]
