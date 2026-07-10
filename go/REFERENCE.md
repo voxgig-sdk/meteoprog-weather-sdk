@@ -100,6 +100,7 @@ same parameters as `Direct()`.
 
 ```go
 current := client.Current(nil)
+fmt.Println(current.GetName()) // "current"
 ```
 
 ### Fields
@@ -117,6 +118,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Current(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -147,6 +152,7 @@ Return the entity name.
 
 ```go
 historical := client.Historical(nil)
+fmt.Println(historical.GetName()) // "historical"
 ```
 
 ### Fields
@@ -172,6 +178,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Historical(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -201,7 +211,8 @@ Return the entity name.
 ## WeatherForecastEntity
 
 ```go
-weather_forecast := client.WeatherForecast(nil)
+weatherForecast := client.WeatherForecast(nil)
+fmt.Println(weatherForecast.GetName()) // "weather_forecast"
 ```
 
 ### Fields
@@ -227,6 +238,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.WeatherForecast(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

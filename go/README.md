@@ -383,7 +383,7 @@ fmt.Println(historicals) // the array of records
 
 ### WeatherForecast
 
-Create an instance: `weather_forecast := client.WeatherForecast(nil)`
+Create an instance: `weatherForecast := client.WeatherForecast(nil)`
 
 #### Operations
 
@@ -409,11 +409,11 @@ Create an instance: `weather_forecast := client.WeatherForecast(nil)`
 #### Example: List
 
 ```go
-weather_forecasts, err := client.WeatherForecast(nil).List(nil, nil)
+weatherForecasts, err := client.WeatherForecast(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(weather_forecasts) // the array of records
+fmt.Println(weatherForecasts) // the array of records
 ```
 
 
