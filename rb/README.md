@@ -36,7 +36,7 @@ client = MeteoprogWeatherSDK.new({
 
 ```ruby
 begin
-  # load returns the bare Current record (raises on error).
+  # load returns the ENTITY — call data_get for the Current record (raises on error).
   current = client.Current.load()
   puts current
 rescue => err
@@ -51,9 +51,9 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  current = client.Current.load()
+  historicals = client.Historical.list()
 rescue => err
-  warn "load failed: #{err}"
+  warn "list failed: #{err}"
 end
 ```
 
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = MeteoprogWeatherSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-current = client.Current.load()
-puts current
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+historical = client.Historical.list()
+puts historical
 ```
 
 ### Use a custom fetch function
@@ -252,7 +253,7 @@ API path: `/weather/current`
 
 | Field | Description |
 | --- | --- |
-| `cloud` |  |
+| `clouds` |  |
 | `date` |  |
 | `humidity` |  |
 | `precipitation` |  |
@@ -271,7 +272,7 @@ API path: `/weather/historical`
 
 | Field | Description |
 | --- | --- |
-| `cloud` |  |
+| `clouds` |  |
 | `date` |  |
 | `humidity` |  |
 | `precipitation` |  |
@@ -311,7 +312,7 @@ Create an instance: `current = client.Current`
 #### Example: Load
 
 ```ruby
-# load returns the bare Current record (raises on error).
+# load returns the ENTITY — call data_get for the Current record (raises on error).
 current = client.Current.load()
 ```
 
@@ -330,7 +331,7 @@ Create an instance: `historical = client.Historical`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `Integer` |  |
+| `clouds` | `Integer` |  |
 | `date` | `String` |  |
 | `humidity` | `Integer` |  |
 | `precipitation` | `Float` |  |
@@ -363,7 +364,7 @@ Create an instance: `weather_forecast = client.WeatherForecast`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `Integer` |  |
+| `clouds` | `Integer` |  |
 | `date` | `String` |  |
 | `humidity` | `Integer` |  |
 | `precipitation` | `Float` |  |
@@ -454,15 +455,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-current = client.Current
-current.load()
+historical = client.Historical
+historical.list()
 
-# current.data_get now returns the current data from the last load
-# current.match_get returns the last match criteria
+# historical.data_get now returns the historical data from the last list
+# historical.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

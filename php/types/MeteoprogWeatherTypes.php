@@ -29,7 +29,7 @@ class CurrentLoadMatch
 /** Historical entity data model. */
 class Historical
 {
-    public ?int $cloud = null;
+    public ?int $clouds = null;
     public ?string $date = null;
     public ?int $humidity = null;
     public ?float $precipitation = null;
@@ -44,7 +44,7 @@ class Historical
 /** Request payload for Historical#list. */
 class HistoricalListMatch
 {
-    public ?int $cloud = null;
+    public ?int $clouds = null;
     public ?string $date = null;
     public ?int $humidity = null;
     public ?float $precipitation = null;
@@ -59,7 +59,7 @@ class HistoricalListMatch
 /** WeatherForecast entity data model. */
 class WeatherForecast
 {
-    public ?int $cloud = null;
+    public ?int $clouds = null;
     public ?string $date = null;
     public ?int $humidity = null;
     public ?float $precipitation = null;
@@ -74,7 +74,7 @@ class WeatherForecast
 /** Request payload for WeatherForecast#list. */
 class WeatherForecastListMatch
 {
-    public ?int $cloud = null;
+    public ?int $clouds = null;
     public ?string $date = null;
     public ?int $humidity = null;
     public ?float $precipitation = null;

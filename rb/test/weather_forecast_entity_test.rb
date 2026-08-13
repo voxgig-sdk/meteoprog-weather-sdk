@@ -62,7 +62,7 @@ class WeatherForecastEntityTest < Minitest::Test
     # The basic flow consumes synthetic IDs from the fixture. In live mode
     # without an *_ENTID env override, those IDs hit the live API and 4xx.
     if setup[:synthetic_only]
-      skip "live entity test uses synthetic IDs from fixture — set METEOPROGWEATHER_TEST_WEATHER_FORECAST_ENTID JSON to run live"
+      skip "live entity test uses synthetic IDs from fixture — set METEOPROG_WEATHER_TEST_WEATHER_FORECAST_ENTID JSON to run live"
       return
     end
     client = setup[:client]
@@ -111,39 +111,39 @@ def weather_forecast_basic_setup(extra)
   # Detect ENTID env override before envOverride consumes it. When live
   # mode is on without a real override, the basic test runs against synthetic
   # IDs from the fixture and 4xx's. Surface this so the test can skip.
-  entid_env_raw = ENV["METEOPROGWEATHER_TEST_WEATHER_FORECAST_ENTID"]
+  entid_env_raw = ENV["METEOPROG_WEATHER_TEST_WEATHER_FORECAST_ENTID"]
   idmap_overridden = !entid_env_raw.nil? && entid_env_raw.strip.start_with?("{")
 
   env = Runner.env_override({
-    "METEOPROGWEATHER_TEST_WEATHER_FORECAST_ENTID" => idmap,
-    "METEOPROGWEATHER_TEST_LIVE" => "FALSE",
-    "METEOPROGWEATHER_TEST_EXPLAIN" => "FALSE",
-    "METEOPROGWEATHER_APIKEY" => "NONE",
+    "METEOPROG_WEATHER_TEST_WEATHER_FORECAST_ENTID" => idmap,
+    "METEOPROG_WEATHER_TEST_LIVE" => "FALSE",
+    "METEOPROG_WEATHER_TEST_EXPLAIN" => "FALSE",
+    "METEOPROG_WEATHER_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
-    env["METEOPROGWEATHER_TEST_WEATHER_FORECAST_ENTID"])
+    env["METEOPROG_WEATHER_TEST_WEATHER_FORECAST_ENTID"])
   if idmap_resolved.nil?
     idmap_resolved = Helpers.to_map(idmap)
   end
 
-  if env["METEOPROGWEATHER_TEST_LIVE"] == "TRUE"
+  if env["METEOPROG_WEATHER_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["METEOPROGWEATHER_APIKEY"],
+        "apikey" => env["METEOPROG_WEATHER_APIKEY"],
       },
       extra || {},
     ])
     client = MeteoprogWeatherSDK.new(Helpers.to_map(merged_opts))
   end
 
-  live = env["METEOPROGWEATHER_TEST_LIVE"] == "TRUE"
+  live = env["METEOPROG_WEATHER_TEST_LIVE"] == "TRUE"
   {
     client: client,
     data: entity_data,
     idmap: idmap_resolved,
     env: env,
-    explain: env["METEOPROGWEATHER_TEST_EXPLAIN"] == "TRUE",
+    explain: env["METEOPROG_WEATHER_TEST_EXPLAIN"] == "TRUE",
     live: live,
     synthetic_only: live && !idmap_overridden,
     now: (Time.now.to_f * 1000).to_i,

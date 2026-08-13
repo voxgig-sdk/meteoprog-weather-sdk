@@ -36,9 +36,10 @@ func TestHistoricalDirect(t *testing.T) {
 			"params": map[string]any{},
 		})
 		if setup.live {
-			// Live mode is lenient: synthetic IDs frequently 4xx and the
-			// list-response shape varies wildly across public APIs. Skip
-			// rather than fail when the call doesn't return a usable list.
+			// Live-mode leniency is a model decision
+			// (main.kit.test.live.strict): synthetic IDs 4xx constantly
+			// against an arbitrary public API, so the default SKIPS here.
+			// A project that owns its test server sets strict and FAILS.
 			if err != nil {
 				t.Skipf("list call failed (likely synthetic IDs against live API): %v", err)
 			}
@@ -91,21 +92,21 @@ func historicalDirectSetup(mockres any) *historicalDirectSetupResult {
 	calls := &[]map[string]any{}
 
 	env := envOverride(map[string]any{
-		"METEOPROGWEATHER_TEST_HISTORICAL_ENTID": map[string]any{},
-		"METEOPROGWEATHER_TEST_LIVE":    "FALSE",
-		"METEOPROGWEATHER_APIKEY":       "NONE",
+		"METEOPROG_WEATHER_TEST_HISTORICAL_ENTID": map[string]any{},
+		"METEOPROG_WEATHER_TEST_LIVE":    "FALSE",
+		"METEOPROG_WEATHER_APIKEY":       "NONE",
 	})
 
-	live := env["METEOPROGWEATHER_TEST_LIVE"] == "TRUE"
+	live := env["METEOPROG_WEATHER_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["METEOPROGWEATHER_APIKEY"],
+			"apikey": env["METEOPROG_WEATHER_APIKEY"],
 		}
 		client := sdk.NewMeteoprogWeatherSDK(mergedOpts)
 
 		idmap := map[string]any{}
-		if entidRaw, ok := env["METEOPROGWEATHER_TEST_HISTORICAL_ENTID"]; ok {
+		if entidRaw, ok := env["METEOPROG_WEATHER_TEST_HISTORICAL_ENTID"]; ok {
 			if entidStr, ok := entidRaw.(string); ok && strings.HasPrefix(entidStr, "{") {
 				json.Unmarshal([]byte(entidStr), &idmap)
 			} else if entidMap, ok := entidRaw.(map[string]any); ok {

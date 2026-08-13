@@ -69,12 +69,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-current, err := client.Current(nil).Load(nil, nil)
+historicals, err := client.Historical(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = current
+_ = historicals
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -138,13 +138,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-current, err := client.Current(nil).Load(
+historical, err := client.Historical(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(current) // the returned mock data
+fmt.Println(historical) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -278,7 +278,7 @@ API path: `/weather/current`
 
 | Field | Description |
 | --- | --- |
-| `"cloud"` |  |
+| `"clouds"` |  |
 | `"date"` |  |
 | `"humidity"` |  |
 | `"precipitation"` |  |
@@ -297,7 +297,7 @@ API path: `/weather/historical`
 
 | Field | Description |
 | --- | --- |
-| `"cloud"` |  |
+| `"clouds"` |  |
 | `"date"` |  |
 | `"humidity"` |  |
 | `"precipitation"` |  |
@@ -359,7 +359,7 @@ Create an instance: `historical := client.Historical(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `int` |  |
+| `clouds` | `int` |  |
 | `date` | `string` |  |
 | `humidity` | `int` |  |
 | `precipitation` | `float64` |  |
@@ -395,7 +395,7 @@ Create an instance: `weatherForecast := client.WeatherForecast(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `int` |  |
+| `clouds` | `int` |  |
 | `date` | `string` |  |
 | `humidity` | `int` |  |
 | `precipitation` | `float64` |  |
@@ -486,15 +486,15 @@ like `core.ToMapAny`.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `Load`, the entity
+Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-current := client.Current(nil)
-current.Load(nil, nil)
+historical := client.Historical(nil)
+historical.List(nil, nil)
 
-// current.Data() now returns the current data from the last load
-// current.Match() returns the last match criteria
+// historical.Data() now returns the historical data from the last list
+// historical.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

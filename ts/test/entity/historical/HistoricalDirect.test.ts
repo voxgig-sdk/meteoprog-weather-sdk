@@ -19,11 +19,15 @@ import {
 describe('HistoricalDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when METEOPROGWEATHER_TEST_LIVE=TRUE.
-  afterEach(liveDelay('METEOPROGWEATHER_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when METEOPROG_WEATHER_TEST_LIVE=TRUE.
+  afterEach(liveDelay('METEOPROG_WEATHER_TEST_LIVE'))
 
   test('direct-exists', async () => {
     const sdk = new MeteoprogWeatherSDK({
+      // Concrete base: a live construction must satisfy any server
+      // variables a templated base URL declares; overriding base with a
+      // literal (as the direct flow tests do) sidesteps the requirement.
+      base: 'http://localhost:8080',
       system: { fetch: async () => ({}) }
     })
     assert('function' === typeof sdk.direct)
@@ -77,19 +81,19 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'METEOPROGWEATHER_TEST_HISTORICAL_ENTID': {},
-    'METEOPROGWEATHER_TEST_LIVE': 'FALSE',
-    'METEOPROGWEATHER_APIKEY': 'NONE',
+    'METEOPROG_WEATHER_TEST_HISTORICAL_ENTID': {},
+    'METEOPROG_WEATHER_TEST_LIVE': 'FALSE',
+    'METEOPROG_WEATHER_APIKEY': 'NONE',
   })
 
-  const live = 'TRUE' === env.METEOPROGWEATHER_TEST_LIVE
+  const live = 'TRUE' === env.METEOPROG_WEATHER_TEST_LIVE
 
   if (live) {
     const client = new MeteoprogWeatherSDK({
-      apikey: env.METEOPROGWEATHER_APIKEY,
+      apikey: env.METEOPROG_WEATHER_APIKEY,
     })
 
-    let idmap: any = env['METEOPROGWEATHER_TEST_HISTORICAL_ENTID']
+    let idmap: any = env['METEOPROG_WEATHER_TEST_HISTORICAL_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

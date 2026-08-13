@@ -16,7 +16,7 @@ export interface CurrentLoadMatch {
 }
 
 export interface Historical {
-  cloud?: number
+  clouds?: number
   date?: string
   humidity?: number
   precipitation?: number
@@ -29,7 +29,7 @@ export interface Historical {
 }
 
 export interface HistoricalListMatch {
-  cloud?: number
+  clouds?: number
   date?: string
   humidity?: number
   precipitation?: number
@@ -42,7 +42,7 @@ export interface HistoricalListMatch {
 }
 
 export interface WeatherForecast {
-  cloud?: number
+  clouds?: number
   date?: string
   humidity?: number
   precipitation?: number
@@ -55,7 +55,7 @@ export interface WeatherForecast {
 }
 
 export interface WeatherForecastListMatch {
-  cloud?: number
+  clouds?: number
   date?: string
   humidity?: number
   precipitation?: number

@@ -99,6 +99,7 @@ module MeteoprogWeatherConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/weather/current",
                   "parts" => [
@@ -132,7 +133,7 @@ module MeteoprogWeatherConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "cloud",
+              "name" => "clouds",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 0,
@@ -271,6 +272,7 @@ module MeteoprogWeatherConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/weather/historical",
                   "parts" => [
@@ -306,7 +308,7 @@ module MeteoprogWeatherConfig
           "fields" => [
             {
               "active" => true,
-              "name" => "cloud",
+              "name" => "clouds",
               "req" => false,
               "type" => "`$INTEGER`",
               "index$" => 0,
@@ -438,6 +440,7 @@ module MeteoprogWeatherConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/weather/forecast",
                   "parts" => [

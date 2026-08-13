@@ -37,7 +37,7 @@ class HistoricalEntity extends MeteoprogWeatherEntityBase<Historical> {
 
 
 
-  async list(this: any, reqmatch?: HistoricalListMatch, ctrl?: Control): Promise<Historical[]> {
+  async list(this: any, reqmatch?: HistoricalListMatch, ctrl?: Control): Promise<HistoricalEntity[]> {
 
     const utility = this._utility
 

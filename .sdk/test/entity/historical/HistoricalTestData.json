@@ -2,7 +2,7 @@
   "existing": {
     "historical": {
       "HISTORICAL00": {
-        "cloud": "s64",
+        "clouds": "s64",
         "date": "s65",
         "humidity": "s66",
         "precipitation": 103,
@@ -14,7 +14,7 @@
         "wind_speed": 109
       },
       "HISTORICAL01": {
-        "cloud": "sc8",
+        "clouds": "sc8",
         "date": "sc9",
         "humidity": "sca",
         "precipitation": 203,
@@ -26,7 +26,7 @@
         "wind_speed": 209
       },
       "HISTORICAL02": {
-        "cloud": "s12c",
+        "clouds": "s12c",
         "date": "s12d",
         "humidity": "s12e",
         "precipitation": 303,
@@ -42,7 +42,7 @@
   "new": {
     "historical": {
       "historical_ref01": {
-        "cloud": "s190",
+        "clouds": "s190",
         "date": "s191",
         "humidity": "s192",
         "precipitation": 403,

@@ -60,16 +60,16 @@ function current_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["METEOPROGWEATHER_TEST_CURRENT_ENTID"] = {},
-    ["METEOPROGWEATHER_TEST_LIVE"] = "FALSE",
-    ["METEOPROGWEATHER_APIKEY"] = "NONE",
+    ["METEOPROG_WEATHER_TEST_CURRENT_ENTID"] = {},
+    ["METEOPROG_WEATHER_TEST_LIVE"] = "FALSE",
+    ["METEOPROG_WEATHER_APIKEY"] = "NONE",
   })
 
-  local live = env["METEOPROGWEATHER_TEST_LIVE"] == "TRUE"
+  local live = env["METEOPROG_WEATHER_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["METEOPROGWEATHER_APIKEY"],
+      apikey = env["METEOPROG_WEATHER_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

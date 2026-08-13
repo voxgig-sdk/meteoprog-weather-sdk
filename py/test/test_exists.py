@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# MeteoprogWeather SDK exists test
 
 import pytest
 from meteoprogweather_sdk import MeteoprogWeatherSDK

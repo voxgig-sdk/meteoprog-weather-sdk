@@ -55,10 +55,10 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const current = await client.Current().load()
-  console.log(current)
+  const historicals = await client.Historical().list()
+  console.log(historicals)
 } catch (err) {
-  console.error('load failed:', err)
+  console.error('list failed:', err)
 }
 ```
 
@@ -122,9 +122,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = MeteoprogWeatherSDK.test()
 
-const current = await client.Current().load()
-// current is a bare entity populated with mock response data
-console.log(current)
+const historical = await client.Historical().list()
+// historical is the entity, populated with mock response data
+// — call historical.data() for the record itself
+console.log(historical)
 ```
 
 You can also use the instance method:
@@ -139,10 +140,10 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Current()
+const entity = client.Historical()
 
 // First call runs the operation and stores its result
-await entity.load()
+await entity.list()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
@@ -306,7 +307,7 @@ API path: `/weather/current`
 
 | Field | Description |
 | --- | --- |
-| `cloud` |  |
+| `clouds` |  |
 | `date` |  |
 | `humidity` |  |
 | `precipitation` |  |
@@ -325,7 +326,7 @@ API path: `/weather/historical`
 
 | Field | Description |
 | --- | --- |
-| `cloud` |  |
+| `clouds` |  |
 | `date` |  |
 | `humidity` |  |
 | `precipitation` |  |
@@ -383,7 +384,7 @@ Create an instance: `const historical = client.Historical()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `number` |  |
+| `clouds` | `number` |  |
 | `date` | `string` |  |
 | `humidity` | `number` |  |
 | `precipitation` | `number` |  |
@@ -415,7 +416,7 @@ Create an instance: `const weather_forecast = client.WeatherForecast()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `number` |  |
+| `clouds` | `number` |  |
 | `date` | `string` |  |
 | `humidity` | `number` |  |
 | `precipitation` | `number` |  |
@@ -497,16 +498,16 @@ import { MeteoprogWeatherSDK } from '@voxgig-sdk/meteoprog-weather'
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const current = client.Current()
-await current.load()
+const historical = client.Historical()
+await historical.list()
 
-// current.data() now returns the current data from the last `load`
-// current.match() returns the last match criteria
+// historical.data() now returns the historical data from the last `list`
+// historical.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

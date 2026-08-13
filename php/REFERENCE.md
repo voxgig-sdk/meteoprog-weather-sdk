@@ -154,7 +154,7 @@ $historical = $client->Historical();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | `int` | No |  |
+| `clouds` | `int` | No |  |
 | `date` | `string` | No |  |
 | `humidity` | `int` | No |  |
 | `precipitation` | `float` | No |  |
@@ -215,7 +215,7 @@ $weather_forecast = $client->WeatherForecast();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | `int` | No |  |
+| `clouds` | `int` | No |  |
 | `date` | `string` | No |  |
 | `humidity` | `int` | No |  |
 | `precipitation` | `float` | No |  |

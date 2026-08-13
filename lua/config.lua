@@ -98,6 +98,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/weather/current",
                 ["parts"] = {
@@ -131,7 +132,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "cloud",
+            ["name"] = "clouds",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 0,
@@ -270,6 +271,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/weather/historical",
                 ["parts"] = {
@@ -305,7 +307,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "cloud",
+            ["name"] = "clouds",
             ["req"] = false,
             ["type"] = "`$INTEGER`",
             ["index$"] = 0,
@@ -437,6 +439,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/weather/forecast",
                 ["parts"] = {

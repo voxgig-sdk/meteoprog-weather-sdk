@@ -37,7 +37,7 @@ $client = new MeteoprogWeatherSDK([
 
 ```php
 try {
-    // load() returns the bare Current record (throws on error).
+    // load() returns the ENTITY — call data_get() for the Current record (throws on error).
     $current = $client->Current()->load();
     print_r($current);
 } catch (\Throwable $err) {
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $current = $client->Current()->load();
+    $historicals = $client->Historical()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = MeteoprogWeatherSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$current = $client->Current()->load();
-print_r($current);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$historical = $client->Historical()->list();
+print_r($historical);
 ```
 
 ### Use a custom fetch function
@@ -229,7 +230,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -262,7 +263,7 @@ API path: `/weather/current`
 
 | Field | Description |
 | --- | --- |
-| `cloud` |  |
+| `clouds` |  |
 | `date` |  |
 | `humidity` |  |
 | `precipitation` |  |
@@ -281,7 +282,7 @@ API path: `/weather/historical`
 
 | Field | Description |
 | --- | --- |
-| `cloud` |  |
+| `clouds` |  |
 | `date` |  |
 | `humidity` |  |
 | `precipitation` |  |
@@ -321,7 +322,7 @@ Create an instance: `$current = $client->Current();`
 #### Example: Load
 
 ```php
-// load() returns the bare Current record (throws on error).
+// load() returns the ENTITY — call data_get() for the Current record (throws on error).
 $current = $client->Current()->load();
 ```
 
@@ -340,7 +341,7 @@ Create an instance: `$historical = $client->Historical();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `int` |  |
+| `clouds` | `int` |  |
 | `date` | `string` |  |
 | `humidity` | `int` |  |
 | `precipitation` | `float` |  |
@@ -373,7 +374,7 @@ Create an instance: `$weather_forecast = $client->WeatherForecast();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `int` |  |
+| `clouds` | `int` |  |
 | `date` | `string` |  |
 | `humidity` | `int` |  |
 | `precipitation` | `float` |  |
@@ -464,15 +465,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$current = $client->Current();
-$current->load();
+$historical = $client->Historical();
+$historical->list();
 
-// $current->data_get() now returns the current data from the last load
-// $current->match_get() returns the last match criteria
+// $historical->data_get() now returns the historical data from the last list
+// $historical->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

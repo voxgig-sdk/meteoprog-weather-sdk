@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = MeteoprogWeatherSDK.test()
-const current = await client.Current().load()
-// current is a bare Current populated with mock data
-console.log(current)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = MeteoprogWeatherSDK.test({
+  entity: {
+    historical: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const historicals = await client.Historical().list()
+// historicals is an array of Historical entities, populated with mock data
+// — call historicals[0].data() for the record itself
+console.log(historicals)
 ```
 
 ### Python
 
 ```python
 client = MeteoprogWeatherSDK.test()
-current = client.Current().load()
-print(current)
+historicals = client.Historical().list()
+print(historicals)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(current)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = MeteoprogWeatherSDK::test([
-    "entity" => ["current" => ["test01" => []]],
+    "entity" => ["historical" => ["test01" => []]],
 ]);
-$current = $client->Current()->load();
+$historicals = $client->Historical()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Current(nil).Load(
+result, err := client.Historical(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Current(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = MeteoprogWeatherSDK.test({
-  "entity" => { "current" => { "test01" => {} } },
+  "entity" => { "historical" => { "test01" => {} } },
 })
-current = client.Current.load()
+historicals = client.Historical.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:Current():load()
+local results, err = client:Historical():list()
 ```
 
 ## Packages
@@ -191,7 +200,7 @@ $client = new MeteoprogWeatherSDK([
 ]);
 
 
-// Load a specific current (returns the bare record; throws on error)
+// Load a specific current (returns the ENTITY; call data_get() for the record; throws on error)
 $current = $client->Current()->load();
 print_r($current);
 ```
@@ -223,7 +232,7 @@ client = MeteoprogWeatherSDK.new({
 })
 
 
-# Load a specific current (returns the bare record; raises on error)
+# Load a specific current (returns the ENTITY; call data_get for the record)
 current = client.Current.load()
 puts current
 ```
@@ -359,6 +368,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://billing.meteoprog.com/documentation](https://billing.meteoprog.com/documentation)
 

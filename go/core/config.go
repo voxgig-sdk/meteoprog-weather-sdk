@@ -98,6 +98,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/weather/current",
 								"parts": []any{
@@ -120,7 +121,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "load",
 					},
 				},
 				"relations": map[string]any{
@@ -131,7 +131,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "cloud",
+						"name": "clouds",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 0,
@@ -270,6 +270,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/weather/historical",
 								"parts": []any{
@@ -294,7 +295,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -305,7 +305,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "cloud",
+						"name": "clouds",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 0,
@@ -437,6 +437,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/weather/forecast",
 								"parts": []any{
@@ -460,7 +461,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

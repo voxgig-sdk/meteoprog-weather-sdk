@@ -152,7 +152,7 @@ local historical = client:Historical(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | `number` | No |  |
+| `clouds` | `number` | No |  |
 | `date` | `string` | No |  |
 | `humidity` | `number` | No |  |
 | `precipitation` | `number` | No |  |
@@ -213,7 +213,7 @@ local weather_forecast = client:WeatherForecast(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | `number` | No |  |
+| `clouds` | `number` | No |  |
 | `date` | `string` | No |  |
 | `humidity` | `number` | No |  |
 | `precipitation` | `number` | No |  |

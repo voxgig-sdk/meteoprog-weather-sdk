@@ -159,7 +159,7 @@ fmt.Println(historical.GetName()) // "historical"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | `int` | No |  |
+| `clouds` | `int` | No |  |
 | `date` | `string` | No |  |
 | `humidity` | `int` | No |  |
 | `precipitation` | `float64` | No |  |
@@ -219,7 +219,7 @@ fmt.Println(weatherForecast.GetName()) // "weather_forecast"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | `int` | No |  |
+| `clouds` | `int` | No |  |
 | `date` | `string` | No |  |
 | `humidity` | `int` | No |  |
 | `precipitation` | `float64` | No |  |

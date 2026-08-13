@@ -66,16 +66,16 @@ function historical_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "METEOPROGWEATHER_TEST_HISTORICAL_ENTID" => [],
-        "METEOPROGWEATHER_TEST_LIVE" => "FALSE",
-        "METEOPROGWEATHER_APIKEY" => "NONE",
+        "METEOPROG_WEATHER_TEST_HISTORICAL_ENTID" => [],
+        "METEOPROG_WEATHER_TEST_LIVE" => "FALSE",
+        "METEOPROG_WEATHER_APIKEY" => "NONE",
     ]);
 
-    $live = $env["METEOPROGWEATHER_TEST_LIVE"] === "TRUE";
+    $live = $env["METEOPROG_WEATHER_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["METEOPROGWEATHER_APIKEY"],
+            "apikey" => $env["METEOPROG_WEATHER_APIKEY"],
         ];
         $client = new MeteoprogWeatherSDK($merged_opts);
         return [

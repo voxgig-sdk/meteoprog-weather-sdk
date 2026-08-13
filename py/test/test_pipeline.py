@@ -16,11 +16,11 @@
 import pytest
 
 from meteoprogweather_sdk import MeteoprogWeatherSDK
-from core.error import MeteoprogWeatherError
-from core.result import MeteoprogWeatherResult
-from core.response import MeteoprogWeatherResponse
-from core.spec import MeteoprogWeatherSpec
-from feature.base_feature import MeteoprogWeatherBaseFeature
+from meteoprogweather_sdk.core.error import MeteoprogWeatherError
+from meteoprogweather_sdk.core.result import MeteoprogWeatherResult
+from meteoprogweather_sdk.core.response import MeteoprogWeatherResponse
+from meteoprogweather_sdk.core.spec import MeteoprogWeatherSpec
+from meteoprogweather_sdk.feature.base_feature import MeteoprogWeatherBaseFeature
 
 
 def _client():

@@ -36,7 +36,7 @@ CurrentLoadMatch = Struct.new(
 
 # Historical entity data model.
 #
-# @!attribute [rw] cloud
+# @!attribute [rw] clouds
 #   @return [Integer, nil]
 #
 # @!attribute [rw] date
@@ -66,7 +66,7 @@ CurrentLoadMatch = Struct.new(
 # @!attribute [rw] wind_speed
 #   @return [Float, nil]
 Historical = Struct.new(
-  :cloud,
+  :clouds,
   :date,
   :humidity,
   :precipitation,
@@ -81,7 +81,7 @@ Historical = Struct.new(
 
 # Request payload for Historical#list.
 #
-# @!attribute [rw] cloud
+# @!attribute [rw] clouds
 #   @return [Integer, nil]
 #
 # @!attribute [rw] date
@@ -111,7 +111,7 @@ Historical = Struct.new(
 # @!attribute [rw] wind_speed
 #   @return [Float, nil]
 HistoricalListMatch = Struct.new(
-  :cloud,
+  :clouds,
   :date,
   :humidity,
   :precipitation,
@@ -126,7 +126,7 @@ HistoricalListMatch = Struct.new(
 
 # WeatherForecast entity data model.
 #
-# @!attribute [rw] cloud
+# @!attribute [rw] clouds
 #   @return [Integer, nil]
 #
 # @!attribute [rw] date
@@ -156,7 +156,7 @@ HistoricalListMatch = Struct.new(
 # @!attribute [rw] wind_speed
 #   @return [Float, nil]
 WeatherForecast = Struct.new(
-  :cloud,
+  :clouds,
   :date,
   :humidity,
   :precipitation,
@@ -171,7 +171,7 @@ WeatherForecast = Struct.new(
 
 # Request payload for WeatherForecast#list.
 #
-# @!attribute [rw] cloud
+# @!attribute [rw] clouds
 #   @return [Integer, nil]
 #
 # @!attribute [rw] date
@@ -201,7 +201,7 @@ WeatherForecast = Struct.new(
 # @!attribute [rw] wind_speed
 #   @return [Float, nil]
 WeatherForecastListMatch = Struct.new(
-  :cloud,
+  :clouds,
   :date,
   :humidity,
   :precipitation,

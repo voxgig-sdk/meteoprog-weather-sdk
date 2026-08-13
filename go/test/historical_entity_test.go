@@ -92,7 +92,7 @@ func TestHistoricalEntity(t *testing.T) {
 		// The basic flow consumes synthetic IDs from the fixture. In live mode
 		// without an *_ENTID env override, those IDs hit the live API and 4xx.
 		if setup.syntheticOnly {
-			t.Skip("live entity test uses synthetic IDs from fixture — set METEOPROGWEATHER_TEST_HISTORICAL_ENTID JSON to run live")
+			t.Skip("live entity test uses synthetic IDs from fixture — set METEOPROG_WEATHER_TEST_HISTORICAL_ENTID JSON to run live")
 			return
 		}
 		client := setup.client
@@ -160,38 +160,38 @@ func historicalBasicSetup(extra map[string]any) *entityTestSetup {
 	// Detect ENTID env override before envOverride consumes it. When live
 	// mode is on without a real override, the basic test runs against synthetic
 	// IDs from the fixture and 4xx's. Surface this so the test can skip.
-	entidEnvRaw := os.Getenv("METEOPROGWEATHER_TEST_HISTORICAL_ENTID")
+	entidEnvRaw := os.Getenv("METEOPROG_WEATHER_TEST_HISTORICAL_ENTID")
 	idmapOverridden := entidEnvRaw != "" && strings.HasPrefix(strings.TrimSpace(entidEnvRaw), "{")
 
 	env := envOverride(map[string]any{
-		"METEOPROGWEATHER_TEST_HISTORICAL_ENTID": idmap,
-		"METEOPROGWEATHER_TEST_LIVE":      "FALSE",
-		"METEOPROGWEATHER_TEST_EXPLAIN":   "FALSE",
-		"METEOPROGWEATHER_APIKEY":         "NONE",
+		"METEOPROG_WEATHER_TEST_HISTORICAL_ENTID": idmap,
+		"METEOPROG_WEATHER_TEST_LIVE":      "FALSE",
+		"METEOPROG_WEATHER_TEST_EXPLAIN":   "FALSE",
+		"METEOPROG_WEATHER_APIKEY":         "NONE",
 	})
 
-	idmapResolved := core.ToMapAny(env["METEOPROGWEATHER_TEST_HISTORICAL_ENTID"])
+	idmapResolved := core.ToMapAny(env["METEOPROG_WEATHER_TEST_HISTORICAL_ENTID"])
 	if idmapResolved == nil {
 		idmapResolved = core.ToMapAny(idmap)
 	}
 
-	if env["METEOPROGWEATHER_TEST_LIVE"] == "TRUE" {
+	if env["METEOPROG_WEATHER_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["METEOPROGWEATHER_APIKEY"],
+				"apikey": env["METEOPROG_WEATHER_APIKEY"],
 			},
 			extra,
 		})
 		client = sdk.NewMeteoprogWeatherSDK(core.ToMapAny(mergedOpts))
 	}
 
-	live := env["METEOPROGWEATHER_TEST_LIVE"] == "TRUE"
+	live := env["METEOPROG_WEATHER_TEST_LIVE"] == "TRUE"
 	return &entityTestSetup{
 		client:        client,
 		data:          entityData,
 		idmap:         idmapResolved,
 		env:           env,
-		explain:       env["METEOPROGWEATHER_TEST_EXPLAIN"] == "TRUE",
+		explain:       env["METEOPROG_WEATHER_TEST_EXPLAIN"] == "TRUE",
 		live:          live,
 		syntheticOnly: live && !idmapOverridden,
 		now:           time.Now().UnixMilli(),

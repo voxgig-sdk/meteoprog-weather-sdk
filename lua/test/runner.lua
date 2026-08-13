@@ -35,8 +35,8 @@ end
 
 
 function runner.env_override(m)
-  local live = runner.getenv("METEOPROGWEATHER_TEST_LIVE")
-  local override = runner.getenv("METEOPROGWEATHER_TEST_OVERRIDE")
+  local live = runner.getenv("METEOPROG_WEATHER_TEST_LIVE")
+  local override = runner.getenv("METEOPROG_WEATHER_TEST_OVERRIDE")
 
   if live == "TRUE" or override == "TRUE" then
     for key, _ in pairs(m) do
@@ -56,9 +56,9 @@ function runner.env_override(m)
     end
   end
 
-  local explain = runner.getenv("METEOPROGWEATHER_TEST_EXPLAIN")
+  local explain = runner.getenv("METEOPROG_WEATHER_TEST_EXPLAIN")
   if explain ~= nil and explain ~= "" then
-    m["METEOPROGWEATHER_TEST_EXPLAIN"] = explain
+    m["METEOPROG_WEATHER_TEST_EXPLAIN"] = explain
   end
 
   return m

@@ -104,6 +104,7 @@ class MeteoprogWeatherConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/weather/current',
                   'parts' => [
@@ -137,7 +138,7 @@ class MeteoprogWeatherConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'cloud',
+              'name' => 'clouds',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 0,
@@ -276,6 +277,7 @@ class MeteoprogWeatherConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/weather/historical',
                   'parts' => [
@@ -311,7 +313,7 @@ class MeteoprogWeatherConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'cloud',
+              'name' => 'clouds',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 0,
@@ -443,6 +445,7 @@ class MeteoprogWeatherConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/weather/forecast',
                   'parts' => [

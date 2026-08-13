@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'MeteoprogWeather',
   }
 
 
@@ -133,6 +133,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/weather/current",
               "parts": [
@@ -166,7 +167,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "cloud",
+          "name": "clouds",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 0
@@ -305,6 +306,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/weather/historical",
               "parts": [
@@ -340,7 +342,7 @@ class Config {
       "fields": [
         {
           "active": true,
-          "name": "cloud",
+          "name": "clouds",
           "req": false,
           "type": "`$INTEGER`",
           "index$": 0
@@ -472,6 +474,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/weather/forecast",
               "parts": [

@@ -192,7 +192,7 @@ const historical = client.Historical()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | `number` | No |  |
+| `clouds` | `number` | No |  |
 | `date` | `string` | No |  |
 | `humidity` | `number` | No |  |
 | `precipitation` | `number` | No |  |
@@ -251,7 +251,7 @@ const weather_forecast = client.WeatherForecast()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | `number` | No |  |
+| `clouds` | `number` | No |  |
 | `date` | `string` | No |  |
 | `humidity` | `number` | No |  |
 | `precipitation` | `number` | No |  |

@@ -155,7 +155,7 @@ historical = client.Historical
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | `Integer` | No |  |
+| `clouds` | `Integer` | No |  |
 | `date` | `String` | No |  |
 | `humidity` | `Integer` | No |  |
 | `precipitation` | `Float` | No |  |
@@ -216,7 +216,7 @@ weather_forecast = client.WeatherForecast
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `cloud` | `Integer` | No |  |
+| `clouds` | `Integer` | No |  |
 | `date` | `String` | No |  |
 | `humidity` | `Integer` | No |  |
 | `precipitation` | `Float` | No |  |

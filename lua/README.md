@@ -50,7 +50,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local current, err = client:Current():load()
+local historicals, err = client:Historical():list()
 if err then error(err) end
 ```
 
@@ -108,7 +108,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Current():load()
+local result, err = client:Historical():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -244,7 +244,7 @@ API path: `/weather/current`
 
 | Field | Description |
 | --- | --- |
-| `cloud` |  |
+| `clouds` |  |
 | `date` |  |
 | `humidity` |  |
 | `precipitation` |  |
@@ -263,7 +263,7 @@ API path: `/weather/historical`
 
 | Field | Description |
 | --- | --- |
-| `cloud` |  |
+| `clouds` |  |
 | `date` |  |
 | `humidity` |  |
 | `precipitation` |  |
@@ -321,7 +321,7 @@ Create an instance: `local historical = client:Historical(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `number` |  |
+| `clouds` | `number` |  |
 | `date` | `string` |  |
 | `humidity` | `number` |  |
 | `precipitation` | `number` |  |
@@ -353,7 +353,7 @@ Create an instance: `local weather_forecast = client:WeatherForecast(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `number` |  |
+| `clouds` | `number` |  |
 | `date` | `string` |  |
 | `humidity` | `number` |  |
 | `precipitation` | `number` |  |
@@ -443,15 +443,15 @@ when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local current = client:Current()
-current:load()
+local historical = client:Historical()
+historical:list()
 
--- current:data_get() now returns the current data from the last load
--- current:match_get() returns the last match criteria
+-- historical:data_get() now returns the historical data from the last list
+-- historical:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

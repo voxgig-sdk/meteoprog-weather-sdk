@@ -26,8 +26,8 @@ import {
 describe('CurrentEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when METEOPROGWEATHER_TEST_LIVE=TRUE.
-  afterEach(liveDelay('METEOPROGWEATHER_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when METEOPROG_WEATHER_TEST_LIVE=TRUE.
+  afterEach(liveDelay('METEOPROG_WEATHER_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = MeteoprogWeatherSDK.test()
@@ -62,7 +62,7 @@ describe('CurrentEntity', async () => {
     // LOAD
     const current_ref01_ent = client.Current()
     const current_ref01_match_dt0: any = {}
-    const current_ref01_data_dt0 = await current_ref01_ent.load(current_ref01_match_dt0)
+    const current_ref01_data_dt0 = (await current_ref01_ent.load(current_ref01_match_dt0)).data()
     assert(null != current_ref01_data_dt0)
 
 

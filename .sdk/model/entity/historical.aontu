@@ -6,7 +6,7 @@ main: kit: entity: historical: {
 
   fields: [
     {
-      name: "cloud"
+      name: "clouds"
       req: false
       type: "`$INTEGER`"
     }

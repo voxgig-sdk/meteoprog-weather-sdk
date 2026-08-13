@@ -41,7 +41,7 @@ client = MeteoprogWeatherSDK({
 
 ### 3. Load a current
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -58,10 +58,10 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    current = client.Current().load()
-    print(current)
+    historicals = client.Historical().list()
+    print(historicals)
 except Exception as err:
-    print(f"load failed: {err}")
+    print(f"list failed: {err}")
 ```
 
 `direct()` does **not** raise — it returns the result envelope. Branch
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = MeteoprogWeatherSDK.test()
 
-# Entity ops return the bare record and raise on error.
-current = client.Current().load()
-# current contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+historical = client.Historical().list()
+# historical contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -226,7 +227,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -259,7 +260,7 @@ API path: `/weather/current`
 
 | Field | Description |
 | --- | --- |
-| `cloud` |  |
+| `clouds` |  |
 | `date` |  |
 | `humidity` |  |
 | `precipitation` |  |
@@ -278,7 +279,7 @@ API path: `/weather/historical`
 
 | Field | Description |
 | --- | --- |
-| `cloud` |  |
+| `clouds` |  |
 | `date` |  |
 | `humidity` |  |
 | `precipitation` |  |
@@ -336,7 +337,7 @@ Create an instance: `historical = client.Historical()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `int` |  |
+| `clouds` | `int` |  |
 | `date` | `str` |  |
 | `humidity` | `int` |  |
 | `precipitation` | `float` |  |
@@ -368,7 +369,7 @@ Create an instance: `weather_forecast = client.WeatherForecast()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `cloud` | `int` |  |
+| `clouds` | `int` |  |
 | `date` | `str` |  |
 | `humidity` | `int` |  |
 | `precipitation` | `float` |  |
@@ -457,15 +458,15 @@ Import entity or utility modules directly only when needed.
 
 ### Entity state
 
-Entity instances are stateful. After a successful `load`, the entity
+Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-current = client.Current()
-current.load()
+historical = client.Historical()
+historical.list()
 
-# current.data_get() now returns the current data from the last load
-# current.match_get() returns the last match criteria
+# historical.data_get() now returns the historical data from the last list
+# historical.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

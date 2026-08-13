@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from meteoprogweather_sdk.utility.voxgig_struct import voxgig_struct as vs
 from meteoprogweather_sdk import MeteoprogWeatherSDK
-from core import helpers
+from meteoprogweather_sdk.core import helpers
 from test import runner
 
 
@@ -58,16 +58,16 @@ def _weather_forecast_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "METEOPROGWEATHER_TEST_WEATHER_FORECAST_ENTID": {},
-        "METEOPROGWEATHER_TEST_LIVE": "FALSE",
-        "METEOPROGWEATHER_APIKEY": "NONE",
+        "METEOPROG_WEATHER_TEST_WEATHER_FORECAST_ENTID": {},
+        "METEOPROG_WEATHER_TEST_LIVE": "FALSE",
+        "METEOPROG_WEATHER_APIKEY": "NONE",
     })
 
-    live = env.get("METEOPROGWEATHER_TEST_LIVE") == "TRUE"
+    live = env.get("METEOPROG_WEATHER_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("METEOPROGWEATHER_APIKEY"),
+            "apikey": env.get("METEOPROG_WEATHER_APIKEY"),
         }
         client = MeteoprogWeatherSDK(merged_opts)
         return {

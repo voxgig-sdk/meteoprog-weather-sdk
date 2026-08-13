@@ -43,8 +43,8 @@ class MeteoprogWeatherTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('METEOPROGWEATHER_TEST_LIVE');
-        $override = self::getenv('METEOPROGWEATHER_TEST_OVERRIDE');
+        $live = self::getenv('METEOPROG_WEATHER_TEST_LIVE');
+        $override = self::getenv('METEOPROG_WEATHER_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class MeteoprogWeatherTestRunner
             }
         }
 
-        $explain = self::getenv('METEOPROGWEATHER_TEST_EXPLAIN');
+        $explain = self::getenv('METEOPROG_WEATHER_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['METEOPROGWEATHER_TEST_EXPLAIN'] = $explain;
+            $m['METEOPROG_WEATHER_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

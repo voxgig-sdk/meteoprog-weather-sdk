@@ -15,7 +15,7 @@
 ---@field location? table
 
 ---@class Historical
----@field cloud? number
+---@field clouds? number
 ---@field date? string
 ---@field humidity? number
 ---@field precipitation? number
@@ -27,7 +27,7 @@
 ---@field wind_speed? number
 
 ---@class HistoricalListMatch
----@field cloud? number
+---@field clouds? number
 ---@field date? string
 ---@field humidity? number
 ---@field precipitation? number
@@ -39,7 +39,7 @@
 ---@field wind_speed? number
 
 ---@class WeatherForecast
----@field cloud? number
+---@field clouds? number
 ---@field date? string
 ---@field humidity? number
 ---@field precipitation? number
@@ -51,7 +51,7 @@
 ---@field wind_speed? number
 
 ---@class WeatherForecastListMatch
----@field cloud? number
+---@field clouds? number
 ---@field date? string
 ---@field humidity? number
 ---@field precipitation? number
