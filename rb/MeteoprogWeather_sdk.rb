@@ -28,7 +28,7 @@ class MeteoprogWeatherSDK
     utility = MeteoprogWeatherUtility.new
     @_utility = utility
 
-    config = MeteoprogWeatherConfig.make_config
+    config = MeteoprogWeatherConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

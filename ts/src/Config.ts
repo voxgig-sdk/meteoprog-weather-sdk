@@ -36,7 +36,7 @@ class Config {
 
 
   options = {
-    base: 'https://api.meteoprog.com/v1',
+    base: "https://api.meteoprog.com/v1",
 
     auth: {
       prefix: '',
@@ -65,18 +65,12 @@ class Config {
     "current": {
       "fields": [
         {
-          "active": true,
           "name": "current",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 0
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "location",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 1
+          "type": "`$OBJECT`"
         }
       ],
       "name": "current",
@@ -86,49 +80,38 @@ class Config {
           "name": "load",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "city",
                     "orig": "city",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "en",
                     "kind": "query",
                     "name": "lang",
                     "orig": "lang",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "lat",
                     "orig": "lat",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "lon",
                     "orig": "lon",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "example": "metric",
                     "kind": "query",
                     "name": "unit",
                     "orig": "unit",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -152,11 +135,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.current`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "load"
+          ]
         }
       },
       "relations": {
@@ -166,74 +147,44 @@ class Config {
     "historical": {
       "fields": [
         {
-          "active": true,
           "name": "clouds",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "date",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "humidity",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "precipitation",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 3
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "pressure",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 4
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "temperature",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 5
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 6
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "weather",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 7
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "wind_direction",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 8
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "wind_speed",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 9
+          "type": "`$NUMBER`"
         }
       ],
       "name": "historical",
@@ -243,19 +194,15 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "city",
                     "orig": "city",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "end_date",
                     "orig": "end_date",
@@ -263,32 +210,25 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "en",
                     "kind": "query",
                     "name": "lang",
                     "orig": "lang",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "lat",
                     "orig": "lat",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "lon",
                     "orig": "lon",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "start_date",
                     "orig": "start_date",
@@ -296,12 +236,10 @@ class Config {
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": "metric",
                     "kind": "query",
                     "name": "unit",
                     "orig": "unit",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -327,11 +265,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.historical`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {
@@ -341,74 +277,44 @@ class Config {
     "weather_forecast": {
       "fields": [
         {
-          "active": true,
           "name": "clouds",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 0
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "date",
-          "req": false,
-          "type": "`$STRING`",
-          "index$": 1
+          "type": "`$STRING`"
         },
         {
-          "active": true,
           "name": "humidity",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 2
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "precipitation",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 3
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "pressure",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 4
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "temperature",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 5
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "timestamp",
-          "req": false,
-          "type": "`$INTEGER`",
-          "index$": 6
+          "type": "`$INTEGER`"
         },
         {
-          "active": true,
           "name": "weather",
-          "req": false,
-          "type": "`$OBJECT`",
-          "index$": 7
+          "type": "`$OBJECT`"
         },
         {
-          "active": true,
           "name": "wind_direction",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 8
+          "type": "`$NUMBER`"
         },
         {
-          "active": true,
           "name": "wind_speed",
-          "req": false,
-          "type": "`$NUMBER`",
-          "index$": 9
+          "type": "`$NUMBER`"
         }
       ],
       "name": "weather_forecast",
@@ -418,58 +324,45 @@ class Config {
           "name": "list",
           "points": [
             {
-              "active": true,
               "args": {
                 "query": [
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "city",
                     "orig": "city",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "example": 7,
                     "kind": "query",
                     "name": "day",
                     "orig": "day",
-                    "reqd": false,
                     "type": "`$INTEGER`"
                   },
                   {
-                    "active": true,
                     "example": "en",
                     "kind": "query",
                     "name": "lang",
                     "orig": "lang",
-                    "reqd": false,
                     "type": "`$STRING`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "lat",
                     "orig": "lat",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "kind": "query",
                     "name": "lon",
                     "orig": "lon",
-                    "reqd": false,
                     "type": "`$NUMBER`"
                   },
                   {
-                    "active": true,
                     "example": "metric",
                     "kind": "query",
                     "name": "unit",
                     "orig": "unit",
-                    "reqd": false,
                     "type": "`$STRING`"
                   }
                 ]
@@ -494,11 +387,9 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              },
-              "index$": 0
+              }
             }
-          ],
-          "key$": "list"
+          ]
         }
       },
       "relations": {

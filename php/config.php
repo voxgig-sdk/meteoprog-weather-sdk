@@ -5,6 +5,29 @@ declare(strict_types=1);
 
 class MeteoprogWeatherConfig
 {
+    /** @var array<string,mixed>|null */
+    private static ?array $shared_config = null;
+
+    /**
+     * Return the process-wide config, built once on first use. The SDK reads
+     * the config on every request and never writes to it, so one instance is
+     * shared by every client rather than rebuilt per client.
+     *
+     * PHP arrays are copy-on-write, so callers that do mutate the result get
+     * their own copy and cannot disturb the shared one.
+     */
+    public static function shared_config(): array
+    {
+        if (self::$shared_config === null) {
+            self::$shared_config = self::make_config();
+        }
+        return self::$shared_config;
+    }
+
+    /**
+     * Build a fresh, fully materialised config array. Every call rebuilds the
+     * whole structure, so prefer shared_config unless you need a private copy.
+     */
     public static function make_config(): array
     {
         return [
@@ -36,18 +59,12 @@ class MeteoprogWeatherConfig
         'current' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'current',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'location',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 1,
             ],
           ],
           'name' => 'current',
@@ -57,49 +74,38 @@ class MeteoprogWeatherConfig
               'name' => 'load',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'city',
                         'orig' => 'city',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'en',
                         'kind' => 'query',
                         'name' => 'lang',
                         'orig' => 'lang',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'lat',
                         'orig' => 'lat',
-                        'reqd' => false,
                         'type' => '`$NUMBER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'lon',
                         'orig' => 'lon',
-                        'reqd' => false,
                         'type' => '`$NUMBER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'metric',
                         'kind' => 'query',
                         'name' => 'unit',
                         'orig' => 'unit',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -124,10 +130,8 @@ class MeteoprogWeatherConfig
                     'req' => '`reqdata`',
                     'res' => '`body.current`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'load',
             ],
           ],
           'relations' => [
@@ -137,74 +141,44 @@ class MeteoprogWeatherConfig
         'historical' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'clouds',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'date',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'humidity',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'precipitation',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'pressure',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'temperature',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'timestamp',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'weather',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'wind_direction',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'wind_speed',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 9,
             ],
           ],
           'name' => 'historical',
@@ -214,19 +188,15 @@ class MeteoprogWeatherConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'city',
                         'orig' => 'city',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'end_date',
                         'orig' => 'end_date',
@@ -234,32 +204,25 @@ class MeteoprogWeatherConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'en',
                         'kind' => 'query',
                         'name' => 'lang',
                         'orig' => 'lang',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'lat',
                         'orig' => 'lat',
-                        'reqd' => false,
                         'type' => '`$NUMBER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'lon',
                         'orig' => 'lon',
-                        'reqd' => false,
                         'type' => '`$NUMBER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'start_date',
                         'orig' => 'start_date',
@@ -267,12 +230,10 @@ class MeteoprogWeatherConfig
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'metric',
                         'kind' => 'query',
                         'name' => 'unit',
                         'orig' => 'unit',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -299,10 +260,8 @@ class MeteoprogWeatherConfig
                     'req' => '`reqdata`',
                     'res' => '`body.historical`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [
@@ -312,74 +271,44 @@ class MeteoprogWeatherConfig
         'weather_forecast' => [
           'fields' => [
             [
-              'active' => true,
               'name' => 'clouds',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 0,
             ],
             [
-              'active' => true,
               'name' => 'date',
-              'req' => false,
               'type' => '`$STRING`',
-              'index$' => 1,
             ],
             [
-              'active' => true,
               'name' => 'humidity',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 2,
             ],
             [
-              'active' => true,
               'name' => 'precipitation',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 3,
             ],
             [
-              'active' => true,
               'name' => 'pressure',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 4,
             ],
             [
-              'active' => true,
               'name' => 'temperature',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 5,
             ],
             [
-              'active' => true,
               'name' => 'timestamp',
-              'req' => false,
               'type' => '`$INTEGER`',
-              'index$' => 6,
             ],
             [
-              'active' => true,
               'name' => 'weather',
-              'req' => false,
               'type' => '`$OBJECT`',
-              'index$' => 7,
             ],
             [
-              'active' => true,
               'name' => 'wind_direction',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 8,
             ],
             [
-              'active' => true,
               'name' => 'wind_speed',
-              'req' => false,
               'type' => '`$NUMBER`',
-              'index$' => 9,
             ],
           ],
           'name' => 'weather_forecast',
@@ -389,58 +318,45 @@ class MeteoprogWeatherConfig
               'name' => 'list',
               'points' => [
                 [
-                  'active' => true,
                   'args' => [
                     'query' => [
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'city',
                         'orig' => 'city',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'example' => 7,
                         'kind' => 'query',
                         'name' => 'day',
                         'orig' => 'day',
-                        'reqd' => false,
                         'type' => '`$INTEGER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'en',
                         'kind' => 'query',
                         'name' => 'lang',
                         'orig' => 'lang',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'lat',
                         'orig' => 'lat',
-                        'reqd' => false,
                         'type' => '`$NUMBER`',
                       ],
                       [
-                        'active' => true,
                         'kind' => 'query',
                         'name' => 'lon',
                         'orig' => 'lon',
-                        'reqd' => false,
                         'type' => '`$NUMBER`',
                       ],
                       [
-                        'active' => true,
                         'example' => 'metric',
                         'kind' => 'query',
                         'name' => 'unit',
                         'orig' => 'unit',
-                        'reqd' => false,
                         'type' => '`$STRING`',
                       ],
                     ],
@@ -466,10 +382,8 @@ class MeteoprogWeatherConfig
                     'req' => '`reqdata`',
                     'res' => '`body`',
                   ],
-                  'index$' => 0,
                 ],
               ],
-              'key$' => 'list',
             ],
           ],
           'relations' => [

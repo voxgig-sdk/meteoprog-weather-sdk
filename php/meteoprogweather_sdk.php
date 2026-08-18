@@ -40,7 +40,7 @@ class MeteoprogWeatherSDK
         $utility = new MeteoprogWeatherUtility();
         $this->_utility = $utility;
 
-        $config = MeteoprogWeatherConfig::make_config();
+        $config = MeteoprogWeatherConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

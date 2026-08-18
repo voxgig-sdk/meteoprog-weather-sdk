@@ -23,6 +23,7 @@ build = {
   modules = {
     ["meteoprog-weather_sdk"] = "meteoprog-weather_sdk.lua",
     ["config"] = "config.lua",
+    ["config_shared"] = "config_shared.lua",
     ["features"] = "features.lua",
   }
 }

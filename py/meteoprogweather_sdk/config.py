@@ -1,7 +1,30 @@
 # MeteoprogWeather SDK configuration
 
 
+_shared_config = None
+
+
+def shared_config():
+    """Return the process-wide config, built once on first use.
+
+    The SDK reads the config on every request and never writes to it, so one
+    instance is shared by every client rather than rebuilt per client.
+
+    The returned dict is shared: treat it as read-only. Callers that need to
+    mutate should use make_config, which always returns a fresh copy.
+    """
+    global _shared_config
+    if _shared_config is None:
+        _shared_config = make_config()
+    return _shared_config
+
+
 def make_config():
+    """Build a fresh, fully materialised config dict.
+
+    Every call rebuilds the whole structure, so prefer shared_config unless
+    you need a private copy you intend to mutate.
+    """
     return {
         "main": {
             "name": "MeteoprogWeather",
@@ -31,18 +54,12 @@ def make_config():
       "current": {
         "fields": [
           {
-            "active": True,
             "name": "current",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "location",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 1,
           },
         ],
         "name": "current",
@@ -52,49 +69,38 @@ def make_config():
             "name": "load",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "city",
                       "orig": "city",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "en",
                       "kind": "query",
                       "name": "lang",
                       "orig": "lang",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "lat",
                       "orig": "lat",
-                      "reqd": False,
                       "type": "`$NUMBER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "lon",
                       "orig": "lon",
-                      "reqd": False,
                       "type": "`$NUMBER`",
                     },
                     {
-                      "active": True,
                       "example": "metric",
                       "kind": "query",
                       "name": "unit",
                       "orig": "unit",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -119,10 +125,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.current`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "load",
           },
         },
         "relations": {
@@ -132,74 +136,44 @@ def make_config():
       "historical": {
         "fields": [
           {
-            "active": True,
             "name": "clouds",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "date",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "humidity",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "precipitation",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "pressure",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 4,
           },
           {
-            "active": True,
             "name": "temperature",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 5,
           },
           {
-            "active": True,
             "name": "timestamp",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 6,
           },
           {
-            "active": True,
             "name": "weather",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 7,
           },
           {
-            "active": True,
             "name": "wind_direction",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 8,
           },
           {
-            "active": True,
             "name": "wind_speed",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 9,
           },
         ],
         "name": "historical",
@@ -209,19 +183,15 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "city",
                       "orig": "city",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "end_date",
                       "orig": "end_date",
@@ -229,32 +199,25 @@ def make_config():
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "en",
                       "kind": "query",
                       "name": "lang",
                       "orig": "lang",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "lat",
                       "orig": "lat",
-                      "reqd": False,
                       "type": "`$NUMBER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "lon",
                       "orig": "lon",
-                      "reqd": False,
                       "type": "`$NUMBER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "start_date",
                       "orig": "start_date",
@@ -262,12 +225,10 @@ def make_config():
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": "metric",
                       "kind": "query",
                       "name": "unit",
                       "orig": "unit",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -294,10 +255,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.historical`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
@@ -307,74 +266,44 @@ def make_config():
       "weather_forecast": {
         "fields": [
           {
-            "active": True,
             "name": "clouds",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 0,
           },
           {
-            "active": True,
             "name": "date",
-            "req": False,
             "type": "`$STRING`",
-            "index$": 1,
           },
           {
-            "active": True,
             "name": "humidity",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 2,
           },
           {
-            "active": True,
             "name": "precipitation",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 3,
           },
           {
-            "active": True,
             "name": "pressure",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 4,
           },
           {
-            "active": True,
             "name": "temperature",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 5,
           },
           {
-            "active": True,
             "name": "timestamp",
-            "req": False,
             "type": "`$INTEGER`",
-            "index$": 6,
           },
           {
-            "active": True,
             "name": "weather",
-            "req": False,
             "type": "`$OBJECT`",
-            "index$": 7,
           },
           {
-            "active": True,
             "name": "wind_direction",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 8,
           },
           {
-            "active": True,
             "name": "wind_speed",
-            "req": False,
             "type": "`$NUMBER`",
-            "index$": 9,
           },
         ],
         "name": "weather_forecast",
@@ -384,58 +313,45 @@ def make_config():
             "name": "list",
             "points": [
               {
-                "active": True,
                 "args": {
                   "query": [
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "city",
                       "orig": "city",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "example": 7,
                       "kind": "query",
                       "name": "day",
                       "orig": "day",
-                      "reqd": False,
                       "type": "`$INTEGER`",
                     },
                     {
-                      "active": True,
                       "example": "en",
                       "kind": "query",
                       "name": "lang",
                       "orig": "lang",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "lat",
                       "orig": "lat",
-                      "reqd": False,
                       "type": "`$NUMBER`",
                     },
                     {
-                      "active": True,
                       "kind": "query",
                       "name": "lon",
                       "orig": "lon",
-                      "reqd": False,
                       "type": "`$NUMBER`",
                     },
                     {
-                      "active": True,
                       "example": "metric",
                       "kind": "query",
                       "name": "unit",
                       "orig": "unit",
-                      "reqd": False,
                       "type": "`$STRING`",
                     },
                   ],
@@ -461,10 +377,8 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "index$": 0,
               },
             ],
-            "key$": "list",
           },
         },
         "relations": {
