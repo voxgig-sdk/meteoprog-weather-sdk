@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "MeteoprogWeather",
+            "slug": "meteoprog-weather",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -137,22 +140,27 @@ def make_config():
         "fields": [
           {
             "name": "clouds",
+            "short": "Cloud coverage percentage",
             "type": "`$INTEGER`",
           },
           {
             "name": "date",
+            "short": "Date of the historical data",
             "type": "`$STRING`",
           },
           {
             "name": "humidity",
+            "short": "Humidity percentage",
             "type": "`$INTEGER`",
           },
           {
             "name": "precipitation",
+            "short": "Precipitation amount",
             "type": "`$NUMBER`",
           },
           {
             "name": "pressure",
+            "short": "Atmospheric pressure",
             "type": "`$NUMBER`",
           },
           {
@@ -161,6 +169,7 @@ def make_config():
           },
           {
             "name": "timestamp",
+            "short": "Unix timestamp",
             "type": "`$INTEGER`",
           },
           {
@@ -169,10 +178,12 @@ def make_config():
           },
           {
             "name": "wind_direction",
+            "short": "Wind direction in degrees",
             "type": "`$NUMBER`",
           },
           {
             "name": "wind_speed",
+            "short": "Wind speed",
             "type": "`$NUMBER`",
           },
         ],
@@ -267,22 +278,27 @@ def make_config():
         "fields": [
           {
             "name": "clouds",
+            "short": "Cloud coverage percentage",
             "type": "`$INTEGER`",
           },
           {
             "name": "date",
+            "short": "Date of the forecast",
             "type": "`$STRING`",
           },
           {
             "name": "humidity",
+            "short": "Humidity percentage",
             "type": "`$INTEGER`",
           },
           {
             "name": "precipitation",
+            "short": "Precipitation amount",
             "type": "`$NUMBER`",
           },
           {
             "name": "pressure",
+            "short": "Atmospheric pressure",
             "type": "`$NUMBER`",
           },
           {
@@ -291,6 +307,7 @@ def make_config():
           },
           {
             "name": "timestamp",
+            "short": "Unix timestamp",
             "type": "`$INTEGER`",
           },
           {
@@ -299,10 +316,12 @@ def make_config():
           },
           {
             "name": "wind_direction",
+            "short": "Wind direction in degrees",
             "type": "`$NUMBER`",
           },
           {
             "name": "wind_speed",
+            "short": "Wind speed",
             "type": "`$NUMBER`",
           },
         ],

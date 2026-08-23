@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "MeteoprogWeather",
+			"slug": "meteoprog-weather",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -120,22 +123,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "clouds",
+						"short": "Cloud coverage percentage",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "date",
+						"short": "Date of the historical data",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "humidity",
+						"short": "Humidity percentage",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "precipitation",
+						"short": "Precipitation amount",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "pressure",
+						"short": "Atmospheric pressure",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
@@ -144,6 +152,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Unix timestamp",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -152,10 +161,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "wind_direction",
+						"short": "Wind direction in degrees",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "wind_speed",
+						"short": "Wind speed",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -250,22 +261,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "clouds",
+						"short": "Cloud coverage percentage",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "date",
+						"short": "Date of the forecast",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "humidity",
+						"short": "Humidity percentage",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "precipitation",
+						"short": "Precipitation amount",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "pressure",
+						"short": "Atmospheric pressure",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
@@ -274,6 +290,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "timestamp",
+						"short": "Unix timestamp",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
@@ -282,10 +299,12 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"name": "wind_direction",
+						"short": "Wind direction in degrees",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "wind_speed",
+						"short": "Wind speed",
 						"type": "`$NUMBER`",
 					},
 				},

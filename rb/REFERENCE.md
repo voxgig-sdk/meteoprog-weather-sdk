@@ -155,16 +155,16 @@ historical = client.Historical
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `clouds` | `Integer` | No |  |
-| `date` | `String` | No |  |
-| `humidity` | `Integer` | No |  |
-| `precipitation` | `Float` | No |  |
-| `pressure` | `Float` | No |  |
+| `clouds` | `Integer` | No | Cloud coverage percentage |
+| `date` | `String` | No | Date of the historical data |
+| `humidity` | `Integer` | No | Humidity percentage |
+| `precipitation` | `Float` | No | Precipitation amount |
+| `pressure` | `Float` | No | Atmospheric pressure |
 | `temperature` | `Hash` | No |  |
-| `timestamp` | `Integer` | No |  |
+| `timestamp` | `Integer` | No | Unix timestamp |
 | `weather` | `Hash` | No |  |
-| `wind_direction` | `Float` | No |  |
-| `wind_speed` | `Float` | No |  |
+| `wind_direction` | `Float` | No | Wind direction in degrees |
+| `wind_speed` | `Float` | No | Wind speed |
 
 ### Operations
 
@@ -216,16 +216,16 @@ weather_forecast = client.WeatherForecast
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `clouds` | `Integer` | No |  |
-| `date` | `String` | No |  |
-| `humidity` | `Integer` | No |  |
-| `precipitation` | `Float` | No |  |
-| `pressure` | `Float` | No |  |
+| `clouds` | `Integer` | No | Cloud coverage percentage |
+| `date` | `String` | No | Date of the forecast |
+| `humidity` | `Integer` | No | Humidity percentage |
+| `precipitation` | `Float` | No | Precipitation amount |
+| `pressure` | `Float` | No | Atmospheric pressure |
 | `temperature` | `Hash` | No |  |
-| `timestamp` | `Integer` | No |  |
+| `timestamp` | `Integer` | No | Unix timestamp |
 | `weather` | `Hash` | No |  |
-| `wind_direction` | `Float` | No |  |
-| `wind_speed` | `Float` | No |  |
+| `wind_direction` | `Float` | No | Wind direction in degrees |
+| `wind_speed` | `Float` | No | Wind speed |
 
 ### Operations
 

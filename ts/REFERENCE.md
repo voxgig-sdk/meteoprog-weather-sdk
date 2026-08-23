@@ -192,16 +192,16 @@ const historical = client.Historical()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `clouds` | `number` | No |  |
-| `date` | `string` | No |  |
-| `humidity` | `number` | No |  |
-| `precipitation` | `number` | No |  |
-| `pressure` | `number` | No |  |
+| `clouds` | `number` | No | Cloud coverage percentage |
+| `date` | `string` | No | Date of the historical data |
+| `humidity` | `number` | No | Humidity percentage |
+| `precipitation` | `number` | No | Precipitation amount |
+| `pressure` | `number` | No | Atmospheric pressure |
 | `temperature` | `Record<string, any>` | No |  |
-| `timestamp` | `number` | No |  |
+| `timestamp` | `number` | No | Unix timestamp |
 | `weather` | `Record<string, any>` | No |  |
-| `wind_direction` | `number` | No |  |
-| `wind_speed` | `number` | No |  |
+| `wind_direction` | `number` | No | Wind direction in degrees |
+| `wind_speed` | `number` | No | Wind speed |
 
 ### Operations
 
@@ -251,16 +251,16 @@ const weather_forecast = client.WeatherForecast()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `clouds` | `number` | No |  |
-| `date` | `string` | No |  |
-| `humidity` | `number` | No |  |
-| `precipitation` | `number` | No |  |
-| `pressure` | `number` | No |  |
+| `clouds` | `number` | No | Cloud coverage percentage |
+| `date` | `string` | No | Date of the forecast |
+| `humidity` | `number` | No | Humidity percentage |
+| `precipitation` | `number` | No | Precipitation amount |
+| `pressure` | `number` | No | Atmospheric pressure |
 | `temperature` | `Record<string, any>` | No |  |
-| `timestamp` | `number` | No |  |
+| `timestamp` | `number` | No | Unix timestamp |
 | `weather` | `Record<string, any>` | No |  |
-| `wind_direction` | `number` | No |  |
-| `wind_speed` | `number` | No |  |
+| `wind_direction` | `number` | No | Wind direction in degrees |
+| `wind_speed` | `number` | No | Wind speed |
 
 ### Operations
 

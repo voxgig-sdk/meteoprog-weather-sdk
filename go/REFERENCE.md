@@ -159,16 +159,16 @@ fmt.Println(historical.GetName()) // "historical"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `clouds` | `int` | No |  |
-| `date` | `string` | No |  |
-| `humidity` | `int` | No |  |
-| `precipitation` | `float64` | No |  |
-| `pressure` | `float64` | No |  |
+| `clouds` | `int` | No | Cloud coverage percentage |
+| `date` | `string` | No | Date of the historical data |
+| `humidity` | `int` | No | Humidity percentage |
+| `precipitation` | `float64` | No | Precipitation amount |
+| `pressure` | `float64` | No | Atmospheric pressure |
 | `temperature` | `map[string]any` | No |  |
-| `timestamp` | `int` | No |  |
+| `timestamp` | `int` | No | Unix timestamp |
 | `weather` | `map[string]any` | No |  |
-| `wind_direction` | `float64` | No |  |
-| `wind_speed` | `float64` | No |  |
+| `wind_direction` | `float64` | No | Wind direction in degrees |
+| `wind_speed` | `float64` | No | Wind speed |
 
 ### Operations
 
@@ -219,16 +219,16 @@ fmt.Println(weatherForecast.GetName()) // "weather_forecast"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `clouds` | `int` | No |  |
-| `date` | `string` | No |  |
-| `humidity` | `int` | No |  |
-| `precipitation` | `float64` | No |  |
-| `pressure` | `float64` | No |  |
+| `clouds` | `int` | No | Cloud coverage percentage |
+| `date` | `string` | No | Date of the forecast |
+| `humidity` | `int` | No | Humidity percentage |
+| `precipitation` | `float64` | No | Precipitation amount |
+| `pressure` | `float64` | No | Atmospheric pressure |
 | `temperature` | `map[string]any` | No |  |
-| `timestamp` | `int` | No |  |
+| `timestamp` | `int` | No | Unix timestamp |
 | `weather` | `map[string]any` | No |  |
-| `wind_direction` | `float64` | No |  |
-| `wind_speed` | `float64` | No |  |
+| `wind_direction` | `float64` | No | Wind direction in degrees |
+| `wind_speed` | `float64` | No | Wind speed |
 
 ### Operations
 

@@ -6,7 +6,7 @@ The Golang SDK for the MeteoprogWeather API — an entity-oriented client using 
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Current(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -278,16 +278,16 @@ API path: `/weather/current`
 
 | Field | Description |
 | --- | --- |
-| `"clouds"` |  |
-| `"date"` |  |
-| `"humidity"` |  |
-| `"precipitation"` |  |
-| `"pressure"` |  |
+| `"clouds"` | Cloud coverage percentage |
+| `"date"` | Date of the historical data |
+| `"humidity"` | Humidity percentage |
+| `"precipitation"` | Precipitation amount |
+| `"pressure"` | Atmospheric pressure |
 | `"temperature"` |  |
-| `"timestamp"` |  |
+| `"timestamp"` | Unix timestamp |
 | `"weather"` |  |
-| `"wind_direction"` |  |
-| `"wind_speed"` |  |
+| `"wind_direction"` | Wind direction in degrees |
+| `"wind_speed"` | Wind speed |
 
 Operations: List.
 
@@ -297,16 +297,16 @@ API path: `/weather/historical`
 
 | Field | Description |
 | --- | --- |
-| `"clouds"` |  |
-| `"date"` |  |
-| `"humidity"` |  |
-| `"precipitation"` |  |
-| `"pressure"` |  |
+| `"clouds"` | Cloud coverage percentage |
+| `"date"` | Date of the forecast |
+| `"humidity"` | Humidity percentage |
+| `"precipitation"` | Precipitation amount |
+| `"pressure"` | Atmospheric pressure |
 | `"temperature"` |  |
-| `"timestamp"` |  |
+| `"timestamp"` | Unix timestamp |
 | `"weather"` |  |
-| `"wind_direction"` |  |
-| `"wind_speed"` |  |
+| `"wind_direction"` | Wind direction in degrees |
+| `"wind_speed"` | Wind speed |
 
 Operations: List.
 
@@ -359,16 +359,16 @@ Create an instance: `historical := client.Historical(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `clouds` | `int` |  |
-| `date` | `string` |  |
-| `humidity` | `int` |  |
-| `precipitation` | `float64` |  |
-| `pressure` | `float64` |  |
+| `clouds` | `int` | Cloud coverage percentage |
+| `date` | `string` | Date of the historical data |
+| `humidity` | `int` | Humidity percentage |
+| `precipitation` | `float64` | Precipitation amount |
+| `pressure` | `float64` | Atmospheric pressure |
 | `temperature` | `map[string]any` |  |
-| `timestamp` | `int` |  |
+| `timestamp` | `int` | Unix timestamp |
 | `weather` | `map[string]any` |  |
-| `wind_direction` | `float64` |  |
-| `wind_speed` | `float64` |  |
+| `wind_direction` | `float64` | Wind direction in degrees |
+| `wind_speed` | `float64` | Wind speed |
 
 #### Example: List
 
@@ -395,16 +395,16 @@ Create an instance: `weatherForecast := client.WeatherForecast(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `clouds` | `int` |  |
-| `date` | `string` |  |
-| `humidity` | `int` |  |
-| `precipitation` | `float64` |  |
-| `pressure` | `float64` |  |
+| `clouds` | `int` | Cloud coverage percentage |
+| `date` | `string` | Date of the forecast |
+| `humidity` | `int` | Humidity percentage |
+| `precipitation` | `float64` | Precipitation amount |
+| `pressure` | `float64` | Atmospheric pressure |
 | `temperature` | `map[string]any` |  |
-| `timestamp` | `int` |  |
+| `timestamp` | `int` | Unix timestamp |
 | `weather` | `map[string]any` |  |
-| `wind_direction` | `float64` |  |
-| `wind_speed` | `float64` |  |
+| `wind_direction` | `float64` | Wind direction in degrees |
+| `wind_speed` | `float64` | Wind speed |
 
 #### Example: List
 

@@ -253,16 +253,16 @@ API path: `/weather/current`
 
 | Field | Description |
 | --- | --- |
-| `clouds` |  |
-| `date` |  |
-| `humidity` |  |
-| `precipitation` |  |
-| `pressure` |  |
+| `clouds` | Cloud coverage percentage |
+| `date` | Date of the historical data |
+| `humidity` | Humidity percentage |
+| `precipitation` | Precipitation amount |
+| `pressure` | Atmospheric pressure |
 | `temperature` |  |
-| `timestamp` |  |
+| `timestamp` | Unix timestamp |
 | `weather` |  |
-| `wind_direction` |  |
-| `wind_speed` |  |
+| `wind_direction` | Wind direction in degrees |
+| `wind_speed` | Wind speed |
 
 Operations: List.
 
@@ -272,16 +272,16 @@ API path: `/weather/historical`
 
 | Field | Description |
 | --- | --- |
-| `clouds` |  |
-| `date` |  |
-| `humidity` |  |
-| `precipitation` |  |
-| `pressure` |  |
+| `clouds` | Cloud coverage percentage |
+| `date` | Date of the forecast |
+| `humidity` | Humidity percentage |
+| `precipitation` | Precipitation amount |
+| `pressure` | Atmospheric pressure |
 | `temperature` |  |
-| `timestamp` |  |
+| `timestamp` | Unix timestamp |
 | `weather` |  |
-| `wind_direction` |  |
-| `wind_speed` |  |
+| `wind_direction` | Wind direction in degrees |
+| `wind_speed` | Wind speed |
 
 Operations: List.
 
@@ -331,16 +331,16 @@ Create an instance: `historical = client.Historical`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `clouds` | `Integer` |  |
-| `date` | `String` |  |
-| `humidity` | `Integer` |  |
-| `precipitation` | `Float` |  |
-| `pressure` | `Float` |  |
+| `clouds` | `Integer` | Cloud coverage percentage |
+| `date` | `String` | Date of the historical data |
+| `humidity` | `Integer` | Humidity percentage |
+| `precipitation` | `Float` | Precipitation amount |
+| `pressure` | `Float` | Atmospheric pressure |
 | `temperature` | `Hash` |  |
-| `timestamp` | `Integer` |  |
+| `timestamp` | `Integer` | Unix timestamp |
 | `weather` | `Hash` |  |
-| `wind_direction` | `Float` |  |
-| `wind_speed` | `Float` |  |
+| `wind_direction` | `Float` | Wind direction in degrees |
+| `wind_speed` | `Float` | Wind speed |
 
 #### Example: List
 
@@ -364,16 +364,16 @@ Create an instance: `weather_forecast = client.WeatherForecast`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `clouds` | `Integer` |  |
-| `date` | `String` |  |
-| `humidity` | `Integer` |  |
-| `precipitation` | `Float` |  |
-| `pressure` | `Float` |  |
+| `clouds` | `Integer` | Cloud coverage percentage |
+| `date` | `String` | Date of the forecast |
+| `humidity` | `Integer` | Humidity percentage |
+| `precipitation` | `Float` | Precipitation amount |
+| `pressure` | `Float` | Atmospheric pressure |
 | `temperature` | `Hash` |  |
-| `timestamp` | `Integer` |  |
+| `timestamp` | `Integer` | Unix timestamp |
 | `weather` | `Hash` |  |
-| `wind_direction` | `Float` |  |
-| `wind_speed` | `Float` |  |
+| `wind_direction` | `Float` | Wind direction in degrees |
+| `wind_speed` | `Float` | Wind speed |
 
 #### Example: List
 

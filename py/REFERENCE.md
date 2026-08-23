@@ -148,16 +148,16 @@ historical = client.Historical()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `clouds` | `int` | No |  |
-| `date` | `str` | No |  |
-| `humidity` | `int` | No |  |
-| `precipitation` | `float` | No |  |
-| `pressure` | `float` | No |  |
+| `clouds` | `int` | No | Cloud coverage percentage |
+| `date` | `str` | No | Date of the historical data |
+| `humidity` | `int` | No | Humidity percentage |
+| `precipitation` | `float` | No | Precipitation amount |
+| `pressure` | `float` | No | Atmospheric pressure |
 | `temperature` | `dict` | No |  |
-| `timestamp` | `int` | No |  |
+| `timestamp` | `int` | No | Unix timestamp |
 | `weather` | `dict` | No |  |
-| `wind_direction` | `float` | No |  |
-| `wind_speed` | `float` | No |  |
+| `wind_direction` | `float` | No | Wind direction in degrees |
+| `wind_speed` | `float` | No | Wind speed |
 
 ### Operations
 
@@ -210,16 +210,16 @@ weather_forecast = client.WeatherForecast()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `clouds` | `int` | No |  |
-| `date` | `str` | No |  |
-| `humidity` | `int` | No |  |
-| `precipitation` | `float` | No |  |
-| `pressure` | `float` | No |  |
+| `clouds` | `int` | No | Cloud coverage percentage |
+| `date` | `str` | No | Date of the forecast |
+| `humidity` | `int` | No | Humidity percentage |
+| `precipitation` | `float` | No | Precipitation amount |
+| `pressure` | `float` | No | Atmospheric pressure |
 | `temperature` | `dict` | No |  |
-| `timestamp` | `int` | No |  |
+| `timestamp` | `int` | No | Unix timestamp |
 | `weather` | `dict` | No |  |
-| `wind_direction` | `float` | No |  |
-| `wind_speed` | `float` | No |  |
+| `wind_direction` | `float` | No | Wind direction in degrees |
+| `wind_speed` | `float` | No | Wind speed |
 
 ### Operations
 

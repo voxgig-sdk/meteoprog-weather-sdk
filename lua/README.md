@@ -244,16 +244,16 @@ API path: `/weather/current`
 
 | Field | Description |
 | --- | --- |
-| `clouds` |  |
-| `date` |  |
-| `humidity` |  |
-| `precipitation` |  |
-| `pressure` |  |
+| `clouds` | Cloud coverage percentage |
+| `date` | Date of the historical data |
+| `humidity` | Humidity percentage |
+| `precipitation` | Precipitation amount |
+| `pressure` | Atmospheric pressure |
 | `temperature` |  |
-| `timestamp` |  |
+| `timestamp` | Unix timestamp |
 | `weather` |  |
-| `wind_direction` |  |
-| `wind_speed` |  |
+| `wind_direction` | Wind direction in degrees |
+| `wind_speed` | Wind speed |
 
 Operations: List.
 
@@ -263,16 +263,16 @@ API path: `/weather/historical`
 
 | Field | Description |
 | --- | --- |
-| `clouds` |  |
-| `date` |  |
-| `humidity` |  |
-| `precipitation` |  |
-| `pressure` |  |
+| `clouds` | Cloud coverage percentage |
+| `date` | Date of the forecast |
+| `humidity` | Humidity percentage |
+| `precipitation` | Precipitation amount |
+| `pressure` | Atmospheric pressure |
 | `temperature` |  |
-| `timestamp` |  |
+| `timestamp` | Unix timestamp |
 | `weather` |  |
-| `wind_direction` |  |
-| `wind_speed` |  |
+| `wind_direction` | Wind direction in degrees |
+| `wind_speed` | Wind speed |
 
 Operations: List.
 
@@ -321,16 +321,16 @@ Create an instance: `local historical = client:Historical(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `clouds` | `number` |  |
-| `date` | `string` |  |
-| `humidity` | `number` |  |
-| `precipitation` | `number` |  |
-| `pressure` | `number` |  |
+| `clouds` | `number` | Cloud coverage percentage |
+| `date` | `string` | Date of the historical data |
+| `humidity` | `number` | Humidity percentage |
+| `precipitation` | `number` | Precipitation amount |
+| `pressure` | `number` | Atmospheric pressure |
 | `temperature` | `table` |  |
-| `timestamp` | `number` |  |
+| `timestamp` | `number` | Unix timestamp |
 | `weather` | `table` |  |
-| `wind_direction` | `number` |  |
-| `wind_speed` | `number` |  |
+| `wind_direction` | `number` | Wind direction in degrees |
+| `wind_speed` | `number` | Wind speed |
 
 #### Example: List
 
@@ -353,16 +353,16 @@ Create an instance: `local weather_forecast = client:WeatherForecast(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `clouds` | `number` |  |
-| `date` | `string` |  |
-| `humidity` | `number` |  |
-| `precipitation` | `number` |  |
-| `pressure` | `number` |  |
+| `clouds` | `number` | Cloud coverage percentage |
+| `date` | `string` | Date of the forecast |
+| `humidity` | `number` | Humidity percentage |
+| `precipitation` | `number` | Precipitation amount |
+| `pressure` | `number` | Atmospheric pressure |
 | `temperature` | `table` |  |
-| `timestamp` | `number` |  |
+| `timestamp` | `number` | Unix timestamp |
 | `weather` | `table` |  |
-| `wind_direction` | `number` |  |
-| `wind_speed` | `number` |  |
+| `wind_direction` | `number` | Wind direction in degrees |
+| `wind_speed` | `number` | Wind speed |
 
 #### Example: List
 

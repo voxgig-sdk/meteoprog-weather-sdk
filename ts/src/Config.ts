@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'MeteoprogWeather',
+        slug: "meteoprog-weather",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -148,22 +159,27 @@ class Config {
       "fields": [
         {
           "name": "clouds",
+          "short": "Cloud coverage percentage",
           "type": "`$INTEGER`"
         },
         {
           "name": "date",
+          "short": "Date of the historical data",
           "type": "`$STRING`"
         },
         {
           "name": "humidity",
+          "short": "Humidity percentage",
           "type": "`$INTEGER`"
         },
         {
           "name": "precipitation",
+          "short": "Precipitation amount",
           "type": "`$NUMBER`"
         },
         {
           "name": "pressure",
+          "short": "Atmospheric pressure",
           "type": "`$NUMBER`"
         },
         {
@@ -172,6 +188,7 @@ class Config {
         },
         {
           "name": "timestamp",
+          "short": "Unix timestamp",
           "type": "`$INTEGER`"
         },
         {
@@ -180,10 +197,12 @@ class Config {
         },
         {
           "name": "wind_direction",
+          "short": "Wind direction in degrees",
           "type": "`$NUMBER`"
         },
         {
           "name": "wind_speed",
+          "short": "Wind speed",
           "type": "`$NUMBER`"
         }
       ],
@@ -278,22 +297,27 @@ class Config {
       "fields": [
         {
           "name": "clouds",
+          "short": "Cloud coverage percentage",
           "type": "`$INTEGER`"
         },
         {
           "name": "date",
+          "short": "Date of the forecast",
           "type": "`$STRING`"
         },
         {
           "name": "humidity",
+          "short": "Humidity percentage",
           "type": "`$INTEGER`"
         },
         {
           "name": "precipitation",
+          "short": "Precipitation amount",
           "type": "`$NUMBER`"
         },
         {
           "name": "pressure",
+          "short": "Atmospheric pressure",
           "type": "`$NUMBER`"
         },
         {
@@ -302,6 +326,7 @@ class Config {
         },
         {
           "name": "timestamp",
+          "short": "Unix timestamp",
           "type": "`$INTEGER`"
         },
         {
@@ -310,10 +335,12 @@ class Config {
         },
         {
           "name": "wind_direction",
+          "short": "Wind direction in degrees",
           "type": "`$NUMBER`"
         },
         {
           "name": "wind_speed",
+          "short": "Wind speed",
           "type": "`$NUMBER`"
         }
       ],

@@ -8,26 +8,31 @@ main: kit: entity: historical: {
     {
       name: "clouds"
       req: false
+      short: "Cloud coverage percentage"
       type: "`$INTEGER`"
     }
     {
       name: "date"
       req: false
+      short: "Date of the historical data"
       type: "`$STRING`"
     }
     {
       name: "humidity"
       req: false
+      short: "Humidity percentage"
       type: "`$INTEGER`"
     }
     {
       name: "precipitation"
       req: false
+      short: "Precipitation amount"
       type: "`$NUMBER`"
     }
     {
       name: "pressure"
       req: false
+      short: "Atmospheric pressure"
       type: "`$NUMBER`"
     }
     {
@@ -38,6 +43,7 @@ main: kit: entity: historical: {
     {
       name: "timestamp"
       req: false
+      short: "Unix timestamp"
       type: "`$INTEGER`"
     }
     {
@@ -48,11 +54,13 @@ main: kit: entity: historical: {
     {
       name: "wind_direction"
       req: false
+      short: "Wind direction in degrees"
       type: "`$NUMBER`"
     }
     {
       name: "wind_speed"
       req: false
+      short: "Wind speed"
       type: "`$NUMBER`"
     }
   ]

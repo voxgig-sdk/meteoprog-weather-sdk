@@ -33,6 +33,9 @@ class MeteoprogWeatherConfig
         return [
             "main" => [
                 "name" => "MeteoprogWeather",
+                "slug" => "meteoprog-weather",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -142,22 +145,27 @@ class MeteoprogWeatherConfig
           'fields' => [
             [
               'name' => 'clouds',
+              'short' => 'Cloud coverage percentage',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'date',
+              'short' => 'Date of the historical data',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'humidity',
+              'short' => 'Humidity percentage',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'precipitation',
+              'short' => 'Precipitation amount',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'pressure',
+              'short' => 'Atmospheric pressure',
               'type' => '`$NUMBER`',
             ],
             [
@@ -166,6 +174,7 @@ class MeteoprogWeatherConfig
             ],
             [
               'name' => 'timestamp',
+              'short' => 'Unix timestamp',
               'type' => '`$INTEGER`',
             ],
             [
@@ -174,10 +183,12 @@ class MeteoprogWeatherConfig
             ],
             [
               'name' => 'wind_direction',
+              'short' => 'Wind direction in degrees',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'wind_speed',
+              'short' => 'Wind speed',
               'type' => '`$NUMBER`',
             ],
           ],
@@ -272,22 +283,27 @@ class MeteoprogWeatherConfig
           'fields' => [
             [
               'name' => 'clouds',
+              'short' => 'Cloud coverage percentage',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'date',
+              'short' => 'Date of the forecast',
               'type' => '`$STRING`',
             ],
             [
               'name' => 'humidity',
+              'short' => 'Humidity percentage',
               'type' => '`$INTEGER`',
             ],
             [
               'name' => 'precipitation',
+              'short' => 'Precipitation amount',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'pressure',
+              'short' => 'Atmospheric pressure',
               'type' => '`$NUMBER`',
             ],
             [
@@ -296,6 +312,7 @@ class MeteoprogWeatherConfig
             ],
             [
               'name' => 'timestamp',
+              'short' => 'Unix timestamp',
               'type' => '`$INTEGER`',
             ],
             [
@@ -304,10 +321,12 @@ class MeteoprogWeatherConfig
             ],
             [
               'name' => 'wind_direction',
+              'short' => 'Wind direction in degrees',
               'type' => '`$NUMBER`',
             ],
             [
               'name' => 'wind_speed',
+              'short' => 'Wind speed',
               'type' => '`$NUMBER`',
             ],
           ],

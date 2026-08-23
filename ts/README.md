@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -307,16 +307,16 @@ API path: `/weather/current`
 
 | Field | Description |
 | --- | --- |
-| `clouds` |  |
-| `date` |  |
-| `humidity` |  |
-| `precipitation` |  |
-| `pressure` |  |
+| `clouds` | Cloud coverage percentage |
+| `date` | Date of the historical data |
+| `humidity` | Humidity percentage |
+| `precipitation` | Precipitation amount |
+| `pressure` | Atmospheric pressure |
 | `temperature` |  |
-| `timestamp` |  |
+| `timestamp` | Unix timestamp |
 | `weather` |  |
-| `wind_direction` |  |
-| `wind_speed` |  |
+| `wind_direction` | Wind direction in degrees |
+| `wind_speed` | Wind speed |
 
 Operations: list.
 
@@ -326,16 +326,16 @@ API path: `/weather/historical`
 
 | Field | Description |
 | --- | --- |
-| `clouds` |  |
-| `date` |  |
-| `humidity` |  |
-| `precipitation` |  |
-| `pressure` |  |
+| `clouds` | Cloud coverage percentage |
+| `date` | Date of the forecast |
+| `humidity` | Humidity percentage |
+| `precipitation` | Precipitation amount |
+| `pressure` | Atmospheric pressure |
 | `temperature` |  |
-| `timestamp` |  |
+| `timestamp` | Unix timestamp |
 | `weather` |  |
-| `wind_direction` |  |
-| `wind_speed` |  |
+| `wind_direction` | Wind direction in degrees |
+| `wind_speed` | Wind speed |
 
 Operations: list.
 
@@ -384,16 +384,16 @@ Create an instance: `const historical = client.Historical()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `clouds` | `number` |  |
-| `date` | `string` |  |
-| `humidity` | `number` |  |
-| `precipitation` | `number` |  |
-| `pressure` | `number` |  |
+| `clouds` | `number` | Cloud coverage percentage |
+| `date` | `string` | Date of the historical data |
+| `humidity` | `number` | Humidity percentage |
+| `precipitation` | `number` | Precipitation amount |
+| `pressure` | `number` | Atmospheric pressure |
 | `temperature` | `Record<string, any>` |  |
-| `timestamp` | `number` |  |
+| `timestamp` | `number` | Unix timestamp |
 | `weather` | `Record<string, any>` |  |
-| `wind_direction` | `number` |  |
-| `wind_speed` | `number` |  |
+| `wind_direction` | `number` | Wind direction in degrees |
+| `wind_speed` | `number` | Wind speed |
 
 #### Example: List
 
@@ -416,16 +416,16 @@ Create an instance: `const weather_forecast = client.WeatherForecast()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `clouds` | `number` |  |
-| `date` | `string` |  |
-| `humidity` | `number` |  |
-| `precipitation` | `number` |  |
-| `pressure` | `number` |  |
+| `clouds` | `number` | Cloud coverage percentage |
+| `date` | `string` | Date of the forecast |
+| `humidity` | `number` | Humidity percentage |
+| `precipitation` | `number` | Precipitation amount |
+| `pressure` | `number` | Atmospheric pressure |
 | `temperature` | `Record<string, any>` |  |
-| `timestamp` | `number` |  |
+| `timestamp` | `number` | Unix timestamp |
 | `weather` | `Record<string, any>` |  |
-| `wind_direction` | `number` |  |
-| `wind_speed` | `number` |  |
+| `wind_direction` | `number` | Wind direction in degrees |
+| `wind_speed` | `number` | Wind speed |
 
 #### Example: List
 
