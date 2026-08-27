@@ -28,6 +28,7 @@ module MeteoprogWeatherConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
