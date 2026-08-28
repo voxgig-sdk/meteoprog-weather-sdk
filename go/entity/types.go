@@ -20,8 +20,11 @@ type Current struct {
 
 // CurrentLoadMatch is the typed request payload for Current.LoadTyped.
 type CurrentLoadMatch struct {
-	Current *map[string]any `json:"current,omitempty"`
-	Location *map[string]any `json:"location,omitempty"`
+	City *string `json:"city,omitempty"`
+	Lang *string `json:"lang,omitempty"`
+	Lat *float64 `json:"lat,omitempty"`
+	Lon *float64 `json:"lon,omitempty"`
+	Unit *string `json:"unit,omitempty"`
 }
 
 // Historical is the typed data model for the historical entity.
@@ -40,16 +43,13 @@ type Historical struct {
 
 // HistoricalListMatch is the typed request payload for Historical.ListTyped.
 type HistoricalListMatch struct {
-	Clouds *int `json:"clouds,omitempty"`
-	Date *string `json:"date,omitempty"`
-	Humidity *int `json:"humidity,omitempty"`
-	Precipitation *float64 `json:"precipitation,omitempty"`
-	Pressure *float64 `json:"pressure,omitempty"`
-	Temperature *map[string]any `json:"temperature,omitempty"`
-	Timestamp *int `json:"timestamp,omitempty"`
-	Weather *map[string]any `json:"weather,omitempty"`
-	WindDirection *float64 `json:"wind_direction,omitempty"`
-	WindSpeed *float64 `json:"wind_speed,omitempty"`
+	City *string `json:"city,omitempty"`
+	EndDate string `json:"end_date"`
+	Lang *string `json:"lang,omitempty"`
+	Lat *float64 `json:"lat,omitempty"`
+	Lon *float64 `json:"lon,omitempty"`
+	StartDate string `json:"start_date"`
+	Unit *string `json:"unit,omitempty"`
 }
 
 // WeatherForecast is the typed data model for the weather_forecast entity.
@@ -68,16 +68,12 @@ type WeatherForecast struct {
 
 // WeatherForecastListMatch is the typed request payload for WeatherForecast.ListTyped.
 type WeatherForecastListMatch struct {
-	Clouds *int `json:"clouds,omitempty"`
-	Date *string `json:"date,omitempty"`
-	Humidity *int `json:"humidity,omitempty"`
-	Precipitation *float64 `json:"precipitation,omitempty"`
-	Pressure *float64 `json:"pressure,omitempty"`
-	Temperature *map[string]any `json:"temperature,omitempty"`
-	Timestamp *int `json:"timestamp,omitempty"`
-	Weather *map[string]any `json:"weather,omitempty"`
-	WindDirection *float64 `json:"wind_direction,omitempty"`
-	WindSpeed *float64 `json:"wind_speed,omitempty"`
+	City *string `json:"city,omitempty"`
+	Day *int `json:"day,omitempty"`
+	Lang *string `json:"lang,omitempty"`
+	Lat *float64 `json:"lat,omitempty"`
+	Lon *float64 `json:"lon,omitempty"`
+	Unit *string `json:"unit,omitempty"`
 }
 
 // asMap turns a typed request/data struct into the map[string]any the

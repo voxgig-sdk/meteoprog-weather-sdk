@@ -22,8 +22,11 @@ class Current
 /** Request payload for Current#load. */
 class CurrentLoadMatch
 {
-    public ?array $current = null;
-    public ?array $location = null;
+    public ?string $city = null;
+    public ?string $lang = null;
+    public ?float $lat = null;
+    public ?float $lon = null;
+    public ?string $unit = null;
 }
 
 /** Historical entity data model. */
@@ -44,16 +47,13 @@ class Historical
 /** Request payload for Historical#list. */
 class HistoricalListMatch
 {
-    public ?int $clouds = null;
-    public ?string $date = null;
-    public ?int $humidity = null;
-    public ?float $precipitation = null;
-    public ?float $pressure = null;
-    public ?array $temperature = null;
-    public ?int $timestamp = null;
-    public ?array $weather = null;
-    public ?float $wind_direction = null;
-    public ?float $wind_speed = null;
+    public ?string $city = null;
+    public string $end_date;
+    public ?string $lang = null;
+    public ?float $lat = null;
+    public ?float $lon = null;
+    public string $start_date;
+    public ?string $unit = null;
 }
 
 /** WeatherForecast entity data model. */
@@ -74,15 +74,11 @@ class WeatherForecast
 /** Request payload for WeatherForecast#list. */
 class WeatherForecastListMatch
 {
-    public ?int $clouds = null;
-    public ?string $date = null;
-    public ?int $humidity = null;
-    public ?float $precipitation = null;
-    public ?float $pressure = null;
-    public ?array $temperature = null;
-    public ?int $timestamp = null;
-    public ?array $weather = null;
-    public ?float $wind_direction = null;
-    public ?float $wind_speed = null;
+    public ?string $city = null;
+    public ?int $day = null;
+    public ?string $lang = null;
+    public ?float $lat = null;
+    public ?float $lon = null;
+    public ?string $unit = null;
 }
 

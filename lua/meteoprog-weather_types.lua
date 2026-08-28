@@ -11,8 +11,11 @@
 ---@field location? table
 
 ---@class CurrentLoadMatch
----@field current? table
----@field location? table
+---@field city? string
+---@field lang? string
+---@field lat? number
+---@field lon? number
+---@field unit? string
 
 ---@class Historical
 ---@field clouds? number
@@ -27,16 +30,13 @@
 ---@field wind_speed? number
 
 ---@class HistoricalListMatch
----@field clouds? number
----@field date? string
----@field humidity? number
----@field precipitation? number
----@field pressure? number
----@field temperature? table
----@field timestamp? number
----@field weather? table
----@field wind_direction? number
----@field wind_speed? number
+---@field city? string
+---@field end_date string
+---@field lang? string
+---@field lat? number
+---@field lon? number
+---@field start_date string
+---@field unit? string
 
 ---@class WeatherForecast
 ---@field clouds? number
@@ -51,16 +51,12 @@
 ---@field wind_speed? number
 
 ---@class WeatherForecastListMatch
----@field clouds? number
----@field date? string
----@field humidity? number
----@field precipitation? number
----@field pressure? number
----@field temperature? table
----@field timestamp? number
----@field weather? table
----@field wind_direction? number
----@field wind_speed? number
+---@field city? string
+---@field day? number
+---@field lang? string
+---@field lat? number
+---@field lon? number
+---@field unit? string
 
 local M = {}
 

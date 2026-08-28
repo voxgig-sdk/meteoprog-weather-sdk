@@ -23,14 +23,26 @@ Current = Struct.new(
 
 # Request payload for Current#load.
 #
-# @!attribute [rw] current
-#   @return [Hash, nil]
+# @!attribute [rw] city
+#   @return [String, nil]
 #
-# @!attribute [rw] location
-#   @return [Hash, nil]
+# @!attribute [rw] lang
+#   @return [String, nil]
+#
+# @!attribute [rw] lat
+#   @return [Float, nil]
+#
+# @!attribute [rw] lon
+#   @return [Float, nil]
+#
+# @!attribute [rw] unit
+#   @return [String, nil]
 CurrentLoadMatch = Struct.new(
-  :current,
-  :location,
+  :city,
+  :lang,
+  :lat,
+  :lon,
+  :unit,
   keyword_init: true
 )
 
@@ -81,46 +93,34 @@ Historical = Struct.new(
 
 # Request payload for Historical#list.
 #
-# @!attribute [rw] clouds
-#   @return [Integer, nil]
-#
-# @!attribute [rw] date
+# @!attribute [rw] city
 #   @return [String, nil]
 #
-# @!attribute [rw] humidity
-#   @return [Integer, nil]
+# @!attribute [rw] end_date
+#   @return [String]
 #
-# @!attribute [rw] precipitation
+# @!attribute [rw] lang
+#   @return [String, nil]
+#
+# @!attribute [rw] lat
 #   @return [Float, nil]
 #
-# @!attribute [rw] pressure
+# @!attribute [rw] lon
 #   @return [Float, nil]
 #
-# @!attribute [rw] temperature
-#   @return [Hash, nil]
+# @!attribute [rw] start_date
+#   @return [String]
 #
-# @!attribute [rw] timestamp
-#   @return [Integer, nil]
-#
-# @!attribute [rw] weather
-#   @return [Hash, nil]
-#
-# @!attribute [rw] wind_direction
-#   @return [Float, nil]
-#
-# @!attribute [rw] wind_speed
-#   @return [Float, nil]
+# @!attribute [rw] unit
+#   @return [String, nil]
 HistoricalListMatch = Struct.new(
-  :clouds,
-  :date,
-  :humidity,
-  :precipitation,
-  :pressure,
-  :temperature,
-  :timestamp,
-  :weather,
-  :wind_direction,
-  :wind_speed,
+  :city,
+  :end_date,
+  :lang,
+  :lat,
+  :lon,
+  :start_date,
+  :unit,
   keyword_init: true
 )
 
@@ -171,46 +171,30 @@ WeatherForecast = Struct.new(
 
 # Request payload for WeatherForecast#list.
 #
-# @!attribute [rw] clouds
-#   @return [Integer, nil]
-#
-# @!attribute [rw] date
+# @!attribute [rw] city
 #   @return [String, nil]
 #
-# @!attribute [rw] humidity
+# @!attribute [rw] day
 #   @return [Integer, nil]
 #
-# @!attribute [rw] precipitation
+# @!attribute [rw] lang
+#   @return [String, nil]
+#
+# @!attribute [rw] lat
 #   @return [Float, nil]
 #
-# @!attribute [rw] pressure
+# @!attribute [rw] lon
 #   @return [Float, nil]
 #
-# @!attribute [rw] temperature
-#   @return [Hash, nil]
-#
-# @!attribute [rw] timestamp
-#   @return [Integer, nil]
-#
-# @!attribute [rw] weather
-#   @return [Hash, nil]
-#
-# @!attribute [rw] wind_direction
-#   @return [Float, nil]
-#
-# @!attribute [rw] wind_speed
-#   @return [Float, nil]
+# @!attribute [rw] unit
+#   @return [String, nil]
 WeatherForecastListMatch = Struct.new(
-  :clouds,
-  :date,
-  :humidity,
-  :precipitation,
-  :pressure,
-  :temperature,
-  :timestamp,
-  :weather,
-  :wind_direction,
-  :wind_speed,
+  :city,
+  :day,
+  :lang,
+  :lat,
+  :lon,
+  :unit,
   keyword_init: true
 )
 

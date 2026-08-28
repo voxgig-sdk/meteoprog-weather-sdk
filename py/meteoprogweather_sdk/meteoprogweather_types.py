@@ -22,8 +22,11 @@ class Current(TypedDict, total=False):
 
 
 class CurrentLoadMatch(TypedDict, total=False):
-    current: dict
-    location: dict
+    city: str
+    lang: str
+    lat: float
+    lon: float
+    unit: str
 
 
 class Historical(TypedDict, total=False):
@@ -39,17 +42,17 @@ class Historical(TypedDict, total=False):
     wind_speed: float
 
 
-class HistoricalListMatch(TypedDict, total=False):
-    clouds: int
-    date: str
-    humidity: int
-    precipitation: float
-    pressure: float
-    temperature: dict
-    timestamp: int
-    weather: dict
-    wind_direction: float
-    wind_speed: float
+class HistoricalListMatchRequired(TypedDict):
+    end_date: str
+    start_date: str
+
+
+class HistoricalListMatch(HistoricalListMatchRequired, total=False):
+    city: str
+    lang: str
+    lat: float
+    lon: float
+    unit: str
 
 
 class WeatherForecast(TypedDict, total=False):
@@ -66,13 +69,9 @@ class WeatherForecast(TypedDict, total=False):
 
 
 class WeatherForecastListMatch(TypedDict, total=False):
-    clouds: int
-    date: str
-    humidity: int
-    precipitation: float
-    pressure: float
-    temperature: dict
-    timestamp: int
-    weather: dict
-    wind_direction: float
-    wind_speed: float
+    city: str
+    day: int
+    lang: str
+    lat: float
+    lon: float
+    unit: str

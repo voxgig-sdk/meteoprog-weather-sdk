@@ -11,8 +11,11 @@ export interface Current {
 }
 
 export interface CurrentLoadMatch {
-  current?: Record<string, any>
-  location?: Record<string, any>
+  city?: string
+  lang?: string
+  lat?: number
+  lon?: number
+  unit?: string
 }
 
 export interface Historical {
@@ -29,16 +32,13 @@ export interface Historical {
 }
 
 export interface HistoricalListMatch {
-  clouds?: number
-  date?: string
-  humidity?: number
-  precipitation?: number
-  pressure?: number
-  temperature?: Record<string, any>
-  timestamp?: number
-  weather?: Record<string, any>
-  wind_direction?: number
-  wind_speed?: number
+  city?: string
+  end_date: string
+  lang?: string
+  lat?: number
+  lon?: number
+  start_date: string
+  unit?: string
 }
 
 export interface WeatherForecast {
@@ -55,15 +55,11 @@ export interface WeatherForecast {
 }
 
 export interface WeatherForecastListMatch {
-  clouds?: number
-  date?: string
-  humidity?: number
-  precipitation?: number
-  pressure?: number
-  temperature?: Record<string, any>
-  timestamp?: number
-  weather?: Record<string, any>
-  wind_direction?: number
-  wind_speed?: number
+  city?: string
+  day?: number
+  lang?: string
+  lat?: number
+  lon?: number
+  unit?: string
 }
 
