@@ -68,15 +68,17 @@ function weather_forecast_direct_setup($mockres)
     $env = Runner::env_override([
         "METEOPROG_WEATHER_TEST_WEATHER_FORECAST_ENTID" => [],
         "METEOPROG_WEATHER_TEST_LIVE" => "FALSE",
-        "METEOPROG_WEATHER_APIKEY" => "NONE",
+        "METEOPROG_WEATHER_APIKEY" => "",
     ]);
 
     $live = $env["METEOPROG_WEATHER_TEST_LIVE"] === "TRUE";
 
     if ($live) {
-        $merged_opts = [
+        // Merged so the generated fields win: sdk-test-control.json's
+        // test.client.options adds to the live client, it does not redirect it.
+        $merged_opts = array_merge(Runner::live_client_options(), [
             "apikey" => $env["METEOPROG_WEATHER_APIKEY"],
-        ];
+        ]);
         $client = new MeteoprogWeatherSDK($merged_opts);
         return [
             "client" => $client,

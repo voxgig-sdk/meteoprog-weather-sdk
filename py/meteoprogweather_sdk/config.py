@@ -1,6 +1,14 @@
 # MeteoprogWeather SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -112,9 +120,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/weather/current",
-                "parts": [
-                  "weather",
-                  "current",
+                "segments": [
+                  {
+                    "lit": "weather",
+                  },
+                  {
+                    "lit": "current",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -129,6 +141,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.current`",
                 },
+                "parts": [
+                  "weather",
+                  "current",
+                ],
               },
             ],
           },
@@ -145,6 +161,7 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "date",
             "name": "date",
             "short": "Date of the historical data",
             "type": "`$STRING`",
@@ -248,9 +265,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/weather/historical",
-                "parts": [
-                  "weather",
-                  "historical",
+                "segments": [
+                  {
+                    "lit": "weather",
+                  },
+                  {
+                    "lit": "historical",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -267,6 +288,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.historical`",
                 },
+                "parts": [
+                  "weather",
+                  "historical",
+                ],
               },
             ],
           },
@@ -283,6 +308,7 @@ def make_config():
             "type": "`$INTEGER`",
           },
           {
+            "format": "date",
             "name": "date",
             "short": "Date of the forecast",
             "type": "`$STRING`",
@@ -379,9 +405,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/weather/forecast",
-                "parts": [
-                  "weather",
-                  "forecast",
+                "segments": [
+                  {
+                    "lit": "weather",
+                  },
+                  {
+                    "lit": "forecast",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -397,6 +427,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "weather",
+                  "forecast",
+                ],
               },
             ],
           },

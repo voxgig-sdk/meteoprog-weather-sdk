@@ -66,9 +66,13 @@ main: kit: entity: current: {
           }
           method: "GET"
           orig: "/weather/current"
-          parts: [
-            "weather"
-            "current"
+          segments: [
+            {
+              lit: "weather"
+            }
+            {
+              lit: "current"
+            }
           ]
           select: {
             exist: [

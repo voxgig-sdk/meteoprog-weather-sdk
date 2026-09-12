@@ -117,9 +117,13 @@ class MeteoprogWeatherConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/weather/current',
-                  'parts' => [
-                    'weather',
-                    'current',
+                  'segments' => [
+                    [
+                      'lit' => 'weather',
+                    ],
+                    [
+                      'lit' => 'current',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -133,6 +137,10 @@ class MeteoprogWeatherConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.current`',
+                  ],
+                  'parts' => [
+                    'weather',
+                    'current',
                   ],
                 ],
               ],
@@ -150,6 +158,7 @@ class MeteoprogWeatherConfig
               'type' => '`$INTEGER`',
             ],
             [
+              'format' => 'date',
               'name' => 'date',
               'short' => 'Date of the historical data',
               'type' => '`$STRING`',
@@ -253,9 +262,13 @@ class MeteoprogWeatherConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/weather/historical',
-                  'parts' => [
-                    'weather',
-                    'historical',
+                  'segments' => [
+                    [
+                      'lit' => 'weather',
+                    ],
+                    [
+                      'lit' => 'historical',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -271,6 +284,10 @@ class MeteoprogWeatherConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body.historical`',
+                  ],
+                  'parts' => [
+                    'weather',
+                    'historical',
                   ],
                 ],
               ],
@@ -288,6 +305,7 @@ class MeteoprogWeatherConfig
               'type' => '`$INTEGER`',
             ],
             [
+              'format' => 'date',
               'name' => 'date',
               'short' => 'Date of the forecast',
               'type' => '`$STRING`',
@@ -384,9 +402,13 @@ class MeteoprogWeatherConfig
                   'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/weather/forecast',
-                  'parts' => [
-                    'weather',
-                    'forecast',
+                  'segments' => [
+                    [
+                      'lit' => 'weather',
+                    ],
+                    [
+                      'lit' => 'forecast',
+                    ],
                   ],
                   'select' => [
                     'exist' => [
@@ -401,6 +423,10 @@ class MeteoprogWeatherConfig
                   'transform' => [
                     'req' => '`reqdata`',
                     'res' => '`body`',
+                  ],
+                  'parts' => [
+                    'weather',
+                    'forecast',
                   ],
                 ],
               ],

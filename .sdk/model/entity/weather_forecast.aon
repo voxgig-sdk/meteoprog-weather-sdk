@@ -12,6 +12,7 @@ main: kit: entity: weather_forecast: {
       type: "`$INTEGER`"
     }
     {
+      format: "date"
       name: "date"
       req: false
       short: "Date of the forecast"
@@ -122,9 +123,13 @@ main: kit: entity: weather_forecast: {
           }
           method: "GET"
           orig: "/weather/forecast"
-          parts: [
-            "weather"
-            "forecast"
+          segments: [
+            {
+              lit: "weather"
+            }
+            {
+              lit: "forecast"
+            }
           ]
           select: {
             exist: [

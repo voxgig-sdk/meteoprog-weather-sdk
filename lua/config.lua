@@ -91,9 +91,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/weather/current",
-                ["parts"] = {
-                  "weather",
-                  "current",
+                ["segments"] = {
+                  {
+                    ["lit"] = "weather",
+                  },
+                  {
+                    ["lit"] = "current",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -107,6 +111,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.current`",
+                },
+                ["parts"] = {
+                  "weather",
+                  "current",
                 },
               },
             },
@@ -124,6 +132,7 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
           {
+            ["format"] = "date",
             ["name"] = "date",
             ["short"] = "Date of the historical data",
             ["type"] = "`$STRING`",
@@ -227,9 +236,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/weather/historical",
-                ["parts"] = {
-                  "weather",
-                  "historical",
+                ["segments"] = {
+                  {
+                    ["lit"] = "weather",
+                  },
+                  {
+                    ["lit"] = "historical",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -245,6 +258,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body.historical`",
+                },
+                ["parts"] = {
+                  "weather",
+                  "historical",
                 },
               },
             },
@@ -262,6 +279,7 @@ local function make_config()
             ["type"] = "`$INTEGER`",
           },
           {
+            ["format"] = "date",
             ["name"] = "date",
             ["short"] = "Date of the forecast",
             ["type"] = "`$STRING`",
@@ -358,9 +376,13 @@ local function make_config()
                 ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/weather/forecast",
-                ["parts"] = {
-                  "weather",
-                  "forecast",
+                ["segments"] = {
+                  {
+                    ["lit"] = "weather",
+                  },
+                  {
+                    ["lit"] = "forecast",
+                  },
                 },
                 ["select"] = {
                   ["exist"] = {
@@ -375,6 +397,10 @@ local function make_config()
                 ["transform"] = {
                   ["req"] = "`reqdata`",
                   ["res"] = "`body`",
+                },
+                ["parts"] = {
+                  "weather",
+                  "forecast",
                 },
               },
             },

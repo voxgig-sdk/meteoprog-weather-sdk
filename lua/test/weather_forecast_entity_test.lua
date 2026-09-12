@@ -133,7 +133,7 @@ function weather_forecast_basic_setup(extra)
     ["METEOPROG_WEATHER_TEST_WEATHER_FORECAST_ENTID"] = idmap,
     ["METEOPROG_WEATHER_TEST_LIVE"] = "FALSE",
     ["METEOPROG_WEATHER_TEST_EXPLAIN"] = "FALSE",
-    ["METEOPROG_WEATHER_APIKEY"] = "NONE",
+    ["METEOPROG_WEATHER_APIKEY"] = "",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -144,6 +144,9 @@ function weather_forecast_basic_setup(extra)
 
   if env["METEOPROG_WEATHER_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
+      -- FIRST, so the generated fields below win: sdk-test-control.json's
+      -- test.client.options adds to the live client, it does not redirect it.
+      runner.live_client_options(),
       {
         apikey = env["METEOPROG_WEATHER_APIKEY"],
       },

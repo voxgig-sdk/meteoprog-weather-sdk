@@ -98,7 +98,7 @@ func TestHistoricalEntity(t *testing.T) {
 		client := setup.client
 
 		// Bootstrap entity data from existing test data (no create step in flow).
-		historicalRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath("existing.historical", setup.data)))
+		historicalRef01DataRaw := vs.Items(core.ToMapAny(vs.GetPath(setup.data, "existing.historical")))
 		var historicalRef01Data map[string]any
 		if len(historicalRef01DataRaw) > 0 {
 			historicalRef01Data = core.ToMapAny(historicalRef01DataRaw[0][1])
@@ -147,7 +147,7 @@ func historicalBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"historical01", "historical02", "historical03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -167,7 +167,7 @@ func historicalBasicSetup(extra map[string]any) *entityTestSetup {
 		"METEOPROG_WEATHER_TEST_HISTORICAL_ENTID": idmap,
 		"METEOPROG_WEATHER_TEST_LIVE":      "FALSE",
 		"METEOPROG_WEATHER_TEST_EXPLAIN":   "FALSE",
-		"METEOPROG_WEATHER_APIKEY":         "NONE",
+		"METEOPROG_WEATHER_APIKEY":         "",
 	})
 
 	idmapResolved := core.ToMapAny(env["METEOPROG_WEATHER_TEST_HISTORICAL_ENTID"])
@@ -176,11 +176,23 @@ func historicalBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["METEOPROG_WEATHER_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 				"apikey": env["METEOPROG_WEATHER_APIKEY"],
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewMeteoprogWeatherSDK(core.ToMapAny(mergedOpts))
 	}

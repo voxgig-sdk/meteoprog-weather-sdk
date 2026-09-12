@@ -12,6 +12,7 @@ main: kit: entity: historical: {
       type: "`$INTEGER`"
     }
     {
+      format: "date"
       name: "date"
       req: false
       short: "Date of the historical data"
@@ -128,9 +129,13 @@ main: kit: entity: historical: {
           }
           method: "GET"
           orig: "/weather/historical"
-          parts: [
-            "weather"
-            "historical"
+          segments: [
+            {
+              lit: "weather"
+            }
+            {
+              lit: "historical"
+            }
           ]
           select: {
             exist: [

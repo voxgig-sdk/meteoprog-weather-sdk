@@ -10,6 +10,17 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
+// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
+// the model's active plugin groups. A feature that takes a `plugins` option
+// (secrets over sekreto) reads its own entry; a feature with no plugins has
+// none. Named imports above make each definition statically reachable, so
+// an SDK carries exactly the plugin modules its model selects — the same
+// leanness the old side-effect registry imports bought, without a registry.
+const FEATURE_PLUGINS: Record<string, any[]> = {
+  
+}
+
+
 class Config {
 
   makeFeature(this: any, fn: string) {
@@ -131,9 +142,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/weather/current",
-              "parts": [
-                "weather",
-                "current"
+              "segments": [
+                {
+                  "lit": "weather"
+                },
+                {
+                  "lit": "current"
+                }
               ],
               "select": {
                 "exist": [
@@ -147,7 +162,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.current`"
-              }
+              },
+              "parts": [
+                "weather",
+                "current"
+              ]
             }
           ]
         }
@@ -164,6 +183,7 @@ class Config {
           "type": "`$INTEGER`"
         },
         {
+          "format": "date",
           "name": "date",
           "short": "Date of the historical data",
           "type": "`$STRING`"
@@ -267,9 +287,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/weather/historical",
-              "parts": [
-                "weather",
-                "historical"
+              "segments": [
+                {
+                  "lit": "weather"
+                },
+                {
+                  "lit": "historical"
+                }
               ],
               "select": {
                 "exist": [
@@ -285,7 +309,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.historical`"
-              }
+              },
+              "parts": [
+                "weather",
+                "historical"
+              ]
             }
           ]
         }
@@ -302,6 +330,7 @@ class Config {
           "type": "`$INTEGER`"
         },
         {
+          "format": "date",
           "name": "date",
           "short": "Date of the forecast",
           "type": "`$STRING`"
@@ -398,9 +427,13 @@ class Config {
               "kind": "http",
               "method": "GET",
               "orig": "/weather/forecast",
-              "parts": [
-                "weather",
-                "forecast"
+              "segments": [
+                {
+                  "lit": "weather"
+                },
+                {
+                  "lit": "forecast"
+                }
               ],
               "select": {
                 "exist": [
@@ -415,7 +448,11 @@ class Config {
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
-              }
+              },
+              "parts": [
+                "weather",
+                "forecast"
+              ]
             }
           ]
         }
@@ -431,6 +468,7 @@ class Config {
 const config = new Config()
 
 export {
-  config
+  config,
+  FEATURE_PLUGINS,
 }
 

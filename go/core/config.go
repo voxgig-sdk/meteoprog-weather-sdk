@@ -95,9 +95,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/weather/current",
-								"parts": []any{
-									"weather",
-									"current",
+								"segments": []any{
+									map[string]any{
+										"lit": "weather",
+									},
+									map[string]any{
+										"lit": "current",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -111,6 +115,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.current`",
+								},
+								"parts": []any{
+									"weather",
+									"current",
 								},
 							},
 						},
@@ -128,6 +136,7 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "date",
 						"name": "date",
 						"short": "Date of the historical data",
 						"type": "`$STRING`",
@@ -231,9 +240,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/weather/historical",
-								"parts": []any{
-									"weather",
-									"historical",
+								"segments": []any{
+									map[string]any{
+										"lit": "weather",
+									},
+									map[string]any{
+										"lit": "historical",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -249,6 +262,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.historical`",
+								},
+								"parts": []any{
+									"weather",
+									"historical",
 								},
 							},
 						},
@@ -266,6 +283,7 @@ func MakeConfig() map[string]any {
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
+						"format": "date",
 						"name": "date",
 						"short": "Date of the forecast",
 						"type": "`$STRING`",
@@ -362,9 +380,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/weather/forecast",
-								"parts": []any{
-									"weather",
-									"forecast",
+								"segments": []any{
+									map[string]any{
+										"lit": "weather",
+									},
+									map[string]any{
+										"lit": "forecast",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -380,6 +402,10 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
+								"parts": []any{
+									"weather",
+									"forecast",
+								},
 							},
 						},
 					},
@@ -390,6 +416,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (
