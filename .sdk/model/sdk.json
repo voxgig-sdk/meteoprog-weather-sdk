@@ -1253,7 +1253,7 @@
             "registry": {
               "active": false,
               "name": "npm",
-              "package": "",
+              "package": "@voxgig-sdk/meteoprog-weather-sdk",
               "state": "pending",
               "url": "https://registry.npmjs.org",
               "vault": {

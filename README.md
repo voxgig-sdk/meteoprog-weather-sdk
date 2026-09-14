@@ -105,7 +105,7 @@ local results, err = client:Historical():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/meteoprog-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/meteoprog-weather-sdk/releases) |
+| TypeScript | `@voxgig-sdk/meteoprog-weather-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/meteoprog-weather-sdk/releases) |
 | Python | `voxgig-sdk-meteoprog-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/meteoprog-weather-sdk/releases) |
 | PHP | `voxgig-sdk/meteoprog-weather` | publish pending — [install from git tag](https://github.com/voxgig-sdk/meteoprog-weather-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/meteoprog-weather-sdk/go` | `go get github.com/voxgig-sdk/meteoprog-weather-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Historical():list()
 ### TypeScript
 
 ```ts
-import { MeteoprogWeatherSDK } from '@voxgig-sdk/meteoprog-weather'
+import { MeteoprogWeatherSDK } from '@voxgig-sdk/meteoprog-weather-sdk'
 
 const client = new MeteoprogWeatherSDK({
   apikey: process.env.METEOPROG_WEATHER_APIKEY,
