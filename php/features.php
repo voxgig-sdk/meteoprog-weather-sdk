@@ -4,7 +4,10 @@ declare(strict_types=1);
 // MeteoprogWeather SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class MeteoprogWeatherFeatures
@@ -14,8 +17,14 @@ class MeteoprogWeatherFeatures
         switch ($name) {
             case "base":
                 return new MeteoprogWeatherBaseFeature();
+            case "ratelimit":
+                return new MeteoprogWeatherRatelimitFeature();
+            case "retry":
+                return new MeteoprogWeatherRetryFeature();
             case "test":
                 return new MeteoprogWeatherTestFeature();
+            case "timeout":
+                return new MeteoprogWeatherTimeoutFeature();
             default:
                 return new MeteoprogWeatherBaseFeature();
         }
@@ -31,7 +40,10 @@ class MeteoprogWeatherFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

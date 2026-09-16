@@ -1,12 +1,18 @@
 # MeteoprogWeather SDK feature factory
 
 from meteoprogweather_sdk.feature.base_feature import MeteoprogWeatherBaseFeature
+from meteoprogweather_sdk.feature.ratelimit_feature import MeteoprogWeatherRatelimitFeature
+from meteoprogweather_sdk.feature.retry_feature import MeteoprogWeatherRetryFeature
 from meteoprogweather_sdk.feature.test_feature import MeteoprogWeatherTestFeature
+from meteoprogweather_sdk.feature.timeout_feature import MeteoprogWeatherTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: MeteoprogWeatherBaseFeature(),
+    "ratelimit": lambda: MeteoprogWeatherRatelimitFeature(),
+    "retry": lambda: MeteoprogWeatherRetryFeature(),
     "test": lambda: MeteoprogWeatherTestFeature(),
+    "timeout": lambda: MeteoprogWeatherTimeoutFeature(),
 }
 
 
