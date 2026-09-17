@@ -1,5 +1,5 @@
 # Entity Models
 
-@"current.aon"
-@"historical.aon"
-@"weather_forecast.aon"
+@"./current.aon"
+@"./historical.aon"
+@"./weather_forecast.aon"

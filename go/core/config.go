@@ -81,6 +81,8 @@ func MakeConfig() map[string]any {
 			"base": "https://api.meteoprog.com/v1",
 			"auth": map[string]any{
 				"prefix": "",
+				"in": "query",
+				"name": "api_key",
 			},
 			"headers": map[string]any{
 				"content-type": "application/json",

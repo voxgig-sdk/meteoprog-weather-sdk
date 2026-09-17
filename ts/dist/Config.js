@@ -104,6 +104,8 @@ class Config {
         base: "https://api.meteoprog.com/v1",
         auth: {
             prefix: '',
+            in: 'query',
+            name: 'api_key',
         },
         headers: {
             "content-type": "application/json"
