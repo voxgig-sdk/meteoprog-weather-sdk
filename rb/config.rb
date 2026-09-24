@@ -106,10 +106,12 @@ module MeteoprogWeatherConfig
           "fields" => [
             {
               "name" => "current",
+              "title" => "Current",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "location",
+              "title" => "Location",
               "type" => "`$OBJECT`",
             },
           ],
@@ -120,42 +122,6 @@ module MeteoprogWeatherConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "city",
-                        "orig" => "city",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "en",
-                        "kind" => "query",
-                        "name" => "lang",
-                        "orig" => "lang",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "lat",
-                        "orig" => "lat",
-                        "type" => "`$NUMBER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "lon",
-                        "orig" => "lon",
-                        "type" => "`$NUMBER`",
-                      },
-                      {
-                        "example" => "metric",
-                        "kind" => "query",
-                        "name" => "unit",
-                        "orig" => "unit",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/weather/current",
@@ -167,6 +133,51 @@ module MeteoprogWeatherConfig
                       "lit" => "current",
                     },
                   ],
+                  "parts" => [
+                    "weather",
+                    "current",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.current`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "city",
+                        "orig" => "city",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "lang",
+                        "orig" => "lang",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "en",
+                      },
+                      {
+                        "name" => "lat",
+                        "orig" => "lat",
+                        "type" => "`$NUMBER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "lon",
+                        "orig" => "lon",
+                        "type" => "`$NUMBER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "unit",
+                        "orig" => "unit",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "metric",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "city",
@@ -176,14 +187,6 @@ module MeteoprogWeatherConfig
                       "unit",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.current`",
-                  },
-                  "parts" => [
-                    "weather",
-                    "current",
-                  ],
                 },
               ],
             },
@@ -196,52 +199,62 @@ module MeteoprogWeatherConfig
           "fields" => [
             {
               "name" => "clouds",
-              "short" => "Cloud coverage percentage",
+              "title" => "Clouds",
               "type" => "`$INTEGER`",
+              "short" => "Cloud coverage percentage",
             },
             {
-              "format" => "date",
               "name" => "date",
-              "short" => "Date of the historical data",
+              "title" => "Date",
               "type" => "`$STRING`",
+              "short" => "Date of the historical data",
+              "format" => "date",
             },
             {
               "name" => "humidity",
-              "short" => "Humidity percentage",
+              "title" => "Humidity",
               "type" => "`$INTEGER`",
+              "short" => "Humidity percentage",
             },
             {
               "name" => "precipitation",
-              "short" => "Precipitation amount",
+              "title" => "Precipitation",
               "type" => "`$NUMBER`",
+              "short" => "Precipitation amount",
             },
             {
               "name" => "pressure",
-              "short" => "Atmospheric pressure",
+              "title" => "Pressure",
               "type" => "`$NUMBER`",
+              "short" => "Atmospheric pressure",
             },
             {
               "name" => "temperature",
+              "title" => "Temperature",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "timestamp",
-              "short" => "Unix timestamp",
+              "title" => "Timestamp",
               "type" => "`$INTEGER`",
+              "short" => "Unix timestamp",
             },
             {
               "name" => "weather",
+              "title" => "Weather",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "wind_direction",
-              "short" => "Wind direction in degrees",
+              "title" => "Wind Direction",
               "type" => "`$NUMBER`",
+              "short" => "Wind direction in degrees",
             },
             {
               "name" => "wind_speed",
-              "short" => "Wind speed",
+              "title" => "Wind Speed",
               "type" => "`$NUMBER`",
+              "short" => "Wind speed",
             },
           ],
           "name" => "historical",
@@ -251,56 +264,6 @@ module MeteoprogWeatherConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "city",
-                        "orig" => "city",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "end_date",
-                        "orig" => "end_date",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "en",
-                        "kind" => "query",
-                        "name" => "lang",
-                        "orig" => "lang",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "lat",
-                        "orig" => "lat",
-                        "type" => "`$NUMBER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "lon",
-                        "orig" => "lon",
-                        "type" => "`$NUMBER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "start_date",
-                        "orig" => "start_date",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => "metric",
-                        "kind" => "query",
-                        "name" => "unit",
-                        "orig" => "unit",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/weather/historical",
@@ -312,6 +275,65 @@ module MeteoprogWeatherConfig
                       "lit" => "historical",
                     },
                   ],
+                  "parts" => [
+                    "weather",
+                    "historical",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.historical`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "city",
+                        "orig" => "city",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "end_date",
+                        "orig" => "end_date",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "lang",
+                        "orig" => "lang",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "en",
+                      },
+                      {
+                        "name" => "lat",
+                        "orig" => "lat",
+                        "type" => "`$NUMBER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "lon",
+                        "orig" => "lon",
+                        "type" => "`$NUMBER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "start_date",
+                        "orig" => "start_date",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "reqd" => true,
+                      },
+                      {
+                        "name" => "unit",
+                        "orig" => "unit",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "metric",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "city",
@@ -323,14 +345,6 @@ module MeteoprogWeatherConfig
                       "unit",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.historical`",
-                  },
-                  "parts" => [
-                    "weather",
-                    "historical",
-                  ],
                 },
               ],
             },
@@ -343,52 +357,62 @@ module MeteoprogWeatherConfig
           "fields" => [
             {
               "name" => "clouds",
-              "short" => "Cloud coverage percentage",
+              "title" => "Clouds",
               "type" => "`$INTEGER`",
+              "short" => "Cloud coverage percentage",
             },
             {
-              "format" => "date",
               "name" => "date",
-              "short" => "Date of the forecast",
+              "title" => "Date",
               "type" => "`$STRING`",
+              "short" => "Date of the forecast",
+              "format" => "date",
             },
             {
               "name" => "humidity",
-              "short" => "Humidity percentage",
+              "title" => "Humidity",
               "type" => "`$INTEGER`",
+              "short" => "Humidity percentage",
             },
             {
               "name" => "precipitation",
-              "short" => "Precipitation amount",
+              "title" => "Precipitation",
               "type" => "`$NUMBER`",
+              "short" => "Precipitation amount",
             },
             {
               "name" => "pressure",
-              "short" => "Atmospheric pressure",
+              "title" => "Pressure",
               "type" => "`$NUMBER`",
+              "short" => "Atmospheric pressure",
             },
             {
               "name" => "temperature",
+              "title" => "Temperature",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "timestamp",
-              "short" => "Unix timestamp",
+              "title" => "Timestamp",
               "type" => "`$INTEGER`",
+              "short" => "Unix timestamp",
             },
             {
               "name" => "weather",
+              "title" => "Weather",
               "type" => "`$OBJECT`",
             },
             {
               "name" => "wind_direction",
-              "short" => "Wind direction in degrees",
+              "title" => "Wind Direction",
               "type" => "`$NUMBER`",
+              "short" => "Wind direction in degrees",
             },
             {
               "name" => "wind_speed",
-              "short" => "Wind speed",
+              "title" => "Wind Speed",
               "type" => "`$NUMBER`",
+              "short" => "Wind speed",
             },
           ],
           "name" => "weather_forecast",
@@ -398,49 +422,6 @@ module MeteoprogWeatherConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {
-                    "query" => [
-                      {
-                        "kind" => "query",
-                        "name" => "city",
-                        "orig" => "city",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "example" => 7,
-                        "kind" => "query",
-                        "name" => "day",
-                        "orig" => "day",
-                        "type" => "`$INTEGER`",
-                      },
-                      {
-                        "example" => "en",
-                        "kind" => "query",
-                        "name" => "lang",
-                        "orig" => "lang",
-                        "type" => "`$STRING`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "lat",
-                        "orig" => "lat",
-                        "type" => "`$NUMBER`",
-                      },
-                      {
-                        "kind" => "query",
-                        "name" => "lon",
-                        "orig" => "lon",
-                        "type" => "`$NUMBER`",
-                      },
-                      {
-                        "example" => "metric",
-                        "kind" => "query",
-                        "name" => "unit",
-                        "orig" => "unit",
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/weather/forecast",
@@ -452,6 +433,58 @@ module MeteoprogWeatherConfig
                       "lit" => "forecast",
                     },
                   ],
+                  "parts" => [
+                    "weather",
+                    "forecast",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "query" => [
+                      {
+                        "name" => "city",
+                        "orig" => "city",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "day",
+                        "orig" => "day",
+                        "type" => "`$INTEGER`",
+                        "kind" => "query",
+                        "example" => 7,
+                      },
+                      {
+                        "name" => "lang",
+                        "orig" => "lang",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "en",
+                      },
+                      {
+                        "name" => "lat",
+                        "orig" => "lat",
+                        "type" => "`$NUMBER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "lon",
+                        "orig" => "lon",
+                        "type" => "`$NUMBER`",
+                        "kind" => "query",
+                      },
+                      {
+                        "name" => "unit",
+                        "orig" => "unit",
+                        "type" => "`$STRING`",
+                        "kind" => "query",
+                        "example" => "metric",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "city",
@@ -462,14 +495,6 @@ module MeteoprogWeatherConfig
                       "unit",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "weather",
-                    "forecast",
-                  ],
                 },
               ],
             },

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.HistoricalEntity = void 0;
 const MeteoprogWeatherEntityBase_1 = require("../MeteoprogWeatherEntityBase");
-// TODO: needs Entity superclass
 class HistoricalEntity extends MeteoprogWeatherEntityBase_1.MeteoprogWeatherEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

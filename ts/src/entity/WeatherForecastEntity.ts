@@ -19,7 +19,6 @@ import type {
   WeatherForecastListMatch,
 } from '../MeteoprogWeatherTypes'
 
-// TODO: needs Entity superclass
 class WeatherForecastEntity extends MeteoprogWeatherEntityBase<WeatherForecast> {
 
   constructor(client: MeteoprogWeatherSDK, entopts: any) {

@@ -1,0 +1,104 @@
+# Entity: current
+
+main: kit: entity: current: {
+
+  alias: field: {}
+
+  fields: {
+    current: {
+      h: "Current"
+      n: "current"
+      r: false
+      t: "`$OBJECT`"
+    }
+    location: {
+      h: "Location"
+      n: "location"
+      r: false
+      t: "`$OBJECT`"
+    }
+  }
+
+  name: "current"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /weather/current"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "city"
+                or: "city"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: "en"
+                k: "query"
+                n: "lang"
+                or: "lang"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "lat"
+                or: "lat"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "lon"
+                or: "lon"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                ex: "metric"
+                k: "query"
+                n: "unit"
+                or: "unit"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/weather/current"
+          q: {
+            exist: [
+              "city"
+              "lang"
+              "lat"
+              "lon"
+              "unit"
+            ]
+          }
+          s: [
+            {
+              lit: "weather"
+            }
+            {
+              lit: "current"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.current`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -121,10 +114,12 @@ class Config {
             "fields": [
                 {
                     "name": "current",
+                    "title": "Current",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "location",
+                    "title": "Location",
                     "type": "`$OBJECT`"
                 }
             ],
@@ -135,42 +130,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "city",
-                                        "orig": "city",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "en",
-                                        "kind": "query",
-                                        "name": "lang",
-                                        "orig": "lang",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "lat",
-                                        "orig": "lat",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "lon",
-                                        "orig": "lon",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "example": "metric",
-                                        "kind": "query",
-                                        "name": "unit",
-                                        "orig": "unit",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/weather/current",
@@ -182,6 +141,51 @@ class Config {
                                     "lit": "current"
                                 }
                             ],
+                            "parts": [
+                                "weather",
+                                "current"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.current`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "city",
+                                        "orig": "city",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "lang",
+                                        "orig": "lang",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "en"
+                                    },
+                                    {
+                                        "name": "lat",
+                                        "orig": "lat",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "lon",
+                                        "orig": "lon",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "unit",
+                                        "orig": "unit",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "metric"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "city",
@@ -190,15 +194,7 @@ class Config {
                                     "lon",
                                     "unit"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.current`"
-                            },
-                            "parts": [
-                                "weather",
-                                "current"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -211,52 +207,62 @@ class Config {
             "fields": [
                 {
                     "name": "clouds",
-                    "short": "Cloud coverage percentage",
-                    "type": "`$INTEGER`"
+                    "title": "Clouds",
+                    "type": "`$INTEGER`",
+                    "short": "Cloud coverage percentage"
                 },
                 {
-                    "format": "date",
                     "name": "date",
+                    "title": "Date",
+                    "type": "`$STRING`",
                     "short": "Date of the historical data",
-                    "type": "`$STRING`"
+                    "format": "date"
                 },
                 {
                     "name": "humidity",
-                    "short": "Humidity percentage",
-                    "type": "`$INTEGER`"
+                    "title": "Humidity",
+                    "type": "`$INTEGER`",
+                    "short": "Humidity percentage"
                 },
                 {
                     "name": "precipitation",
-                    "short": "Precipitation amount",
-                    "type": "`$NUMBER`"
+                    "title": "Precipitation",
+                    "type": "`$NUMBER`",
+                    "short": "Precipitation amount"
                 },
                 {
                     "name": "pressure",
-                    "short": "Atmospheric pressure",
-                    "type": "`$NUMBER`"
+                    "title": "Pressure",
+                    "type": "`$NUMBER`",
+                    "short": "Atmospheric pressure"
                 },
                 {
                     "name": "temperature",
+                    "title": "Temperature",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "timestamp",
-                    "short": "Unix timestamp",
-                    "type": "`$INTEGER`"
+                    "title": "Timestamp",
+                    "type": "`$INTEGER`",
+                    "short": "Unix timestamp"
                 },
                 {
                     "name": "weather",
+                    "title": "Weather",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "wind_direction",
-                    "short": "Wind direction in degrees",
-                    "type": "`$NUMBER`"
+                    "title": "Wind Direction",
+                    "type": "`$NUMBER`",
+                    "short": "Wind direction in degrees"
                 },
                 {
                     "name": "wind_speed",
-                    "short": "Wind speed",
-                    "type": "`$NUMBER`"
+                    "title": "Wind Speed",
+                    "type": "`$NUMBER`",
+                    "short": "Wind speed"
                 }
             ],
             "name": "historical",
@@ -266,56 +272,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "city",
-                                        "orig": "city",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "end_date",
-                                        "orig": "end_date",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "en",
-                                        "kind": "query",
-                                        "name": "lang",
-                                        "orig": "lang",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "lat",
-                                        "orig": "lat",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "lon",
-                                        "orig": "lon",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "start_date",
-                                        "orig": "start_date",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": "metric",
-                                        "kind": "query",
-                                        "name": "unit",
-                                        "orig": "unit",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/weather/historical",
@@ -327,6 +283,65 @@ class Config {
                                     "lit": "historical"
                                 }
                             ],
+                            "parts": [
+                                "weather",
+                                "historical"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body.historical`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "city",
+                                        "orig": "city",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "end_date",
+                                        "orig": "end_date",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "lang",
+                                        "orig": "lang",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "en"
+                                    },
+                                    {
+                                        "name": "lat",
+                                        "orig": "lat",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "lon",
+                                        "orig": "lon",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "start_date",
+                                        "orig": "start_date",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "reqd": true
+                                    },
+                                    {
+                                        "name": "unit",
+                                        "orig": "unit",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "metric"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "city",
@@ -337,15 +352,7 @@ class Config {
                                     "start_date",
                                     "unit"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body.historical`"
-                            },
-                            "parts": [
-                                "weather",
-                                "historical"
-                            ]
+                            }
                         }
                     ]
                 }
@@ -358,52 +365,62 @@ class Config {
             "fields": [
                 {
                     "name": "clouds",
-                    "short": "Cloud coverage percentage",
-                    "type": "`$INTEGER`"
+                    "title": "Clouds",
+                    "type": "`$INTEGER`",
+                    "short": "Cloud coverage percentage"
                 },
                 {
-                    "format": "date",
                     "name": "date",
+                    "title": "Date",
+                    "type": "`$STRING`",
                     "short": "Date of the forecast",
-                    "type": "`$STRING`"
+                    "format": "date"
                 },
                 {
                     "name": "humidity",
-                    "short": "Humidity percentage",
-                    "type": "`$INTEGER`"
+                    "title": "Humidity",
+                    "type": "`$INTEGER`",
+                    "short": "Humidity percentage"
                 },
                 {
                     "name": "precipitation",
-                    "short": "Precipitation amount",
-                    "type": "`$NUMBER`"
+                    "title": "Precipitation",
+                    "type": "`$NUMBER`",
+                    "short": "Precipitation amount"
                 },
                 {
                     "name": "pressure",
-                    "short": "Atmospheric pressure",
-                    "type": "`$NUMBER`"
+                    "title": "Pressure",
+                    "type": "`$NUMBER`",
+                    "short": "Atmospheric pressure"
                 },
                 {
                     "name": "temperature",
+                    "title": "Temperature",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "timestamp",
-                    "short": "Unix timestamp",
-                    "type": "`$INTEGER`"
+                    "title": "Timestamp",
+                    "type": "`$INTEGER`",
+                    "short": "Unix timestamp"
                 },
                 {
                     "name": "weather",
+                    "title": "Weather",
                     "type": "`$OBJECT`"
                 },
                 {
                     "name": "wind_direction",
-                    "short": "Wind direction in degrees",
-                    "type": "`$NUMBER`"
+                    "title": "Wind Direction",
+                    "type": "`$NUMBER`",
+                    "short": "Wind direction in degrees"
                 },
                 {
                     "name": "wind_speed",
-                    "short": "Wind speed",
-                    "type": "`$NUMBER`"
+                    "title": "Wind Speed",
+                    "type": "`$NUMBER`",
+                    "short": "Wind speed"
                 }
             ],
             "name": "weather_forecast",
@@ -413,49 +430,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {
-                                "query": [
-                                    {
-                                        "kind": "query",
-                                        "name": "city",
-                                        "orig": "city",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "example": 7,
-                                        "kind": "query",
-                                        "name": "day",
-                                        "orig": "day",
-                                        "type": "`$INTEGER`"
-                                    },
-                                    {
-                                        "example": "en",
-                                        "kind": "query",
-                                        "name": "lang",
-                                        "orig": "lang",
-                                        "type": "`$STRING`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "lat",
-                                        "orig": "lat",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "kind": "query",
-                                        "name": "lon",
-                                        "orig": "lon",
-                                        "type": "`$NUMBER`"
-                                    },
-                                    {
-                                        "example": "metric",
-                                        "kind": "query",
-                                        "name": "unit",
-                                        "orig": "unit",
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/weather/forecast",
@@ -467,6 +441,58 @@ class Config {
                                     "lit": "forecast"
                                 }
                             ],
+                            "parts": [
+                                "weather",
+                                "forecast"
+                            ],
+                            "rename": {},
+                            "transform": {
+                                "req": "`reqdata`",
+                                "res": "`body`"
+                            },
+                            "args": {
+                                "query": [
+                                    {
+                                        "name": "city",
+                                        "orig": "city",
+                                        "type": "`$STRING`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "day",
+                                        "orig": "day",
+                                        "type": "`$INTEGER`",
+                                        "kind": "query",
+                                        "example": 7
+                                    },
+                                    {
+                                        "name": "lang",
+                                        "orig": "lang",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "en"
+                                    },
+                                    {
+                                        "name": "lat",
+                                        "orig": "lat",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "lon",
+                                        "orig": "lon",
+                                        "type": "`$NUMBER`",
+                                        "kind": "query"
+                                    },
+                                    {
+                                        "name": "unit",
+                                        "orig": "unit",
+                                        "type": "`$STRING`",
+                                        "kind": "query",
+                                        "example": "metric"
+                                    }
+                                ]
+                            },
                             "select": {
                                 "exist": [
                                     "city",
@@ -476,15 +502,7 @@ class Config {
                                     "lon",
                                     "unit"
                                 ]
-                            },
-                            "transform": {
-                                "req": "`reqdata`",
-                                "res": "`body`"
-                            },
-                            "parts": [
-                                "weather",
-                                "forecast"
-                            ]
+                            }
                         }
                     ]
                 }

@@ -19,7 +19,6 @@ import type {
   HistoricalListMatch,
 } from '../MeteoprogWeatherTypes'
 
-// TODO: needs Entity superclass
 class HistoricalEntity extends MeteoprogWeatherEntityBase<Historical> {
 
   constructor(client: MeteoprogWeatherSDK, entopts: any) {

@@ -98,10 +98,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "current",
+						"title": "Current",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "location",
+						"title": "Location",
 						"type": "`$OBJECT`",
 					},
 				},
@@ -112,42 +114,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "city",
-											"orig": "city",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "en",
-											"kind": "query",
-											"name": "lang",
-											"orig": "lang",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "lat",
-											"orig": "lat",
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "lon",
-											"orig": "lon",
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"example": "metric",
-											"kind": "query",
-											"name": "unit",
-											"orig": "unit",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/weather/current",
@@ -159,6 +125,51 @@ func MakeConfig() map[string]any {
 										"lit": "current",
 									},
 								},
+								"parts": []any{
+									"weather",
+									"current",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.current`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "city",
+											"orig": "city",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "lang",
+											"orig": "lang",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en",
+										},
+										map[string]any{
+											"name": "lat",
+											"orig": "lat",
+											"type": "`$NUMBER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "lon",
+											"orig": "lon",
+											"type": "`$NUMBER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "unit",
+											"orig": "unit",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "metric",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"city",
@@ -167,14 +178,6 @@ func MakeConfig() map[string]any {
 										"lon",
 										"unit",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.current`",
-								},
-								"parts": []any{
-									"weather",
-									"current",
 								},
 							},
 						},
@@ -188,52 +191,62 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "clouds",
-						"short": "Cloud coverage percentage",
+						"title": "Clouds",
 						"type": "`$INTEGER`",
+						"short": "Cloud coverage percentage",
 					},
 					map[string]any{
-						"format": "date",
 						"name": "date",
-						"short": "Date of the historical data",
+						"title": "Date",
 						"type": "`$STRING`",
+						"short": "Date of the historical data",
+						"format": "date",
 					},
 					map[string]any{
 						"name": "humidity",
-						"short": "Humidity percentage",
+						"title": "Humidity",
 						"type": "`$INTEGER`",
+						"short": "Humidity percentage",
 					},
 					map[string]any{
 						"name": "precipitation",
-						"short": "Precipitation amount",
+						"title": "Precipitation",
 						"type": "`$NUMBER`",
+						"short": "Precipitation amount",
 					},
 					map[string]any{
 						"name": "pressure",
-						"short": "Atmospheric pressure",
+						"title": "Pressure",
 						"type": "`$NUMBER`",
+						"short": "Atmospheric pressure",
 					},
 					map[string]any{
 						"name": "temperature",
+						"title": "Temperature",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Unix timestamp",
+						"title": "Timestamp",
 						"type": "`$INTEGER`",
+						"short": "Unix timestamp",
 					},
 					map[string]any{
 						"name": "weather",
+						"title": "Weather",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "wind_direction",
-						"short": "Wind direction in degrees",
+						"title": "Wind Direction",
 						"type": "`$NUMBER`",
+						"short": "Wind direction in degrees",
 					},
 					map[string]any{
 						"name": "wind_speed",
-						"short": "Wind speed",
+						"title": "Wind Speed",
 						"type": "`$NUMBER`",
+						"short": "Wind speed",
 					},
 				},
 				"name": "historical",
@@ -243,56 +256,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "city",
-											"orig": "city",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "end_date",
-											"orig": "end_date",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "en",
-											"kind": "query",
-											"name": "lang",
-											"orig": "lang",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "lat",
-											"orig": "lat",
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "lon",
-											"orig": "lon",
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "start_date",
-											"orig": "start_date",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": "metric",
-											"kind": "query",
-											"name": "unit",
-											"orig": "unit",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/weather/historical",
@@ -302,6 +265,65 @@ func MakeConfig() map[string]any {
 									},
 									map[string]any{
 										"lit": "historical",
+									},
+								},
+								"parts": []any{
+									"weather",
+									"historical",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.historical`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "city",
+											"orig": "city",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "end_date",
+											"orig": "end_date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "lang",
+											"orig": "lang",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en",
+										},
+										map[string]any{
+											"name": "lat",
+											"orig": "lat",
+											"type": "`$NUMBER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "lon",
+											"orig": "lon",
+											"type": "`$NUMBER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "start_date",
+											"orig": "start_date",
+											"type": "`$STRING`",
+											"kind": "query",
+											"reqd": true,
+										},
+										map[string]any{
+											"name": "unit",
+											"orig": "unit",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "metric",
+										},
 									},
 								},
 								"select": map[string]any{
@@ -315,14 +337,6 @@ func MakeConfig() map[string]any {
 										"unit",
 									},
 								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.historical`",
-								},
-								"parts": []any{
-									"weather",
-									"historical",
-								},
 							},
 						},
 					},
@@ -335,52 +349,62 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "clouds",
-						"short": "Cloud coverage percentage",
+						"title": "Clouds",
 						"type": "`$INTEGER`",
+						"short": "Cloud coverage percentage",
 					},
 					map[string]any{
-						"format": "date",
 						"name": "date",
-						"short": "Date of the forecast",
+						"title": "Date",
 						"type": "`$STRING`",
+						"short": "Date of the forecast",
+						"format": "date",
 					},
 					map[string]any{
 						"name": "humidity",
-						"short": "Humidity percentage",
+						"title": "Humidity",
 						"type": "`$INTEGER`",
+						"short": "Humidity percentage",
 					},
 					map[string]any{
 						"name": "precipitation",
-						"short": "Precipitation amount",
+						"title": "Precipitation",
 						"type": "`$NUMBER`",
+						"short": "Precipitation amount",
 					},
 					map[string]any{
 						"name": "pressure",
-						"short": "Atmospheric pressure",
+						"title": "Pressure",
 						"type": "`$NUMBER`",
+						"short": "Atmospheric pressure",
 					},
 					map[string]any{
 						"name": "temperature",
+						"title": "Temperature",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "timestamp",
-						"short": "Unix timestamp",
+						"title": "Timestamp",
 						"type": "`$INTEGER`",
+						"short": "Unix timestamp",
 					},
 					map[string]any{
 						"name": "weather",
+						"title": "Weather",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "wind_direction",
-						"short": "Wind direction in degrees",
+						"title": "Wind Direction",
 						"type": "`$NUMBER`",
+						"short": "Wind direction in degrees",
 					},
 					map[string]any{
 						"name": "wind_speed",
-						"short": "Wind speed",
+						"title": "Wind Speed",
 						"type": "`$NUMBER`",
+						"short": "Wind speed",
 					},
 				},
 				"name": "weather_forecast",
@@ -390,49 +414,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "city",
-											"orig": "city",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 7,
-											"kind": "query",
-											"name": "day",
-											"orig": "day",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": "en",
-											"kind": "query",
-											"name": "lang",
-											"orig": "lang",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "lat",
-											"orig": "lat",
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "lon",
-											"orig": "lon",
-											"type": "`$NUMBER`",
-										},
-										map[string]any{
-											"example": "metric",
-											"kind": "query",
-											"name": "unit",
-											"orig": "unit",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/weather/forecast",
@@ -444,6 +425,58 @@ func MakeConfig() map[string]any {
 										"lit": "forecast",
 									},
 								},
+								"parts": []any{
+									"weather",
+									"forecast",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "city",
+											"orig": "city",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "day",
+											"orig": "day",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 7,
+										},
+										map[string]any{
+											"name": "lang",
+											"orig": "lang",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "en",
+										},
+										map[string]any{
+											"name": "lat",
+											"orig": "lat",
+											"type": "`$NUMBER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "lon",
+											"orig": "lon",
+											"type": "`$NUMBER`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "unit",
+											"orig": "unit",
+											"type": "`$STRING`",
+											"kind": "query",
+											"example": "metric",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"city",
@@ -453,14 +486,6 @@ func MakeConfig() map[string]any {
 										"lon",
 										"unit",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
-								"parts": []any{
-									"weather",
-									"forecast",
 								},
 							},
 						},

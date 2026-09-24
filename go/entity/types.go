@@ -1,7 +1,7 @@
 // Typed models for the MeteoprogWeather SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,8 +14,6 @@ import (
 
 // Current is the typed data model for the current entity.
 type Current struct {
-	Current *map[string]any `json:"current,omitempty"`
-	Location *map[string]any `json:"location,omitempty"`
 }
 
 // CurrentLoadMatch is the typed request payload for Current.LoadTyped.
@@ -29,16 +27,6 @@ type CurrentLoadMatch struct {
 
 // Historical is the typed data model for the historical entity.
 type Historical struct {
-	Clouds *int `json:"clouds,omitempty"`
-	Date *string `json:"date,omitempty"`
-	Humidity *int `json:"humidity,omitempty"`
-	Precipitation *float64 `json:"precipitation,omitempty"`
-	Pressure *float64 `json:"pressure,omitempty"`
-	Temperature *map[string]any `json:"temperature,omitempty"`
-	Timestamp *int `json:"timestamp,omitempty"`
-	Weather *map[string]any `json:"weather,omitempty"`
-	WindDirection *float64 `json:"wind_direction,omitempty"`
-	WindSpeed *float64 `json:"wind_speed,omitempty"`
 }
 
 // HistoricalListMatch is the typed request payload for Historical.ListTyped.
@@ -54,16 +42,6 @@ type HistoricalListMatch struct {
 
 // WeatherForecast is the typed data model for the weather_forecast entity.
 type WeatherForecast struct {
-	Clouds *int `json:"clouds,omitempty"`
-	Date *string `json:"date,omitempty"`
-	Humidity *int `json:"humidity,omitempty"`
-	Precipitation *float64 `json:"precipitation,omitempty"`
-	Pressure *float64 `json:"pressure,omitempty"`
-	Temperature *map[string]any `json:"temperature,omitempty"`
-	Timestamp *int `json:"timestamp,omitempty"`
-	Weather *map[string]any `json:"weather,omitempty"`
-	WindDirection *float64 `json:"wind_direction,omitempty"`
-	WindSpeed *float64 `json:"wind_speed,omitempty"`
 }
 
 // WeatherForecastListMatch is the typed request payload for WeatherForecast.ListTyped.

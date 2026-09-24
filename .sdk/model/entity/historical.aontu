@@ -1,0 +1,177 @@
+# Entity: historical
+
+main: kit: entity: historical: {
+
+  alias: field: {}
+
+  fields: {
+    clouds: {
+      h: "Clouds"
+      n: "clouds"
+      r: false
+      sh: "Cloud coverage percentage"
+      t: "`$INTEGER`"
+    }
+    date: {
+      fo: "date"
+      h: "Date"
+      n: "date"
+      r: false
+      sh: "Date of the historical data"
+      t: "`$STRING`"
+    }
+    humidity: {
+      h: "Humidity"
+      n: "humidity"
+      r: false
+      sh: "Humidity percentage"
+      t: "`$INTEGER`"
+    }
+    precipitation: {
+      h: "Precipitation"
+      n: "precipitation"
+      r: false
+      sh: "Precipitation amount"
+      t: "`$NUMBER`"
+    }
+    pressure: {
+      h: "Pressure"
+      n: "pressure"
+      r: false
+      sh: "Atmospheric pressure"
+      t: "`$NUMBER`"
+    }
+    temperature: {
+      h: "Temperature"
+      n: "temperature"
+      r: false
+      t: "`$OBJECT`"
+    }
+    timestamp: {
+      h: "Timestamp"
+      n: "timestamp"
+      r: false
+      sh: "Unix timestamp"
+      t: "`$INTEGER`"
+    }
+    weather: {
+      h: "Weather"
+      n: "weather"
+      r: false
+      t: "`$OBJECT`"
+    }
+    wind_direction: {
+      h: "Wind Direction"
+      n: "wind_direction"
+      r: false
+      sh: "Wind direction in degrees"
+      t: "`$NUMBER`"
+    }
+    wind_speed: {
+      h: "Wind Speed"
+      n: "wind_speed"
+      r: false
+      sh: "Wind speed"
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "historical"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /weather/historical"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "city"
+                or: "city"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "end_date"
+                or: "end_date"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "en"
+                k: "query"
+                n: "lang"
+                or: "lang"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "lat"
+                or: "lat"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "lon"
+                or: "lon"
+                r: false
+                t: "`$NUMBER`"
+              }
+              {
+                k: "query"
+                n: "start_date"
+                or: "start_date"
+                r: true
+                t: "`$STRING`"
+              }
+              {
+                ex: "metric"
+                k: "query"
+                n: "unit"
+                or: "unit"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/weather/historical"
+          q: {
+            exist: [
+              "city"
+              "end_date"
+              "lang"
+              "lat"
+              "lon"
+              "start_date"
+              "unit"
+            ]
+          }
+          s: [
+            {
+              lit: "weather"
+            }
+            {
+              lit: "historical"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.historical`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
