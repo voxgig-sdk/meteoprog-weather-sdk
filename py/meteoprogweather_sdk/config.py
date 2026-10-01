@@ -157,7 +157,7 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body.current`",
+                  "res": "`body`",
                 },
                 "args": {
                   "query": [
@@ -188,7 +188,7 @@ def make_config():
                     },
                     {
                       "name": "unit",
-                      "orig": "unit",
+                      "orig": "units",
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "metric",
@@ -344,7 +344,7 @@ def make_config():
                     },
                     {
                       "name": "unit",
-                      "orig": "unit",
+                      "orig": "units",
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "metric",
@@ -457,7 +457,7 @@ def make_config():
                 "rename": {},
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.forecast`",
                 },
                 "args": {
                   "query": [
@@ -469,7 +469,7 @@ def make_config():
                     },
                     {
                       "name": "day",
-                      "orig": "day",
+                      "orig": "days",
                       "type": "`$INTEGER`",
                       "kind": "query",
                       "example": 7,
@@ -495,7 +495,7 @@ def make_config():
                     },
                     {
                       "name": "unit",
-                      "orig": "unit",
+                      "orig": "units",
                       "type": "`$STRING`",
                       "kind": "query",
                       "example": "metric",

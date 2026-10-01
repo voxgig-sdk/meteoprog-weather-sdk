@@ -165,7 +165,7 @@
                         "ex": "metric",
                         "k": "query",
                         "n": "unit",
-                        "or": "unit",
+                        "or": "units",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -194,7 +194,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body.current`"
+                    "res": "`body`"
                   }
                 }
               ]
@@ -359,7 +359,7 @@
                         "ex": "metric",
                         "k": "query",
                         "n": "unit",
-                        "or": "unit",
+                        "or": "units",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -514,7 +514,7 @@
                         "ex": 7,
                         "k": "query",
                         "n": "day",
-                        "or": "day",
+                        "or": "days",
                         "r": false,
                         "t": "`$INTEGER`"
                       },
@@ -548,7 +548,7 @@
                         "ex": "metric",
                         "k": "query",
                         "n": "unit",
-                        "or": "unit",
+                        "or": "units",
                         "r": false,
                         "t": "`$STRING`"
                       }
@@ -578,7 +578,7 @@
                   ],
                   "t": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.forecast`"
                   }
                 }
               ]
@@ -1122,7 +1122,12 @@
         },
         "base": "http://localhost:8000",
         "clean": {
-          "keys": "key,token,id"
+          "active": true,
+          "hint": "0",
+          "keys": "key,secret,token,password,passwd,authorization,cookie,credential,signature",
+          "mask": "[redacted]",
+          "min": "4",
+          "values": ""
         },
         "entity": {
           "`$CHILD`": {

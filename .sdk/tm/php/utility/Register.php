@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 MeteoprogWeatherUtility::setRegistrar(function (MeteoprogWeatherUtility $u): void {
     $u->clean = [MeteoprogWeatherClean::class, 'call'];
+    $u->clean_add = [MeteoprogWeatherClean::class, 'add'];
+    $u->clean_explain = [MeteoprogWeatherDone::class, 'clean_explain'];
     $u->done = [MeteoprogWeatherDone::class, 'call'];
     $u->make_error = [MeteoprogWeatherMakeError::class, 'call'];
     $u->feature_add = [MeteoprogWeatherFeatureAdd::class, 'call'];

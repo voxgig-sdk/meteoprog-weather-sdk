@@ -154,7 +154,7 @@ class MeteoprogWeatherConfig
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body.current`',
+                    'res' => '`body`',
                   ],
                   'args' => [
                     'query' => [
@@ -185,7 +185,7 @@ class MeteoprogWeatherConfig
                       ],
                       [
                         'name' => 'unit',
-                        'orig' => 'unit',
+                        'orig' => 'units',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                         'example' => 'metric',
@@ -341,7 +341,7 @@ class MeteoprogWeatherConfig
                       ],
                       [
                         'name' => 'unit',
-                        'orig' => 'unit',
+                        'orig' => 'units',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                         'example' => 'metric',
@@ -454,7 +454,7 @@ class MeteoprogWeatherConfig
                   'rename' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.forecast`',
                   ],
                   'args' => [
                     'query' => [
@@ -466,7 +466,7 @@ class MeteoprogWeatherConfig
                       ],
                       [
                         'name' => 'day',
-                        'orig' => 'day',
+                        'orig' => 'days',
                         'type' => '`$INTEGER`',
                         'kind' => 'query',
                         'example' => 7,
@@ -492,7 +492,7 @@ class MeteoprogWeatherConfig
                       ],
                       [
                         'name' => 'unit',
-                        'orig' => 'unit',
+                        'orig' => 'units',
                         'type' => '`$STRING`',
                         'kind' => 'query',
                         'example' => 'metric',

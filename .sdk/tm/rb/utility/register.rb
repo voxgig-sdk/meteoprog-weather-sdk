@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 MeteoprogWeatherUtility.registrar = ->(u) {
   u.clean = MeteoprogWeatherUtilities::Clean
+  u.clean_add = MeteoprogWeatherUtilities::CleanAdd
+  u.clean_explain = MeteoprogWeatherUtilities::CleanExplain
   u.done = MeteoprogWeatherUtilities::Done
   u.make_error = MeteoprogWeatherUtilities::MakeError
   u.feature_add = MeteoprogWeatherUtilities::FeatureAdd

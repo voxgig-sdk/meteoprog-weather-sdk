@@ -136,7 +136,7 @@ main: kit: entity: historical: {
                 ex: "metric"
                 k: "query"
                 n: "unit"
-                or: "unit"
+                or: "units"
                 r: false
                 t: "`$STRING`"
               }

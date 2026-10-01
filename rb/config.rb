@@ -140,7 +140,7 @@ module MeteoprogWeatherConfig
                   "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body.current`",
+                    "res" => "`body`",
                   },
                   "args" => {
                     "query" => [
@@ -171,7 +171,7 @@ module MeteoprogWeatherConfig
                       },
                       {
                         "name" => "unit",
-                        "orig" => "unit",
+                        "orig" => "units",
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "metric",
@@ -327,7 +327,7 @@ module MeteoprogWeatherConfig
                       },
                       {
                         "name" => "unit",
-                        "orig" => "unit",
+                        "orig" => "units",
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "metric",
@@ -440,7 +440,7 @@ module MeteoprogWeatherConfig
                   "rename" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.forecast`",
                   },
                   "args" => {
                     "query" => [
@@ -452,7 +452,7 @@ module MeteoprogWeatherConfig
                       },
                       {
                         "name" => "day",
-                        "orig" => "day",
+                        "orig" => "days",
                         "type" => "`$INTEGER`",
                         "kind" => "query",
                         "example" => 7,
@@ -478,7 +478,7 @@ module MeteoprogWeatherConfig
                       },
                       {
                         "name" => "unit",
-                        "orig" => "unit",
+                        "orig" => "units",
                         "type" => "`$STRING`",
                         "kind" => "query",
                         "example" => "metric",

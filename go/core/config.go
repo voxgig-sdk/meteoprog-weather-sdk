@@ -132,7 +132,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body.current`",
+									"res": "`body`",
 								},
 								"args": map[string]any{
 									"query": []any{
@@ -163,7 +163,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "unit",
-											"orig": "unit",
+											"orig": "units",
 											"type": "`$STRING`",
 											"kind": "query",
 											"example": "metric",
@@ -319,7 +319,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "unit",
-											"orig": "unit",
+											"orig": "units",
 											"type": "`$STRING`",
 											"kind": "query",
 											"example": "metric",
@@ -432,7 +432,7 @@ func MakeConfig() map[string]any {
 								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.forecast`",
 								},
 								"args": map[string]any{
 									"query": []any{
@@ -444,7 +444,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "day",
-											"orig": "day",
+											"orig": "days",
 											"type": "`$INTEGER`",
 											"kind": "query",
 											"example": 7,
@@ -470,7 +470,7 @@ func MakeConfig() map[string]any {
 										},
 										map[string]any{
 											"name": "unit",
-											"orig": "unit",
+											"orig": "units",
 											"type": "`$STRING`",
 											"kind": "query",
 											"example": "metric",

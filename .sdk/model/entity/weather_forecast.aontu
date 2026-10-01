@@ -100,7 +100,7 @@ main: kit: entity: weather_forecast: {
                 ex: 7
                 k: "query"
                 n: "day"
-                or: "day"
+                or: "days"
                 r: false
                 t: "`$INTEGER`"
               }
@@ -130,7 +130,7 @@ main: kit: entity: weather_forecast: {
                 ex: "metric"
                 k: "query"
                 n: "unit"
-                or: "unit"
+                or: "units"
                 r: false
                 t: "`$STRING`"
               }
@@ -158,7 +158,7 @@ main: kit: entity: weather_forecast: {
           ]
           t: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.forecast`"
           }
         }
       ]
