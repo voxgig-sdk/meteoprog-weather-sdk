@@ -36,9 +36,7 @@ class MeteoprogWeatherMakeResult
                     if ($entry instanceof \stdClass) {
                         $entry = (array)$entry;
                     }
-                    if (is_array($entry)) {
-                        $ent->data_set($entry);
-                    }
+                    $ent->data_set($entry);
                     $entities[] = $ent;
                 }
                 $result->resdata = $entities;

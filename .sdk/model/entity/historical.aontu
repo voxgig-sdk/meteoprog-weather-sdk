@@ -146,14 +146,13 @@ main: kit: entity: historical: {
           o: "/weather/historical"
           q: {
             exist: [
-              "city"
               "end_date"
-              "lang"
-              "lat"
-              "lon"
               "start_date"
-              "unit"
             ]
+          }
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

@@ -96,6 +96,7 @@ def make_config():
         },
         "optspec": {
           "clearTimer": "`$FUNCTION`",
+          "now": "`$FUNCTION`",
           "setTimer": "`$FUNCTION`",
         },
         "strict": False,
@@ -195,14 +196,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "city",
-                    "lang",
-                    "lat",
-                    "lon",
-                    "unit",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -353,14 +350,13 @@ def make_config():
                 },
                 "select": {
                   "exist": [
-                    "city",
                     "end_date",
-                    "lang",
-                    "lat",
-                    "lon",
                     "start_date",
-                    "unit",
                   ],
+                },
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],
@@ -502,15 +498,10 @@ def make_config():
                     },
                   ],
                 },
-                "select": {
-                  "exist": [
-                    "city",
-                    "day",
-                    "lang",
-                    "lat",
-                    "lon",
-                    "unit",
-                  ],
+                "select": {},
+                "response": {
+                  "kind": "json",
+                  "media": "application/json",
                 },
               },
             ],

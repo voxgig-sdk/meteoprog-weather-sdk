@@ -3,5 +3,21 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "API key for authentication. Obtain from https://billing.meteoprog.com",
+      "Atmospheric pressure",
+      "Cloud coverage percentage",
+      "Date of the forecast",
+      "Date of the historical data",
+      "Humidity percentage",
+      "Precipitation amount",
+      "Production server",
+      "Successful response with current weather data",
+      "Successful response with historical weather data",
+      "Successful response with weather forecast data",
+      "The Meteoprog Weather API provides comprehensive weather data, allowing integration of fast and accurate weather forecasts into various applications and websites. It offers endpoints for current weather, forecasts, historical data, and more, ensuring easy access to vital meteorological information."
+    ]
+  }
 }

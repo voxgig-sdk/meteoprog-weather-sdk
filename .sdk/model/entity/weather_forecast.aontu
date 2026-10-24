@@ -138,15 +138,9 @@ main: kit: entity: weather_forecast: {
           }
           m: "GET"
           o: "/weather/forecast"
-          q: {
-            exist: [
-              "city"
-              "day"
-              "lang"
-              "lat"
-              "lon"
-              "unit"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

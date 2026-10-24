@@ -73,14 +73,9 @@ main: kit: entity: current: {
           }
           m: "GET"
           o: "/weather/current"
-          q: {
-            exist: [
-              "city"
-              "lang"
-              "lat"
-              "lon"
-              "unit"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

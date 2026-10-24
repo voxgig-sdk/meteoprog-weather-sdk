@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { MeteoprogWeatherSDK, BaseFeature, stdutil } from '../../..'
+import { MeteoprogWeatherSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('CurrentEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = MeteoprogWeatherSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Current().load({"city":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.METEOPROG_WEATHER_TEST_LIVE
@@ -51,7 +63,7 @@ describe('CurrentEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"current":{"a":true,"h":"Current","n":"current","r":false,"t":"`$OBJECT`","key$":"current","index$":0},"location":{"a":true,"h":"Location","n":"location","r":false,"t":"`$OBJECT`","key$":"location","index$":1}},"name":"current","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /weather/current","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"city","or":"city","r":false,"t":"`$STRING`","index$":0},{"a":true,"ex":"en","k":"query","n":"lang","or":"lang","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"lat","or":"lat","r":false,"t":"`$NUMBER`","index$":2},{"a":true,"k":"query","n":"lon","or":"lon","r":false,"t":"`$NUMBER`","index$":3},{"a":true,"ex":"metric","k":"query","n":"unit","or":"units","r":false,"t":"`$STRING`","index$":4}]},"k":"http","m":"GET","o":"/weather/current","q":{"exist":["city","lang","lat","lon","unit"]},"r":{},"s":[{"lit":"weather"},{"lit":"current"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"current","name__orig":"current","Name":"Current","name_":"current","name-":"current","NAME":"CURRENT","index$":0}, {"active":true,"entity":"current","key$":"BasicCurrentFlow","kind":"basic","name":"BasicCurrentFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"current_ref01","srcdatavar":"current_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-current_ref01"}}],"index$":0}]}, 'Current', {"GET /weather/current":{"protocol":"http","parameters":[{"name":"lat","in":"query","description":"Latitude of the location","required":false,"schema":{"type":"number","format":"float","minimum":-90,"maximum":90},"index$":0},{"name":"lon","in":"query","description":"Longitude of the location","required":false,"schema":{"type":"number","format":"float","minimum":-180,"maximum":180},"index$":1},{"name":"city","in":"query","description":"City name","required":false,"schema":{"type":"string"},"index$":2},{"name":"lang","in":"query","description":"Language code for the response","required":false,"schema":{"type":"string","default":"en","enum":["en","ru","uk","de","es","fr"]},"index$":3},{"name":"units","in":"query","description":"Units of measurement","required":false,"schema":{"type":"string","default":"metric","enum":["metric","imperial"]},"index$":4}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"current":{"a":true,"h":"Current","n":"current","r":false,"t":"`$OBJECT`","key$":"current","index$":0},"location":{"a":true,"h":"Location","n":"location","r":false,"t":"`$OBJECT`","key$":"location","index$":1}},"name":"current","op":{"load":{"input":"data","name":"load","points":[{"a":true,"co":{"id":"GET /weather/current","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"city","or":"city","r":false,"t":"`$STRING`","index$":0},{"a":true,"ex":"en","k":"query","n":"lang","or":"lang","r":false,"t":"`$STRING`","index$":1},{"a":true,"k":"query","n":"lat","or":"lat","r":false,"t":"`$NUMBER`","index$":2},{"a":true,"k":"query","n":"lon","or":"lon","r":false,"t":"`$NUMBER`","index$":3},{"a":true,"ex":"metric","k":"query","n":"unit","or":"units","r":false,"t":"`$STRING`","index$":4}]},"k":"http","m":"GET","o":"/weather/current","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"weather"},{"lit":"current"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"load"}},"relations":{"ancestors":[]},"key$":"current","name__orig":"current","Name":"Current","name_":"current","name-":"current","NAME":"CURRENT","index$":0}, {"active":true,"entity":"current","key$":"BasicCurrentFlow","kind":"basic","name":"BasicCurrentFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"current_ref01","srcdatavar":"current_ref01_data","suffix":"_dt0"},"m":{},"o":"load","s":[],"v":[{"apply":"TextFieldMark","def":{"mark":"Mark01-current_ref01"}}],"index$":0}]}, 'Current', {"GET /weather/current":{"protocol":"http","parameters":[{"name":"lat","in":"query","description":"Latitude of the location","required":false,"schema":{"type":"number","format":"float","minimum":-90,"maximum":90},"index$":0},{"name":"lon","in":"query","description":"Longitude of the location","required":false,"schema":{"type":"number","format":"float","minimum":-180,"maximum":180},"index$":1},{"name":"city","in":"query","description":"City name","required":false,"schema":{"type":"string"},"index$":2},{"name":"lang","in":"query","description":"Language code for the response","required":false,"schema":{"type":"string","default":"en","enum":["en","ru","uk","de","es","fr"]},"index$":3},{"name":"units","in":"query","description":"Units of measurement","required":false,"schema":{"type":"string","default":"metric","enum":["metric","imperial"]},"index$":4}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('CurrentEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

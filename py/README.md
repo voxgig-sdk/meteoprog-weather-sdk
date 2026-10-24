@@ -15,7 +15,7 @@ keeps the cognitive load low.
 
 ## Install
 This package is not yet published to PyPI. Install it from the GitHub
-release tag (`py/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/meteoprog-weather-sdk/releases)) or
+release tag (`py/vX.Y.Z`, see [Tags](https://github.com/voxgig-sdk/meteoprog-weather-sdk/tags)) or
 from a source checkout:
 
 ```bash
@@ -26,7 +26,7 @@ pip install -e .
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key as the `api_key` query parameter.
 
 ### 1. Create a client
 
@@ -46,7 +46,7 @@ client = MeteoprogWeatherSDK({
 ```python
 try:
     current = client.Current().load()
-    print(current)
+    print(current.data_get())
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -58,8 +58,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    historicals = client.Historical().list()
-    print(historicals)
+    historicals = client.Historical().list({"end_date": "example", "start_date": "example"})
+    print([item.data_get() for item in historicals])
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -125,10 +125,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = MeteoprogWeatherSDK.test()
 
-# Entity ops return the ENTITY and raises on error;
-# call data_get() for the record.
-historical = client.Historical().list()
-# historical contains the mock response record
+# Entity ops return the entity, and list one per record; they raise on error.
+historical = client.Historical().list({"end_date": "example", "start_date": "example"})
+# data_get() on an entity reads its mock response record
 ```
 
 ### Use a custom fetch function
@@ -216,8 +215,8 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
-| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria. Raises on error. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria, and return it. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> list` | List entities matching the criteria, one per record. Raises on error. |
 | `data_get` | `() -> dict` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> dict` | Get entity match criteria. |
@@ -227,9 +226,9 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
-ops, a `list` for `list`) and raise on error. Wrap calls in
-`try`/`except` to handle failures.
+Entity operations return the entity, and `list` a `list` of entities, one
+per record; an entity's `data_get()` reads its record (a `dict`). They raise
+on error, so wrap calls in `try`/`except` to handle failures.
 
 The `direct()` escape hatch never raises — it returns a result `dict`
 you branch on via `result["ok"]`:
@@ -548,7 +547,7 @@ stores the returned data and match criteria internally.
 
 ```python
 historical = client.Historical()
-historical.list()
+historical.list({"end_date": "example", "start_date": "example"})
 
 # historical.data_get() now returns the historical data from the last list
 # historical.match_get() returns the last match criteria

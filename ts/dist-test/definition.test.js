@@ -17,18 +17,44 @@ const PLAN = [
         "args": [],
         "select": {
             "city": "v1",
-            "lang": "v1",
+            "lang": "en",
             "lat": "v1",
             "lon": "v1",
-            "unit": "v1"
+            "unit": "metric"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "lat",
             "lon",
             "city",
             "lang",
             "units"
+        ],
+        "queryArgs": [
+            {
+                "name": "city",
+                "wire": "city"
+            },
+            {
+                "name": "lang",
+                "wire": "lang"
+            },
+            {
+                "name": "lat",
+                "wire": "lat"
+            },
+            {
+                "name": "lon",
+                "wire": "lon"
+            },
+            {
+                "name": "unit",
+                "wire": "units"
+            }
         ],
         "auth": [
             [
@@ -41,32 +67,33 @@ const PLAN = [
         "status": 200,
         "sample": {
             "location": {
+                "name": "x",
                 "country": "x",
+                "region": "x",
                 "lat": 1,
                 "lon": 1,
-                "name": "x",
-                "region": "x",
                 "timezone": "x"
             },
             "current": {
-                "clouds": 1,
-                "feels_like": 1,
-                "humidity": 1,
-                "pressure": 1,
-                "temperature": 1,
                 "timestamp": 1,
+                "temperature": 1,
+                "feels_like": 1,
+                "pressure": 1,
+                "humidity": 1,
+                "wind_speed": 1,
+                "wind_direction": 1,
+                "clouds": 1,
                 "visibility": 1,
                 "weather": {
-                    "description": "x",
-                    "icon": "x",
                     "id": 1,
-                    "main": "x"
-                },
-                "wind_direction": 1,
-                "wind_speed": 1
+                    "main": "x",
+                    "description": "x",
+                    "icon": "x"
+                }
             }
         },
-        "idField": "id"
+        "idField": "id",
+        "ownQuery": "api_key"
     },
     {
         "entity": "historical",
@@ -76,15 +103,19 @@ const PLAN = [
         "path": "/weather/historical",
         "args": [],
         "select": {
-            "city": "v1",
             "end_date": "v1",
-            "lang": "v1",
+            "start_date": "v1",
+            "city": "v1",
+            "lang": "en",
             "lat": "v1",
             "lon": "v1",
-            "start_date": "v1",
-            "unit": "v1"
+            "unit": "metric"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "lat",
             "lon",
@@ -93,6 +124,36 @@ const PLAN = [
             "end_date",
             "lang",
             "units"
+        ],
+        "queryArgs": [
+            {
+                "name": "city",
+                "wire": "city"
+            },
+            {
+                "name": "end_date",
+                "wire": "end_date"
+            },
+            {
+                "name": "lang",
+                "wire": "lang"
+            },
+            {
+                "name": "lat",
+                "wire": "lat"
+            },
+            {
+                "name": "lon",
+                "wire": "lon"
+            },
+            {
+                "name": "start_date",
+                "wire": "start_date"
+            },
+            {
+                "name": "unit",
+                "wire": "units"
+            }
         ],
         "auth": [
             [
@@ -105,37 +166,38 @@ const PLAN = [
         "status": 200,
         "sample": {
             "location": {
+                "name": "x",
                 "country": "x",
+                "region": "x",
                 "lat": 1,
                 "lon": 1,
-                "name": "x",
-                "region": "x",
                 "timezone": "x"
             },
             "historical": [
                 {
-                    "clouds": 1,
                     "date": "2026-01-01",
-                    "humidity": 1,
-                    "precipitation": 1,
-                    "pressure": 1,
-                    "temperature": {
-                        "avg": 1,
-                        "max": 1,
-                        "min": 1
-                    },
                     "timestamp": 1,
-                    "weather": {
-                        "description": "x",
-                        "id": 1,
-                        "main": "x"
+                    "temperature": {
+                        "min": 1,
+                        "max": 1,
+                        "avg": 1
                     },
+                    "pressure": 1,
+                    "humidity": 1,
+                    "wind_speed": 1,
                     "wind_direction": 1,
-                    "wind_speed": 1
+                    "clouds": 1,
+                    "precipitation": 1,
+                    "weather": {
+                        "id": 1,
+                        "main": "x",
+                        "description": "x"
+                    }
                 }
             ]
         },
-        "idField": "id"
+        "idField": "id",
+        "ownQuery": "api_key"
     },
     {
         "entity": "weather_forecast",
@@ -146,13 +208,17 @@ const PLAN = [
         "args": [],
         "select": {
             "city": "v1",
-            "day": "v1",
-            "lang": "v1",
+            "day": 7,
+            "lang": "en",
             "lat": "v1",
             "lon": "v1",
-            "unit": "v1"
+            "unit": "metric"
         },
         "headers": [],
+        "cookies": [],
+        "responseMedia": [
+            "application/json"
+        ],
         "query": [
             "lat",
             "lon",
@@ -160,6 +226,32 @@ const PLAN = [
             "days",
             "lang",
             "units"
+        ],
+        "queryArgs": [
+            {
+                "name": "city",
+                "wire": "city"
+            },
+            {
+                "name": "day",
+                "wire": "days"
+            },
+            {
+                "name": "lang",
+                "wire": "lang"
+            },
+            {
+                "name": "lat",
+                "wire": "lat"
+            },
+            {
+                "name": "lon",
+                "wire": "lon"
+            },
+            {
+                "name": "unit",
+                "wire": "units"
+            }
         ],
         "auth": [
             [
@@ -172,41 +264,42 @@ const PLAN = [
         "status": 200,
         "sample": {
             "location": {
+                "name": "x",
                 "country": "x",
+                "region": "x",
                 "lat": 1,
                 "lon": 1,
-                "name": "x",
-                "region": "x",
                 "timezone": "x"
             },
             "forecast": [
                 {
-                    "clouds": 1,
                     "date": "2026-01-01",
-                    "humidity": 1,
-                    "precipitation": 1,
-                    "pressure": 1,
+                    "timestamp": 1,
                     "temperature": {
+                        "min": 1,
+                        "max": 1,
+                        "morning": 1,
                         "day": 1,
                         "evening": 1,
-                        "max": 1,
-                        "min": 1,
-                        "morning": 1,
                         "night": 1
                     },
-                    "timestamp": 1,
-                    "weather": {
-                        "description": "x",
-                        "icon": "x",
-                        "id": 1,
-                        "main": "x"
-                    },
+                    "pressure": 1,
+                    "humidity": 1,
+                    "wind_speed": 1,
                     "wind_direction": 1,
-                    "wind_speed": 1
+                    "clouds": 1,
+                    "precipitation": 1,
+                    "weather": {
+                        "id": 1,
+                        "main": "x",
+                        "description": "x",
+                        "icon": "x"
+                    }
                 }
             ]
         },
-        "idField": "id"
+        "idField": "id",
+        "ownQuery": "api_key"
     }
 ];
 (0, node_test_1.describe)('definition', () => {

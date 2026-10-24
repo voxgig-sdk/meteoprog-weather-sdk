@@ -16,7 +16,7 @@ go get github.com/voxgig-sdk/meteoprog-weather-sdk/go@latest
 ```
 
 The Go module proxy resolves the version from the `go/vX.Y.Z` GitHub
-release tag — see [Releases](https://github.com/voxgig-sdk/meteoprog-weather-sdk/releases) for the available versions.
+release tag — see [Tags](https://github.com/voxgig-sdk/meteoprog-weather-sdk/tags) for the available versions.
 
 To vendor from a local checkout instead, clone this repo alongside your
 project and add a `replace` directive pointing at the checked-out
@@ -30,14 +30,15 @@ go mod edit -replace github.com/voxgig-sdk/meteoprog-weather-sdk/go=../meteoprog
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
-loading a specific record.
+loading a specific record. The client sends the API key as the `api_key` query parameter.
 
 ### Quickstart
 
 A complete program: create a client, then call the entity operations.
-Each operation returns `(value, error)` — the value is the data itself
-(there is no `{ok, data}` wrapper), so check `err` and use the value
-directly.
+Each operation returns `(value, error)` — the value is the entity, and for
+`List` a `[]any` of entities, one per record (there is no `{ok, data}`
+wrapper), so check `err` and read a record through the entity's
+`Data()`.
 
 ```go
 package main
@@ -53,12 +54,12 @@ func main() {
         "apikey": os.Getenv("METEOPROG_WEATHER_APIKEY"),
     })
 
-    // Load a single current — the value is the loaded record.
+    // Load a single current — the value is the entity; Data() reads its record.
     current, err := client.Current(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(current)
+    fmt.Println(current.(sdk.Entity).Data())
 }
 ```
 
@@ -69,7 +70,7 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-historicals, err := client.Historical(nil).List(nil, nil)
+historicals, err := client.Historical(nil).List(map[string]any{"end_date": "example", "start_date": "example"}, nil)
 if err != nil {
     // handle err
     return
@@ -138,13 +139,16 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-historical, err := client.Historical(nil).List(
-    nil, nil,
+historicals, err := client.Historical(nil).List(
+    map[string]any{"end_date": "example", "start_date": "example"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(historical) // the returned mock data
+// A []any of entities, one per mock record.
+for _, item := range historicals.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ### Use a custom fetch function
@@ -233,8 +237,8 @@ All entities implement the `MeteoprogWeatherEntity` interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria. |
-| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria. |
+| `Load` | `(reqmatch, ctrl map[string]any) (any, error)` | Load a single entity by match criteria, and return it. |
+| `List` | `(reqmatch, ctrl map[string]any) (any, error)` | List entities matching the criteria, one per record. |
 | `Data` | `(args ...any) any` | Get or set entity data. |
 | `Match` | `(args ...any) any` | Get or set entity match criteria. |
 | `Make` | `() Entity` | Create a new instance with the same options. |
@@ -242,13 +246,13 @@ All entities implement the `MeteoprogWeatherEntity` interface.
 
 ### Result shape
 
-Entity operations return `(value, error)`. The `value` is the
-operation's data **directly** — there is no wrapper:
+Entity operations return `(value, error)`. The `value` is the entity
+itself — there is no wrapper:
 
 | Operation | `value` |
 | --- | --- |
-| `Load` | the entity record (`map[string]any`) |
-| `List` | a `[]any` of entity records |
+| `Load` | the entity, whose `Data()` reads its record (`map[string]any`) |
+| `List` | a `[]any` of entities, one per record |
 
 Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
@@ -256,7 +260,7 @@ slice):
 
     current, err := client.Current(nil).Load(nil, nil)
     if err != nil { /* handle */ }
-    // current is the returned record
+    // current is the entity; current.(sdk.Entity).Data() reads its record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -341,7 +345,7 @@ current, err := client.Current(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(current) // the loaded record
+fmt.Println(current.(sdk.Entity).Data()) // the loaded entity's record
 ```
 
 
@@ -373,11 +377,14 @@ Create an instance: `historical := client.Historical(nil)`
 #### Example: List
 
 ```go
-historicals, err := client.Historical(nil).List(nil, nil)
+historicals, err := client.Historical(nil).List(map[string]any{"end_date": "example", "start_date": "example"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(historicals) // the array of records
+// A []any of entities, one per record.
+for _, item := range historicals.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 
@@ -413,7 +420,10 @@ weatherForecasts, err := client.WeatherForecast(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(weatherForecasts) // the array of records
+// A []any of entities, one per record.
+for _, item := range weatherForecasts.([]any) {
+    fmt.Println(item.(sdk.Entity).Data())
+}
 ```
 
 ## Features
@@ -550,7 +560,9 @@ The Go SDK uses `map[string]any` throughout rather than typed structs.
 This mirrors the dynamic nature of the API and keeps the SDK
 flexible — no code generation is needed when the API schema changes.
 
-Use `core.ToMapAny()` to safely cast results and nested data.
+An operation returns the entity, and its `Data()` returns the record. Use
+`core.ToMapAny()` to safely cast that record, or data nested in it, to
+`map[string]any`: it returns `nil` for anything else, an entity included.
 
 ### Package structure
 
@@ -575,7 +587,7 @@ stores the returned data and match criteria internally.
 
 ```go
 historical := client.Historical(nil)
-historical.List(nil, nil)
+historical.List(map[string]any{"end_date": "example", "start_date": "example"}, nil)
 
 // historical.Data() now returns the historical data from the last list
 // historical.Match() returns the last match criteria

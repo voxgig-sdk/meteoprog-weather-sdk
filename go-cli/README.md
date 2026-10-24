@@ -21,6 +21,7 @@ export METEOPROG_WEATHER_APIKEY=sk_live_xxx
 # 4. Each command line is ONE boru expression, run against the API:
 ./meteoprog-weather-cli load 1 current            # {id:1} shorthand
 ./meteoprog-weather-cli load '{id:1}' current       # explicit match map
+./meteoprog-weather-cli list historical
 
 # 5. Override the API base URL for a single call
 METEOPROG_WEATHER_BASE=https://api.example.com ./meteoprog-weather-cli load 1 current
